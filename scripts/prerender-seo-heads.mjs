@@ -216,6 +216,11 @@ async function main() {
   fs.writeFileSync(nojekyllPath, '', 'utf8')
   console.log(`✓ [NoJekyll] Generated dist/.nojekyll`)
 
+  // Create dist/CNAME for GitHub Pages custom domain
+  const cnamePath = path.resolve(distDir, 'CNAME')
+  fs.writeFileSync(cnamePath, 'printsign.org\n', 'utf8')
+  console.log(`✓ [CNAME] Generated dist/CNAME for printsign.org`)
+
   console.log(`\n[prerender] Success! Total ${count} dedicated HTML files pre-rendered with unique SEO heads.\n`)
 }
 
