@@ -1,0 +1,76 @@
+# PrintSign - 100% Client-Side In-Browser PDF Editor & Redactor
+# https://printsign.org
+
+User-agent: *
+Allow: /
+Allow: /blog
+Allow: /blog/
+Allow: /editor
+Allow: /features
+Allow: /about
+Allow: /about-us
+Allow: /contact
+Allow: /contact-us
+Allow: /privacy
+Allow: /privacy-policy
+Allow: /terms
+Allow: /terms-of-service
+Allow: /cookies
+Allow: /cookie-policy
+Allow: /guides
+Allow: /faq
+Allow: /editorial-policy
+
+# Dedicated Google Bots for SEO and AdSense Approval
+User-agent: Googlebot
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
+Allow: /
+
+# Microsoft Bing & Yahoo
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo & Yandex & Global Crawlers
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI & LLM Search Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://printsign.org/sitemap.xml

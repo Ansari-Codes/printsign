@@ -1,0 +1,31 @@
+# PrintSign PDF Editor
+> 100% Client-Side PDF Editor, Permanent Redactor, Splitter, and Sanitizer.
+
+PrintSign is a zero-server, zero-telemetry web application that enables users and AI agents to manipulate, reorganize, sanitize, and permanently redact PDF documents directly inside browser memory without uploading any bytes to a remote server.
+
+## Dedicated Pages & Endpoints
+- Homepage & Live Dropzone: https://printsign.org/
+- Full Web Application Editor: https://printsign.org/editor
+- Features & Architectural Specifications: https://printsign.org/features
+- About Us & Engineering Mission: https://printsign.org/about-us
+- Contact & Technical Support: https://printsign.org/contact-us
+- Legal Privacy Policy (GDPR / CCPA / AdSense): https://printsign.org/privacy-policy
+- Terms of Service Agreement: https://printsign.org/terms-of-service
+- Cookie Policy & Advertising Consent: https://printsign.org/cookie-policy
+- Knowledge Base & Forensics Whitepapers: https://printsign.org/guides
+- Frequently Asked Questions: https://printsign.org/faq
+
+## Core Capabilities
+- **Permanent Redaction:** 300 DPI canvas raster burn-in with Trailer and Catalog indirect object graph traversal garbage collection. Purges underlying vector text and binary canary strings completely (NIST SP 800-88 compliant).
+- **Page Organization:** Rotate clockwise 90°, delete single or multiple pages, reorder by drag-and-drop, insert blank pages, duplicate pages, visual cropping.
+- **Split & Merge:** Multi-file merging in client memory; page range splitting (e.g. 1-3, 5, 8-10) with multi-file client-side ZIP packaging via fflate.
+- **Metadata Scrubbing:** Complete purge of Info dictionary keys (Title, Author, Subject, Keywords, Creator, Producer, CreationDate, ModDate) and raw XML RDF XMP streams.
+- **High-DPI Rasterizer:** Render PDF pages to PNG, JPEG, or WebP at 72, 150, 300, or 600 DPI, with flattening to image-only PDF.
+- **Offline PWA:** Fully cached via Service Worker. Operates on air-gapped computers with zero internet connection.
+- **Local Autosave:** Preserves drafts locally in browser IndexedDB with zero cloud exposure.
+
+## Security & Verification Posture
+- 0 bytes transmitted over network.
+- 0 external runtime CDNs or remote font endpoints.
+- Isolated multi-document history and redaction state.
+- Automated canary string byte-level audit on all redactions.

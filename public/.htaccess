@@ -1,0 +1,41 @@
+<IfModule mod_mime.c>
+  AddType text/css .css
+  AddType application/javascript .js .mjs
+  AddType application/wasm .wasm
+  AddType image/svg+xml .svg
+  AddType font/woff2 .woff2
+  AddType font/woff .woff
+  AddType font/ttf .ttf
+  AddType application/json .json .webmanifest
+  AddType application/octet-stream .bcmap .pfb
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Redirect www to non-www
+  RewriteCond %{HTTP_HOST} ^www\.printsign\.org [NC]
+  RewriteRule ^(.*)$ https://printsign.org/$1 [L,R=301]
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Security Headers
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # NEVER rewrite static assets, styles, scripts, or fonts to index.html
+  RewriteCond %{REQUEST_URI} ^/assets/ [NC,OR]
+  RewriteCond %{REQUEST_URI} ^/cmaps/ [NC,OR]
+  RewriteCond %{REQUEST_URI} ^/standard_fonts/ [NC,OR]
+  RewriteCond %{REQUEST_URI} \.(css|js|mjs|json|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|bcmap|pfb|xml|txt|webmanifest)$ [NC]
+  RewriteRule ^ - [L]
+
+  # SPA Routing for client-side Vue pages
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>

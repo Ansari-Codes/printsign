@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XEW2JC3CM9"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-XEW2JC3CM9');
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="/pwa-192x192.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="-vRlW__8EEHf0C6Ul8-GaubxQUWRST6CykqEQ3sqAU8" />
+    <meta name="google-site-verification" content="3l8Xr3QubHoaJcWx4pJX7Qu1MzV0kb1O30bcunfIlkE" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>PrintSign PDF Editor — 100% Client-Side PDF Redactor, Splitter & Tools</title>
+    <meta name="title" content="PrintSign PDF Editor — 100% Client-Side PDF Redactor, Splitter & Tools" />
+    <meta name="description" content="Edit, redact, rotate, reorder, split, and sanitize PDF documents 100% client-side in your browser. Zero server uploads, zero telemetry, true permanent redaction with orphan object GC. Free, private, and offline-capable." />
+    <meta name="keywords" content="PDF editor, client-side PDF, redact PDF, permanent redaction, PDF metadata scrubber, split PDF, merge PDF, offline PDF editor, private PDF editor, PWA PDF" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://printsign.org/" />
+    <meta name="theme-color" content="#090d16" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://printsign.org/" />
+    <meta property="og:title" content="PrintSign PDF Editor — 100% Client-Side PDF Redactor & Tools" />
+    <meta property="og:description" content="Edit and permanently redact PDFs directly in your browser. Zero servers, zero uploads, military-grade orphan object garbage collection. Works offline." />
+    <meta property="og:image" content="/pwa-512x512.svg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="PrintSign PDF Editor — 100% Client-Side PDF Redactor & Tools" />
+    <meta property="twitter:description" content="Edit and permanently redact PDFs directly in your browser. Zero servers, zero uploads, military-grade orphan object garbage collection. Works offline." />
+    <meta property="twitter:image" content="/pwa-512x512.svg" />
+
+    <!-- JSON-LD Structured Data for Search Engines & Agentic Browsers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "PrintSign PDF Editor",
+          "url": "https://printsign.org",
+          "description": "100% client-side, zero-server PDF editing, redaction, and sanitization web application.",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "All modern browsers (Chrome, Firefox, Safari, Edge)",
+          "browserRequirements": "Requires JavaScript. Works fully offline via Service Worker.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "100% Client-Side Processing",
+            "Permanent Pixel-Burn Redaction with Orphan Indirect Object GC",
+            "Page Reordering, Deletion, Rotation, Insertion, and Cropping",
+            "Client-Side Multi-File PDF Merging and Range Splitting",
+            "Metadata and XMP Packet Scrubbing",
+            "High-DPI Rasterization and Client-Side ZIP Packaging",
+            "Progressive Web App with Full Offline Support"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Are my PDF files uploaded to any server?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. PrintSign PDF Editor operates 100% client-side within your browser sandbox. No backend servers, third-party APIs, or cloud storage exist in the architecture."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does true PDF redaction work compared to drawing black boxes?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Drawing black rectangles merely covers text visually, leaving underlying characters extractable. Our true redaction pipeline renders affected pages to pixels, burns in the redaction regions, embeds a clean replacement image, and deletes unreferenced content streams using an indirect object garbage collector."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does the app work offline?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. PrintSign PDF Editor is an offline-first Progressive Web App (PWA). All scripts, Web Workers, fonts, and CMAP assets are precached by a Service Worker on first visit."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
