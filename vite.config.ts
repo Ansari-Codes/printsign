@@ -65,6 +65,7 @@ export default defineConfig({
       return [
         '/',
         '/verify-redaction',
+        '/f12-network-audit',
         '/ilovepdf-smallpdf-offline-alternative',
         '/hipaa-compliant-pdf-redaction',
         '/nist-800-88-pdf-sanitization',

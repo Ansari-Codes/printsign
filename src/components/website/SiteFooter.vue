@@ -102,6 +102,12 @@
                 Security Architecture
               </router-link>
             </li>
+            <li>
+              <router-link to="/f12-network-audit" class="hover:text-cyan-400 transition flex items-center gap-1.5 font-medium text-cyan-300">
+                <span>F12 Zero-Network Audit</span>
+                <span class="text-[9px] px-1 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono">Live</span>
+              </router-link>
+            </li>
           </ul>
         </div>
 
