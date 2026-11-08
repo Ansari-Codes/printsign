@@ -99,6 +99,31 @@ export const seoMetadata = {
       ]
     )
   },
+  '/verify-redaction': {
+    title: 'PDF Redaction & Metadata Verifier — Local Inspection Tool',
+    description: 'Check if a redacted PDF still contains selectable text under boxes or hidden XMP metadata. 100% local browser inspection—no file upload.',
+    h1: 'Client-Side PDF Sanitization & Redaction Verifier',
+    toolMode: 'verifier',
+    ogType: 'website',
+    featureList: [
+      'Local PDF Redaction Verification',
+      'Selectable Text Layer Detection',
+      'XMP Metadata Stream Inspector',
+      'Info Dictionary Audit',
+      'Pure Raster Verification',
+      'Zero Cloud Upload'
+    ],
+    schema: buildWebApplicationSchema(
+      'PDF Redaction & Metadata Verifier',
+      'Check if a redacted PDF still contains selectable text under boxes or hidden XMP metadata. 100% local browser inspection—no file upload.',
+      'https://printsign.org/verify-redaction',
+      [
+        'Local PDF Redaction Verification',
+        'Selectable Text Layer Detection',
+        'XMP Metadata Stream Inspector'
+      ]
+    )
+  },
   '/redact-pdf': {
     title: 'Redact PDF Online — Permanent 300 DPI Redaction',
     description: 'Permanently redact sensitive text and images from PDFs locally in your browser. Burns 300 DPI pixels with zero server uploads.',

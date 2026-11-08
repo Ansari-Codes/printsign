@@ -1,4 +1,64 @@
 export const toolSeoContent = {
+  '/verify-redaction': {
+    heading: 'PDF Redaction & Metadata Audit — Verify Before You Release',
+    subheading: 'How to inspect redacted PDFs for hidden selectable text, orphaned vector layers, and XMP metadata leaks directly in browser memory.',
+    badge: 'Defensible Pre-Filing & FOIA Verification',
+    highlights: [
+      { title: 'Text Layer Detection', desc: 'Iterates every document page to flag underlying selectable vector characters hidden beneath cosmetic black shapes.' },
+      { title: 'XMP & Info Audit', desc: 'Scrutinizes trailer roots and catalog streams to detect author identities, editing timestamps, and client applications.' },
+      { title: '100% Local In-Memory', desc: 'Audits confidential legal discovery and medical filings entirely inside client RAM with zero server data exfiltration.' }
+    ],
+    sections: [
+      {
+        title: 'The Anatomy of Failed Court & FOIA Redactions',
+        paragraphs: [
+          'Some of the most catastrophic data breaches in legal proceedings, government transparency disclosures, and corporate mergers stem from a single fundamental misconception: treating cosmetic black rectangles as permanent redaction. In standard PDF specifications (ISO 32000), drawing a black box or highlight merely overlays a vector path annotation on a higher visual layer. The underlying text characters, font glyph indices, search matrices, and invisible OCR layers remain completely untouched in the document stream.',
+          'Recipients, opposing counsel, or automated web crawlers can effortlessly bypass cosmetic redactions in seconds. By pressing Ctrl+A to select all text, copying into plain Notepad, using simple command-line tools like pdftotext, or disabling annotation layers in Adobe Acrobat, the secret text underneath is instantly revealed. This specific failure mode has compromised classified criminal indictments, grand jury transcripts, sensitive military contracts, and HIPAA-protected medical records in high-profile public controversies.'
+        ]
+      },
+      {
+        title: 'Forensic PDF Inspection: Selectable Text vs. Pure Raster',
+        paragraphs: [
+          'To guarantee that a document is safe for public dissemination, attorneys, compliance officers, and journalists must perform pre-flight verification before publishing. PrintSign’s Client-Side Verifier analyzes every page of your PDF using Mozilla PDF.js to inspect the raw content stream and text layer structures. If any non-empty character glyphs or selectable strings persist on a page that was supposed to be redacted, the verifier flags the exact page number and text item count.',
+          'True redaction requires converting redacted sections into pure, flattened 300 DPI raster images where characters are physically converted into black pixels and the underlying vector stream is permanently expunged. Our verifier checks whether each page is a "Pure Raster" image or whether it still hosts active vector glyph streams, interactive form field widgets, or clickable annotations that could compromise document security.'
+        ],
+        bullets: [
+          'Automated text layer counting: Iterates through each page textContent stream to catch hidden glyphs.',
+          'Cosmetic overlay detection: Alerts you when black boxes fail to erase underlying text streams.',
+          'Pure raster verification: Confirms whether pages have been safely flattened into un-extractable pixels.',
+          'Court-defensible pre-flight check: Complies with Federal Rules of Civil Procedure (FRCP Rule 5.2) and HIPAA Safe Harbor.'
+        ]
+      },
+      {
+        title: 'Deep Metadata & Hidden XMP Stream Inspection',
+        paragraphs: [
+          'Redaction is only half the battle. Even when visible text is securely burned into pixels, sensitive intelligence frequently leaks through hidden document metadata. PDF files contain two distinct metadata structures: the traditional Trailer /Info dictionary and the modern XMP (Extensible Metadata Platform) XML stream embedded in the document catalog.',
+          'These data structures record the author’s full name, corporate username, computer name, software version, exact creation and modification timestamps, and sometimes even printer serial numbers or revision histories. PrintSign audits all standard Info keys (/Title, /Author, /Subject, /Keywords, /Creator, /Producer, /CreationDate, /ModDate) as well as raw XMP XML packets, warning you if metadata must be scrubbed before external sharing.'
+        ]
+      },
+      {
+        title: 'Zero Server Exfiltration: Verifiable Local In-Memory Inspection',
+        paragraphs: [
+          'Auditing sensitive discovery filings or classified documents on traditional cloud converters introduces severe compliance liabilities. Third-party cloud tools upload your proprietary files to remote servers, violating non-disclosure agreements, attorney-client privilege, and data residency laws. PrintSign operates 100% locally in your browser memory.',
+          'Using typed Uint8Array buffers and Web Workers, all parsing and inspection occur exclusively within your device’s sandbox. No files, metadata, or telemetry are ever transmitted across the network — verifiable anytime via browser Developer Tools (F12).'
+        ]
+      }
+    ],
+    faq: [
+      {
+        q: 'Why can I still select and copy text under black boxes in standard PDF viewers?',
+        a: 'Because standard PDF viewers use layered vector streams. Drawing a black rectangle creates an overlay visual path without deleting the underlying character stream. Anyone who opens the document can press Ctrl+A, copy the text, or extract it with automated scripts.'
+      },
+      {
+        q: 'Does verifying my PDF through this tool upload my sensitive document to any server?',
+        a: 'No, absolutely not. PrintSign runs entirely in your browser using client-side JavaScript, WebAssembly, and Mozilla PDF.js. Your document never leaves your device memory. You can verify this by inspecting the browser Network tab (F12) or running the tool completely offline.'
+      },
+      {
+        q: 'What should I do if the audit flags selectable text or hidden metadata?',
+        a: 'Use PrintSign’s Permanent Redactor to burn the sensitive pages into flattened 300 DPI raster pixels, and use the Metadata Scrubber to strip all /Info dictionary keys and raw XMP XML packets before public release.'
+      }
+    ]
+  },
   '/redact-pdf': {
     heading: 'Permanent Client-Side PDF Redaction — 300 DPI Pixel Destruction',
     subheading: 'Why drawing black rectangles fails forensic audits, and how PrintSign permanently destroys sensitive data in browser RAM.',

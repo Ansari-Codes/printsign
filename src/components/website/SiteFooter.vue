@@ -35,6 +35,12 @@
           <h4 class="text-xs font-bold text-white uppercase tracking-wider">Document Tools</h4>
           <ul class="space-y-2 text-xs">
             <li>
+              <router-link to="/verify-redaction" class="hover:text-cyan-400 transition flex items-center gap-1.5 font-medium text-cyan-300">
+                <span>Redaction & Metadata Verifier</span>
+                <span class="px-1.5 py-0.2 rounded text-[9px] bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-500/30">Free Audit</span>
+              </router-link>
+            </li>
+            <li>
               <router-link to="/redact-pdf" class="hover:text-cyan-400 transition">
                 Permanent Redaction
               </router-link>

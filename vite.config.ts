@@ -55,6 +55,7 @@ export default defineConfig({
     includedRoutes() {
       return [
         '/',
+        '/verify-redaction',
         '/redact-pdf',
         '/scrub-pdf-metadata',
         '/merge-pdf',

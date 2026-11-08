@@ -12,12 +12,14 @@ import FaqView from '../views/FaqView.vue'
 import GeneralEditorView from '../views/GeneralEditorView.vue'
 import BlogIndexView from '../views/BlogIndexView.vue'
 import BlogPostView from '../views/BlogPostView.vue'
+import VerifyRedactionView from '../views/VerifyRedactionView.vue'
 
 const isFileProtocol = typeof window !== 'undefined' && window.location.protocol === 'file:'
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
   { path: '/editor', name: 'editor', component: EditorView },
+  { path: '/verify-redaction', name: 'verify-redaction', component: VerifyRedactionView },
   { path: '/redact-pdf', name: 'tool-redact', component: EditorView, meta: { toolMode: 'redact' } },
   { path: '/scrub-pdf-metadata', name: 'tool-metadata', component: EditorView, meta: { toolMode: 'metadata' } },
   { path: '/merge-pdf', name: 'tool-merge', component: EditorView, meta: { toolMode: 'merge' } },

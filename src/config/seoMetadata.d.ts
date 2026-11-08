@@ -4,7 +4,7 @@ export interface SeoMetadataItem {
   title: string
   description: string
   h1: string
-  toolMode: 'redact' | 'metadata' | 'merge' | 'split' | 'rasterize' | 'organize' | 'compress' | null
+  toolMode: 'redact' | 'metadata' | 'merge' | 'split' | 'rasterize' | 'organize' | 'compress' | 'verifier' | null
   ogType?: 'website' | 'article'
   featureList?: string[]
   schema?: Record<string, unknown>

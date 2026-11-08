@@ -38,6 +38,7 @@ export function generateSitemap() {
   const staticRoutes = [
     { loc: 'https://printsign.org/', changefreq: 'daily', priority: '1.0' },
     // Core Unbundled Tool Routes
+    { loc: 'https://printsign.org/verify-redaction', changefreq: 'weekly', priority: '1.0' },
     { loc: 'https://printsign.org/redact-pdf', changefreq: 'weekly', priority: '1.0' },
     { loc: 'https://printsign.org/scrub-pdf-metadata', changefreq: 'weekly', priority: '1.0' },
     { loc: 'https://printsign.org/merge-pdf', changefreq: 'weekly', priority: '1.0' },
