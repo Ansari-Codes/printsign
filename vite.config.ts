@@ -4,12 +4,19 @@ import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { fileURLToPath, URL } from 'node:url'
 
+// Dynamic base URL resolution (supports custom domains e.g. '/' or subpaths e.g. '/printsign/')
+const rawBase = (process.env.BASE_URL || process.env.VITE_BASE_URL || '/').trim()
+const base = rawBase === '/' || rawBase === '' ? '/' : `/${rawBase.replace(/^\/+|\/+$/g, '')}/`
+
 // https://vite.dev/config/
 export default defineConfig({
+  base,
   plugins: [
     vue(),
     tailwindcss(),
     VitePWA({
+      base,
+      scope: base,
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
@@ -20,6 +27,8 @@ export default defineConfig({
         theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',
+        start_url: base,
+        scope: base,
         icons: [
           {
             src: 'pwa-192x192.svg',

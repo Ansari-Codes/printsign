@@ -6,6 +6,11 @@ on:
       - main
       - master
   workflow_dispatch:
+    inputs:
+      base_url:
+        description: 'Base URL (e.g. / or /printsign/)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -36,6 +41,8 @@ jobs:
         run: npm ci || npm install
 
       - name: Build Application & Pre-render SEO Heads
+        env:
+          BASE_URL: ${{ inputs.base_url || vars.BASE_URL || '/' }}
         run: npm run build
 
       - name: Configure GitHub Pages

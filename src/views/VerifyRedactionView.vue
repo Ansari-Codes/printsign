@@ -414,6 +414,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { PDFDocument, rgb, StandardFonts } from 'pdf-lib'
 import {
   ShieldCheck,
   ShieldAlert,
@@ -488,7 +489,6 @@ async function loadSyntheticTestDoc() {
 
   try {
     // Generate a quick synthetic PDF with deliberate metadata and selectable text to showcase audit findings
-    const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib')
     const doc = await PDFDocument.create()
     const font = await doc.embedFont(StandardFonts.Helvetica)
     const fontBold = await doc.embedFont(StandardFonts.HelveticaBold)

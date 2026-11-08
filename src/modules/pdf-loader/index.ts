@@ -24,11 +24,13 @@ export async function loadPdfDocument(
 ): Promise<DocumentLoadResult> {
   let isEncrypted = false
 
+  const baseUrl = (typeof window !== 'undefined' && import.meta?.env?.BASE_URL) ? import.meta.env.BASE_URL : './'
+
   const loadingTask = pdfjsLib.getDocument({
     data: data.slice(),
-    cMapUrl: './cmaps/',
+    cMapUrl: baseUrl.endsWith('/') ? `${baseUrl}cmaps/` : `${baseUrl}/cmaps/`,
     cMapPacked: true,
-    standardFontDataUrl: './standard_fonts/'
+    standardFontDataUrl: baseUrl.endsWith('/') ? `${baseUrl}standard_fonts/` : `${baseUrl}/standard_fonts/`
   })
 
   // Handle password-protected PDFs

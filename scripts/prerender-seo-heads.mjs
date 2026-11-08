@@ -300,10 +300,20 @@ async function main() {
   fs.writeFileSync(nojekyllPath, '', 'utf8')
   console.log(`✓ [NoJekyll] Generated dist/.nojekyll`)
 
-  // Create dist/CNAME for GitHub Pages custom domain
+  // Create dist/CNAME for GitHub Pages custom domain (only when deploying to apex/custom domain)
+  const rawBase = (process.env.BASE_URL || process.env.VITE_BASE_URL || '/').trim()
+  const isApex = rawBase === '/' || rawBase === ''
   const cnamePath = path.resolve(distDir, 'CNAME')
-  fs.writeFileSync(cnamePath, 'printsign.org\n', 'utf8')
-  console.log(`✓ [CNAME] Generated dist/CNAME for printsign.org`)
+
+  if (isApex) {
+    fs.writeFileSync(cnamePath, 'printsign.org\n', 'utf8')
+    console.log(`✓ [CNAME] Generated dist/CNAME for printsign.org`)
+  } else {
+    if (fs.existsSync(cnamePath)) {
+      fs.unlinkSync(cnamePath)
+      console.log(`✓ [CNAME] Removed dist/CNAME for subpath deployment (${rawBase})`)
+    }
+  }
 
   // Dynamic Sitemap & Robots.txt generation
   console.log('\n--- Generating Dynamic Sitemap & Robots.txt ---')
