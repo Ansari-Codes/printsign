@@ -57,25 +57,19 @@
 
       <!-- Section 4 -->
       <div class="space-y-3">
-        <h2 class="text-xl font-bold text-white tracking-tight">4. Third-Party Advertising & Cookie Disclosures (Google AdSense)</h2>
+        <h2 class="text-xl font-bold text-white tracking-tight">4. Zero Third-Party Trackers & External Network Privacy</h2>
         <p>
-          To keep this application 100% free for public use, we may display advertising served by Google AdSense and third-party advertising partners on website landing and educational pages.
-        </p>
-        <p>
-          Please note the following disclosures required by Google AdSense policies and privacy regulations:
+          PrintSign is completely free and supported without third-party tracking networks, commercial analytics beacons, or data brokers. We do not load external tracker scripts, and zero user telemetry or document data is monetized or shared with third parties.
         </p>
         <ul class="list-disc list-inside space-y-2 text-slate-400 ml-2">
           <li>
-            <strong class="text-slate-200">Third-Party Vendors:</strong> Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.
+            <strong class="text-slate-200">Zero Commercial Trackers:</strong> No advertising network scripts or tracking beacons are ever injected into your browser.
           </li>
           <li>
-            <strong class="text-slate-200">Advertising Cookies:</strong> Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to our sites and/or other sites on the Internet.
+            <strong class="text-slate-200">Zero Cross-Site Profiling:</strong> We do not track your browsing habits across external domains.
           </li>
           <li>
-            <strong class="text-slate-200">Document Isolation:</strong> Advertising scripts have zero access to your PDF documents or client-side workspace memory. Documents are processed in isolated Web Workers and memory-scoped object stores that third-party scripts cannot access or inspect.
-          </li>
-          <li>
-            <strong class="text-slate-200">Opting Out:</strong> Users may opt out of personalized advertising by visiting <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 underline">Google Ads Settings</a> or through the <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" class="text-cyan-400 underline">Digital Advertising Alliance's WebChoices tool</a>.
+            <strong class="text-slate-200">Strict Document Isolation:</strong> All PDF document processing occurs 100% locally in client-side Web Workers with zero server exfiltration.
           </li>
         </ul>
       </div>

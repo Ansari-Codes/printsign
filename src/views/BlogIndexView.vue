@@ -55,12 +55,6 @@
         </div>
       </header>
 
-      <!-- AdSense Unit Top -->
-      <AdSenseSlot
-        slot-name="Blog Index Top Leaderboard"
-        format="horizontal"
-        description="Google AdSense responsive header banner."
-      />
 
       <!-- Featured Article (Shown when no search/filter active) -->
       <div v-if="featuredPost && !searchQuery && selectedCategory === 'All'" class="mb-14">
@@ -183,12 +177,6 @@
         <ToolComparisonTable />
       </section>
 
-      <!-- Bottom AdSense Slot -->
-      <AdSenseSlot
-        slot-name="Blog Index Bottom Banner"
-        format="horizontal"
-        description="Google AdSense responsive footer banner."
-      />
 
       <!-- Quick Action CTA -->
       <section class="mt-16 text-center py-12 px-6 rounded-3xl bg-gradient-to-r from-cyan-950/40 via-blue-950/40 to-slate-950/60 border border-cyan-500/20">
@@ -219,7 +207,6 @@
 import { ref, computed, onMounted } from 'vue'
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 import ToolComparisonTable from '../components/website/ToolComparisonTable.vue'
 import { blogs, blogCategories, type BlogPost } from '../data/blogs'
 import {

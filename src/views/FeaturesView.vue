@@ -17,12 +17,6 @@
         </p>
       </div>
 
-      <!-- AdSense Unit (Top) -->
-      <AdSenseSlot
-        slot-name="Features Top Leaderboard"
-        format="horizontal"
-        description="Google AdSense high-visibility responsive display unit."
-      />
 
       <!-- Features Grid Component -->
       <FeaturesSection
@@ -50,12 +44,6 @@
         </router-link>
       </div>
 
-      <!-- AdSense Unit (Bottom) -->
-      <AdSenseSlot
-        slot-name="Features Bottom Unit"
-        format="horizontal"
-        description="Google AdSense compliant responsive footer banner."
-      />
     </main>
 
     <!-- Footer -->
@@ -69,7 +57,6 @@ import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
 import FeaturesSection from '../components/website/FeaturesSection.vue'
 import ArchitectureSection from '../components/website/ArchitectureSection.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 
 const router = useRouter()
 

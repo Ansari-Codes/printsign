@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build && node scripts/prerender-seo-heads.mjs",
+    "build": "vue-tsc -b && vite build && node scripts/prerender-seo-heads.mjs && node scripts/verify-static-html.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",

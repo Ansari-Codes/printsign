@@ -17,12 +17,6 @@
         </p>
       </div>
 
-      <!-- AdSense Unit (Top) -->
-      <AdSenseSlot
-        slot-name="About Page Top Placement"
-        format="horizontal"
-        description="Google AdSense compliant responsive display unit."
-      />
 
       <!-- Mission Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
@@ -168,5 +162,4 @@ import {
 } from 'lucide-vue-next'
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 </script>

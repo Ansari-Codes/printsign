@@ -10,10 +10,10 @@
           <span>COOKIE TRANSPARENCY & CONSENT</span>
         </div>
         <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
-          Cookie Policy & GDPR Advertising Notice
+          Cookie Policy & Zero-Tracker Declaration
         </h1>
         <p class="text-xs text-slate-400 font-mono">
-          Last Updated: October 2026 • Compliant with GDPR, ePrivacy Directive & Google AdSense Publisher Requirements
+          Last Updated: October 2026 • Compliant with GDPR, ePrivacy Directive & Zero-Tracker Standards
         </p>
       </div>
 
@@ -42,21 +42,12 @@
         </div>
 
         <div class="space-y-3">
-          <h2 class="text-xl font-bold text-white tracking-tight">3. Third-Party Advertising Cookies (Google AdSense)</h2>
+          <h2 class="text-xl font-bold text-white tracking-tight">3. Zero Third-Party Advertising Cookies Policy</h2>
           <p>
-            To fund the maintenance, development, and hosting of our free web tools, we partner with Google AdSense and third-party advertising networks.
+            PrintSign operates without third-party advertising cookies, data trackers, or behavioral profiling networks. We do not partner with commercial ad networks, and no external ad trackers are loaded into your session.
           </p>
-          <p>
-            Google AdSense may set third-party cookies on your device (such as <code class="text-cyan-300 bg-slate-900 px-1.5 py-0.5 rounded-md font-mono text-xs">__gads</code>, <code class="text-cyan-300 bg-slate-900 px-1.5 py-0.5 rounded-md font-mono text-xs">__gpi</code>, or <code class="text-cyan-300 bg-slate-900 px-1.5 py-0.5 rounded-md font-mono text-xs">IDE</code>) for purposes including:
-          </p>
-          <ul class="list-disc list-inside space-y-2 text-slate-400 ml-2">
-            <li>Serving relevant, interest-based advertisements based on prior visits to this and other websites.</li>
-            <li>Frequency capping to prevent the same advertisement from appearing repeatedly to the same visitor.</li>
-            <li>Fraud detection and click verification to protect advertisers from automated bots.</li>
-            <li>Measuring ad performance and audience reporting.</li>
-          </ul>
           <div class="p-4 rounded-2xl bg-cyan-950/30 border border-cyan-500/30 text-xs text-cyan-200">
-            <strong>Important Privacy Boundary:</strong> Google AdSense cookies and scripts are strictly isolated by browser security policies and have <strong class="text-white">zero access to your PDF files, documents, text, or redaction coordinates</strong>.
+            <strong>Important Privacy Boundary:</strong> PrintSign is 100% client-side and free. We have <strong class="text-white">zero access to your PDF files, documents, text, or redaction coordinates</strong>.
           </div>
         </div>
 
@@ -89,12 +80,6 @@
         </div>
       </div>
 
-      <!-- AdSense Unit (Bottom) -->
-      <AdSenseSlot
-        slot-name="Cookie Policy Bottom Placement"
-        format="horizontal"
-        description="Google AdSense compliant responsive footer unit."
-      />
     </main>
 
     <!-- Footer -->
@@ -105,5 +90,4 @@
 <script setup lang="ts">
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 </script>

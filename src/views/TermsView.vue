@@ -7,12 +7,6 @@
       <!-- Embedded Terms Component -->
       <TermsSection />
 
-      <!-- AdSense Unit (Bottom) -->
-      <AdSenseSlot
-        slot-name="Terms of Service Bottom Placement"
-        format="horizontal"
-        description="Google AdSense compliant responsive footer unit."
-      />
     </main>
 
     <!-- Footer -->
@@ -24,5 +18,4 @@
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
 import TermsSection from '../components/website/TermsSection.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 </script>

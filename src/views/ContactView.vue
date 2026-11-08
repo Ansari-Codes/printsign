@@ -151,7 +151,7 @@
                   <option value="security">Security & Privacy Audit</option>
                   <option value="enterprise">Enterprise & Legal Compliance</option>
                   <option value="feedback">General Feedback & Suggestions</option>
-                  <option value="advertising">AdSense & Partnership Inquiry</option>
+                  <option value="partnership">Business &amp; Partnership Inquiry</option>
                 </select>
               </div>
 
@@ -198,12 +198,6 @@
         </div>
       </div>
 
-      <!-- AdSense Unit (Bottom) -->
-      <AdSenseSlot
-        slot-name="Contact Page Bottom Placement"
-        format="horizontal"
-        description="Google AdSense compliant responsive footer unit."
-      />
     </main>
 
     <!-- Footer -->
@@ -224,7 +218,6 @@ import {
 } from 'lucide-vue-next'
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 
 const formSubmitted = ref(false)
 const formData = ref({

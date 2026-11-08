@@ -7,12 +7,6 @@
       <!-- Hero Section with Dropzone -->
       <HeroSection @file-loaded="onFileLoaded" />
 
-      <!-- Google AdSense Billboard / Leaderboard -->
-      <AdSenseSlot
-        slot-name="Homepage Billboard Unit"
-        format="horizontal"
-        description="High-visibility Google AdSense compliant leaderboard placement. Responsive and non-intrusive."
-      />
 
       <!-- Features Showcase -->
       <FeaturesSection
@@ -24,12 +18,6 @@
       <!-- Architecture Comparison -->
       <ArchitectureSection />
 
-      <!-- Google AdSense Mid-Page Article Placement -->
-      <AdSenseSlot
-        slot-name="Homepage In-Content Unit"
-        format="horizontal"
-        description="Google AdSense responsive banner unit positioned between technical analysis and knowledge base."
-      />
 
       <!-- SEO Knowledge Base & Guides -->
       <BlogSection @navigate="handleFeaturesNavigate" />
@@ -37,7 +25,6 @@
       <!-- Frequently Asked Questions -->
       <FaqSection />
 
-      <!-- Quick Directory of Dedicated Pages for AdSense Reviewers -->
       <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
         <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider text-center mb-6">
           Explore Our Verified Dedicated Pages
@@ -97,7 +84,6 @@ import FeaturesSection from '../components/website/FeaturesSection.vue'
 import ArchitectureSection from '../components/website/ArchitectureSection.vue'
 import BlogSection from '../components/website/BlogSection.vue'
 import FaqSection from '../components/website/FaqSection.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 
 const router = useRouter()
 

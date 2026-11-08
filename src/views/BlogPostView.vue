@@ -72,12 +72,6 @@
         </div>
       </header>
 
-      <!-- AdSense Unit Top -->
-      <AdSenseSlot
-        slot-name="Blog Post Top Leaderboard"
-        format="horizontal"
-        description="Google AdSense compliant responsive article header."
-      />
 
       <!-- Content Grid: TOC Sidebar + Article Body -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -194,12 +188,6 @@
             </span>
           </div>
 
-          <!-- AdSense Unit Mid-Article -->
-          <AdSenseSlot
-            slot-name="Blog Post Middle Placement"
-            format="horizontal"
-            description="Google AdSense content-matched unit."
-          />
         </article>
 
         <!-- Sidebar (Spans 4 cols on lg) -->
@@ -306,12 +294,6 @@
         </div>
       </section>
 
-      <!-- Bottom AdSense Unit -->
-      <AdSenseSlot
-        slot-name="Blog Post Bottom Banner"
-        format="horizontal"
-        description="Google AdSense responsive placement below article."
-      />
     </main>
 
     <!-- Post Not Found Fallback -->
@@ -340,7 +322,6 @@ import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 import ToolComparisonTable from '../components/website/ToolComparisonTable.vue'
 import { getBlogPostBySlug, getRelatedPosts, type BlogPost } from '../data/blogs'
 import {

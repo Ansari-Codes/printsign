@@ -115,11 +115,6 @@
           </div>
         </div>
 
-        <AdSenseSlot
-          slot-name="General Editor Bottom Banner"
-          format="horizontal"
-          description="Google AdSense responsive placement."
-        />
       </main>
 
       <SiteFooter />
@@ -191,7 +186,6 @@ import { createSyntheticFixturePdf } from '../../tests/fixtures/create-synthetic
 
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 import PrivacyBanner from '../components/common/PrivacyBanner.vue'
 import Header from '../components/common/Header.vue'
 import StatusBar from '../components/common/StatusBar.vue'

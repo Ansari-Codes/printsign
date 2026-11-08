@@ -7,12 +7,6 @@
       <!-- Embedded Full Privacy Policy Component -->
       <PrivacyPolicySection />
 
-      <!-- AdSense Unit (Bottom) -->
-      <AdSenseSlot
-        slot-name="Privacy Policy Bottom Placement"
-        format="horizontal"
-        description="Google AdSense compliant responsive footer unit."
-      />
     </main>
 
     <!-- Footer -->
@@ -24,5 +18,4 @@
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
 import PrivacyPolicySection from '../components/website/PrivacyPolicySection.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 </script>

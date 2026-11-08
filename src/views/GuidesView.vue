@@ -17,22 +17,10 @@
         </p>
       </div>
 
-      <!-- AdSense Unit (Top) -->
-      <AdSenseSlot
-        slot-name="Guides Top Leaderboard"
-        format="horizontal"
-        description="Google AdSense compliant responsive display unit."
-      />
 
       <!-- Blog Section Component -->
       <BlogSection @navigate="handleNavigate" />
 
-      <!-- AdSense Unit (Bottom) -->
-      <AdSenseSlot
-        slot-name="Guides Bottom Placement"
-        format="horizontal"
-        description="Google AdSense compliant responsive article placement."
-      />
     </main>
 
     <!-- Footer -->
@@ -45,7 +33,6 @@ import { useRouter } from 'vue-router'
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
 import BlogSection from '../components/website/BlogSection.vue'
-import AdSenseSlot from '../components/website/AdSenseSlot.vue'
 
 const router = useRouter()
 
