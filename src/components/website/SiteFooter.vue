@@ -171,7 +171,7 @@
           </router-link>
           <span>•</span>
           <a
-            href="https://github.com"
+            href="https://github.com/Ansari-Codes/printsign"
             target="_blank"
             rel="noopener noreferrer"
             class="hover:text-slate-300 transition"
