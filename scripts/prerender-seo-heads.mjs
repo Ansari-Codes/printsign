@@ -1,7 +1,9 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { seoMetadata, faqJsonLd, buildWebApplicationSchema } from '../src/config/seoMetadata.js'
+import { seoMetadata } from '../src/config/seoMetadata.js'
+import { toolSeoContent } from '../src/config/seoContent.js'
+import { generateSitemap } from './generate-sitemap.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -39,6 +41,80 @@ function loadBlogPosts() {
     console.warn('[prerender] Failed to parse blogs.ts JSON:', err.message)
     return []
   }
+}
+
+function generateSemanticBody(routePath, seo) {
+  const content = toolSeoContent[routePath]
+
+  if (!content) {
+    // For non-tool routes (homepage, blog, etc.), render clean semantic header & description
+    return `<div id="app">
+    <header class="sr-only">
+      <h1>${escapeAttr(seo.h1 || seo.title)}</h1>
+      <p>${escapeAttr(seo.description)}</p>
+    </header>
+  </div>`
+  }
+
+  const highlightsHtml = content.highlights
+    .map(
+      h => `        <div class="highlight-card">
+          <h3>${escapeAttr(h.title)}</h3>
+          <p>${escapeAttr(h.desc)}</p>
+        </div>`
+    )
+    .join('\n')
+
+  const sectionsHtml = content.sections
+    .map(sec => {
+      const pTags = sec.paragraphs.map(p => `        <p>${escapeAttr(p)}</p>`).join('\n')
+      const bTags =
+        sec.bullets && sec.bullets.length > 0
+          ? `        <ul>\n${sec.bullets.map(b => `          <li><strong>${escapeAttr(b.split(':')[0] || b)}:</strong> ${escapeAttr(b.split(':').slice(1).join(':') || '')}</li>`).join('\n')}\n        </ul>`
+          : ''
+      return `      <article>
+        <h3>${escapeAttr(sec.title)}</h3>
+${pTags}
+${bTags}
+      </article>`
+    })
+    .join('\n\n')
+
+  const faqHtml =
+    content.faq && content.faq.length > 0
+      ? `      <section class="faq-section">
+        <h3>Frequently Asked Questions</h3>
+${content.faq
+  .map(
+    f => `        <div class="faq-item">
+          <h4>${escapeAttr(f.q)}</h4>
+          <p>${escapeAttr(f.a)}</p>
+        </div>`
+  )
+  .join('\n')}
+      </section>`
+      : ''
+
+  return `<div id="app">
+    <header>
+      <h1>${escapeAttr(seo.h1 || seo.title)}</h1>
+      <p class="tool-lead">${escapeAttr(seo.description)}</p>
+    </header>
+    <main>
+      <section class="seo-content" aria-label="Technical Specifications & Document Security Information">
+        <div class="badge">${escapeAttr(content.badge)}</div>
+        <h2>${escapeAttr(content.heading)}</h2>
+        <p class="subheading">${escapeAttr(content.subheading)}</p>
+        <div class="highlights-grid">
+${highlightsHtml}
+        </div>
+        <div class="long-form-sections">
+${sectionsHtml}
+        </div>
+${faqHtml}
+      </section>
+    </main>
+  </div>`
 }
 
 function prerenderRoute(template, routePath, seo) {
@@ -108,11 +184,15 @@ function prerenderRoute(template, routePath, seo) {
     }
   }
 
+  // Inject crawlable semantic body into <div id="app"></div>
+  const semanticBody = generateSemanticBody(routePath, seo)
+  html = html.replace(/<div id=["']app["']>[\s\S]*?<\/div>/i, semanticBody)
+
   return html
 }
 
 async function main() {
-  console.log('\n--- PrintSign SEO Head Pre-rendering ---')
+  console.log('\n--- PrintSign SEO Pre-rendering & SSG Engine ---')
   if (!fs.existsSync(distIndexHtml)) {
     console.error(`[prerender] Error: Compiled template not found at ${distIndexHtml}. Run vite build first!`)
     process.exit(1)
@@ -170,10 +250,14 @@ async function main() {
             '@id': `https://printsign.org${blogPath}`
           }
         },
-        ...(faqEntities.length > 0 ? [{
-          '@type': 'FAQPage',
-          mainEntity: faqEntities
-        }] : [])
+        ...(faqEntities.length > 0
+          ? [
+              {
+                '@type': 'FAQPage',
+                mainEntity: faqEntities
+              }
+            ]
+          : [])
       ]
     }
 
@@ -221,7 +305,11 @@ async function main() {
   fs.writeFileSync(cnamePath, 'printsign.org\n', 'utf8')
   console.log(`✓ [CNAME] Generated dist/CNAME for printsign.org`)
 
-  console.log(`\n[prerender] Success! Total ${count} dedicated HTML files pre-rendered with unique SEO heads.\n`)
+  // Dynamic Sitemap & Robots.txt generation
+  console.log('\n--- Generating Dynamic Sitemap & Robots.txt ---')
+  generateSitemap()
+
+  console.log(`\n[prerender] Success! Total ${count} dedicated HTML files pre-rendered with semantic SEO heads and crawlable content.\n`)
 }
 
 main().catch(err => {

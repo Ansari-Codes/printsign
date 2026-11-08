@@ -47,6 +47,36 @@ export default defineConfig({
   worker: {
     format: 'es'
   },
+  // SSG (Static Site Generation) Options for unbundled crawlable tool routes
+  // @ts-ignore
+  ssgOptions: {
+    script: 'async',
+    formatting: 'minify',
+    includedRoutes() {
+      return [
+        '/',
+        '/redact-pdf',
+        '/scrub-pdf-metadata',
+        '/merge-pdf',
+        '/split-pdf',
+        '/flatten-rasterize-pdf',
+        '/reorder-rotate-pdf',
+        '/compress-pdf',
+        '/editor',
+        '/faq',
+        '/blog',
+        '/guides',
+        '/features',
+        '/about-us',
+        '/contact-us',
+        '/security-architecture',
+        '/privacy-policy',
+        '/terms-of-service',
+        '/cookie-policy',
+        '/general-editor'
+      ]
+    }
+  },
   // @ts-ignore
   test: {
     include: ['tests/unit/**/*.{test,spec}.ts']

@@ -6,54 +6,61 @@
     <!-- Empty state when no PDF is loaded -->
     <div
       v-if="!pdfStore.activeDocument"
-      class="m-auto max-w-lg w-full p-10 border border-slate-700/60 rounded-3xl flex flex-col items-center text-center bg-slate-900/70 backdrop-blur-xl shadow-2xl relative overflow-hidden"
-      @dragover.prevent
-      @drop.prevent="handleFileDrop"
+      class="w-full flex flex-col items-center justify-start my-auto py-8"
     >
-      <!-- Subtle top neon gradient accent -->
-      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500"></div>
+      <div
+        class="max-w-lg w-full p-10 border border-slate-700/60 rounded-3xl flex flex-col items-center text-center bg-slate-900/70 backdrop-blur-xl shadow-2xl relative overflow-hidden"
+        @dragover.prevent
+        @drop.prevent="handleFileDrop"
+      >
+        <!-- Subtle top neon gradient accent -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500"></div>
 
-      <div class="w-18 h-18 rounded-2xl bg-gradient-to-tr from-cyan-500/15 via-blue-500/15 to-indigo-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-lg shadow-cyan-500/10 mb-5">
-        <FileUp class="w-9 h-9" />
-      </div>
-
-      <h1 class="text-2xl font-bold text-white tracking-tight mb-2">
-        {{ props.toolHeading || 'Drop your PDF here' }}
-      </h1>
-      <p class="text-sm text-slate-400 mb-8 max-w-sm leading-relaxed">
-        {{ props.toolDescription || 'Ultra-fast client-side parsing, editing, and military-grade redaction. Your files never leave your device.' }}
-      </p>
-
-      <label class="cursor-pointer px-6 py-3 bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:via-blue-500 hover:to-indigo-500 text-white font-semibold rounded-2xl transition-all shadow-xl shadow-cyan-500/25 active:scale-98 text-sm flex items-center gap-2.5">
-        <FolderOpen class="w-4 h-4" />
-        <span>Select PDF Document</span>
-        <input
-          type="file"
-          accept="application/pdf"
-          class="hidden"
-          @change="handleFileInput"
-        />
-      </label>
-
-      <!-- Autosave Restore Banner if drafts exist -->
-      <div v-if="showRestorePrompt && savedDrafts.length > 0" class="mt-8 w-full p-4 bg-slate-950/80 border border-amber-500/30 rounded-2xl text-left shadow-lg">
-        <div class="flex items-center justify-between text-xs text-amber-300 font-semibold mb-1">
-          <span class="flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
-            Recoverable Local Drafts Found
-          </span>
-          <button @click="dismissAndClearDrafts" class="text-slate-400 hover:text-white transition">Dismiss</button>
+        <div class="w-18 h-18 rounded-2xl bg-gradient-to-tr from-cyan-500/15 via-blue-500/15 to-indigo-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shadow-lg shadow-cyan-500/10 mb-5">
+          <FileUp class="w-9 h-9" />
         </div>
-        <p class="text-xs text-slate-400 mb-3">
-          Restore {{ savedDrafts.length }} document(s) from your local browser IndexedDB?
+
+        <h1 class="text-2xl font-bold text-white tracking-tight mb-2">
+          {{ props.toolHeading || 'Drop your PDF here' }}
+        </h1>
+        <p class="text-sm text-slate-400 mb-8 max-w-sm leading-relaxed">
+          {{ props.toolDescription || 'Ultra-fast client-side parsing, editing, and military-grade redaction. Your files never leave your device.' }}
         </p>
-        <button
-          @click="restoreAllDrafts"
-          class="w-full py-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white rounded-xl text-xs font-semibold shadow-md transition"
-        >
-          Restore Drafts
-        </button>
+
+        <label class="cursor-pointer px-6 py-3 bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:via-blue-500 hover:to-indigo-500 text-white font-semibold rounded-2xl transition-all shadow-xl shadow-cyan-500/25 active:scale-98 text-sm flex items-center gap-2.5">
+          <FolderOpen class="w-4 h-4" />
+          <span>Select PDF Document</span>
+          <input
+            type="file"
+            accept="application/pdf"
+            class="hidden"
+            @change="handleFileInput"
+          />
+        </label>
+
+        <!-- Autosave Restore Banner if drafts exist -->
+        <div v-if="showRestorePrompt && savedDrafts.length > 0" class="mt-8 w-full p-4 bg-slate-950/80 border border-amber-500/30 rounded-2xl text-left shadow-lg">
+          <div class="flex items-center justify-between text-xs text-amber-300 font-semibold mb-1">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+              Recoverable Local Drafts Found
+            </span>
+            <button @click="dismissAndClearDrafts" class="text-slate-400 hover:text-white transition">Dismiss</button>
+          </div>
+          <p class="text-xs text-slate-400 mb-3">
+            Restore {{ savedDrafts.length }} document(s) from your local browser IndexedDB?
+          </p>
+          <button
+            @click="restoreAllDrafts"
+            class="w-full py-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white rounded-xl text-xs font-semibold shadow-md transition"
+          >
+            Restore Drafts
+          </button>
+        </div>
       </div>
+
+      <!-- Below-The-Fold Crawlable Semantic SEO Content Section -->
+      <SeoContentSection />
     </div>
 
     <!-- Active Document Pages Viewer -->
@@ -112,6 +119,7 @@ import { FileUp, FolderOpen, ChevronLeft, ChevronRight } from 'lucide-vue-next'
 import { usePdfStore } from '../../stores/pdfStore'
 import { useAutosave } from '../../composables/useAutosave'
 import PageCanvas from './PageCanvas.vue'
+import SeoContentSection from '../website/SeoContentSection.vue'
 
 const props = defineProps<{
   toolHeading?: string
