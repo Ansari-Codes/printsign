@@ -48,6 +48,10 @@ export function generateSitemap() {
     { loc: 'https://printsign.org/compress-pdf', changefreq: 'weekly', priority: '1.0' },
     { loc: 'https://printsign.org/editor', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/general-editor', changefreq: 'weekly', priority: '0.8' },
+    // High-Intent Compliance & Comparison Routes
+    { loc: 'https://printsign.org/ilovepdf-smallpdf-offline-alternative', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/hipaa-compliant-pdf-redaction', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/nist-800-88-pdf-sanitization', changefreq: 'weekly', priority: '0.9' },
     // Knowledge Base, FAQ, Features, Security
     { loc: 'https://printsign.org/guides', changefreq: 'weekly', priority: '0.8' },
     { loc: 'https://printsign.org/faq', changefreq: 'monthly', priority: '0.8' },

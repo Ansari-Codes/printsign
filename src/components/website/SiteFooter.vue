@@ -3,8 +3,8 @@
     <div class="max-w-7xl mx-auto">
       <!-- Main Columns Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12 mb-12">
-        <!-- Brand Description (Spans 2 cols on lg) -->
-        <div class="lg:col-span-2 space-y-4">
+        <!-- Brand Description (Spans 1 col on lg) -->
+        <div class="space-y-4">
           <router-link to="/" class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20">
               <ShieldCheck class="w-5 h-5" />
@@ -73,6 +73,33 @@
             <li>
               <router-link to="/compress-pdf" class="hover:text-cyan-400 transition">
                 Lossless PDF Compressor
+              </router-link>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 2: Compliance & Privacy -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Compliance &amp; Trust</h4>
+          <ul class="space-y-2 text-xs">
+            <li>
+              <router-link to="/ilovepdf-smallpdf-offline-alternative" class="hover:text-cyan-400 transition">
+                Private Cloud Alternative
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/hipaa-compliant-pdf-redaction" class="hover:text-cyan-400 transition">
+                HIPAA-Compliant Redaction
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/nist-800-88-pdf-sanitization" class="hover:text-cyan-400 transition">
+                NIST SP 800-88 Sanitization
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/security-architecture" class="hover:text-cyan-400 transition">
+                Security Architecture
               </router-link>
             </li>
           </ul>

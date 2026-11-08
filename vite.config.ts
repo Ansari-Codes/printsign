@@ -56,6 +56,9 @@ export default defineConfig({
       return [
         '/',
         '/verify-redaction',
+        '/ilovepdf-smallpdf-offline-alternative',
+        '/hipaa-compliant-pdf-redaction',
+        '/nist-800-88-pdf-sanitization',
         '/redact-pdf',
         '/scrub-pdf-metadata',
         '/merge-pdf',

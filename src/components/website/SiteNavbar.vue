@@ -82,14 +82,53 @@
 
       <!-- Right Action Items -->
       <div class="flex items-center gap-3">
-        <!-- Offline Pill -->
-        <div v-if="isOffline" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold">
-          <WifiOff class="w-3.5 h-3.5" />
-          <span>Offline Mode Active</span>
-        </div>
-        <div v-else class="hidden xl:inline-flex items-center gap-1.5 text-xs text-slate-300">
-          <Wifi class="w-3.5 h-3.5 text-emerald-400" />
-          <span>PWA Precached</span>
+        <!-- Live Air-Gap Network Status Pill with Interactive Tooltip -->
+        <div class="relative group/network">
+          <button
+            type="button"
+            @click="showNetworkTooltip = !showNetworkTooltip"
+            class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold transition cursor-pointer select-none"
+            :class="[
+              isOffline
+                ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 shadow-sm shadow-emerald-500/10 animate-pulse'
+                : 'bg-slate-900/80 border border-cyan-500/30 text-cyan-300 hover:border-cyan-400/50'
+            ]"
+            :title="isOffline ? 'Air-Gap Mode Active: No network connection' : 'Local RAM Mode: Disconnect Wi-Fi to test offline'"
+            aria-label="Network Air-Gap Status"
+          >
+            <span v-if="!isOffline" class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <ShieldCheck v-else class="w-3.5 h-3.5 text-emerald-400" />
+            <span class="text-[11px]">
+              {{ isOffline ? '🛡️ Air-Gap Active • 0 Network Connection' : '🟢 Local RAM Mode • Air-Gap Ready' }}
+            </span>
+          </button>
+
+          <!-- Interactive Tooltip Popover (on click or hover) -->
+          <div
+            v-if="showNetworkTooltip"
+            class="absolute top-full mt-2 right-0 w-72 p-3.5 rounded-2xl bg-slate-900 border border-cyan-500/40 shadow-2xl z-50 text-left text-xs text-slate-300"
+          >
+            <div class="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-slate-800">
+              <div class="flex items-center gap-1.5 font-bold text-white">
+                <ShieldCheck class="w-4 h-4 text-cyan-400" />
+                <span>{{ isOffline ? 'Air-Gap Offline Active' : 'Zero-Network Architecture' }}</span>
+              </div>
+              <button
+                type="button"
+                @click.stop="showNetworkTooltip = false"
+                class="text-slate-400 hover:text-white text-xs"
+              >✕</button>
+            </div>
+            <p class="leading-relaxed text-[11px] text-slate-300 mb-2">
+              PrintSign executes 100% in browser RAM. Disconnect your Wi-Fi or press <strong>F12 → Network</strong> to verify zero data transmission.
+            </p>
+            <div class="p-2 rounded-xl bg-slate-950/80 border border-slate-800 text-[10px] text-cyan-400 font-mono">
+              Status: {{ isOffline ? 'OFFLINE (Air-Gapped)' : 'ONLINE (PWA Pre-cached)' }}
+            </div>
+          </div>
         </div>
 
         <!-- GitHub Button -->
@@ -238,13 +277,13 @@
       </a>
 
       <div class="pt-3 border-t border-slate-800/80 flex items-center justify-between">
-        <span v-if="isOffline" class="text-xs text-amber-400 flex items-center gap-1">
-          <WifiOff class="w-3.5 h-3.5" />
-          Offline Mode Active
+        <span v-if="isOffline" class="text-xs text-emerald-300 font-semibold flex items-center gap-1">
+          <ShieldCheck class="w-3.5 h-3.5 text-emerald-400" />
+          <span>🛡️ Air-Gap Active (0 Net)</span>
         </span>
-        <span v-else class="text-xs text-slate-400 flex items-center gap-1">
-          <Wifi class="w-3.5 h-3.5 text-emerald-400" />
-          PWA Offline Ready
+        <span v-else class="text-xs text-cyan-300 font-medium flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>🟢 Local RAM • Air-Gap Ready</span>
         </span>
         <router-link
           to="/editor"
@@ -264,8 +303,6 @@ import { useRouter } from 'vue-router'
 import {
   ShieldCheck,
   FolderOpen,
-  Wifi,
-  WifiOff,
   LayoutDashboard,
   Menu,
   X
@@ -280,6 +317,7 @@ const router = useRouter()
 const pdfStore = usePdfStore()
 const isMobileMenuOpen = ref(false)
 const isOffline = ref(!navigator.onLine)
+const showNetworkTooltip = ref(false)
 
 function handleOnline() {
   isOffline.value = false

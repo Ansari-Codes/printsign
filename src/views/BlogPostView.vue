@@ -141,6 +141,44 @@
             </div>
           </section>
 
+          <!-- High-Conversion Dedicated Tool Callout Card -->
+          <div
+            v-if="post.primaryTool"
+            class="my-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-cyan-950/40 via-blue-950/30 to-indigo-950/40 border border-cyan-500/30 shadow-xl"
+          >
+            <div class="flex items-center gap-2 mb-3">
+              <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-[10px] font-bold uppercase tracking-wider">
+                <ShieldCheck class="w-3.5 h-3.5" />
+                <span>100% In-Memory Browser Tool</span>
+              </span>
+              <span class="text-[11px] text-slate-400 font-medium">Zero Cloud Uploads • F12 Verifiable</span>
+            </div>
+
+            <h3 class="text-xl sm:text-2xl font-black text-white mb-2">
+              Try the Local {{ post.primaryTool.name }}
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl mb-6">
+              {{ post.primaryTool.description }} Execute client-side in your browser's RAM memory without transmitting files or logging metadata.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3">
+              <router-link
+                :to="post.primaryTool.route"
+                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/25 transition active:scale-98"
+              >
+                <span>{{ post.primaryTool.ctaText }}</span>
+                <ArrowRight class="w-4 h-4" />
+              </router-link>
+
+              <router-link
+                to="/verify-redaction"
+                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 hover:border-cyan-500/40 font-semibold text-xs transition"
+              >
+                <span>Verify Existing PDF Redactions →</span>
+              </router-link>
+            </div>
+          </div>
+
           <!-- Keywords Tags -->
           <div class="my-8 pt-6 border-t border-slate-800 flex flex-wrap items-center gap-2">
             <span class="text-xs text-slate-400 flex items-center gap-1 mr-2">
@@ -190,17 +228,25 @@
               Navigate sections below.
             </div>
 
-            <!-- In-Card CTA -->
+            <!-- In-Card Contextual Tool CTA -->
             <div class="mt-6 pt-5 border-t border-slate-800 text-center">
-              <h5 class="text-xs font-bold text-white mb-2">Process PDFs 100% Offline</h5>
+              <h5 class="text-xs font-bold text-white mb-1.5">
+                {{ post.primaryTool ? post.primaryTool.name : 'Process PDFs 100% Offline' }}
+              </h5>
               <p class="text-[11px] text-slate-400 mb-4 leading-normal">
-                Never upload confidential files to public servers. Use PrintSign client-side.
+                {{ post.primaryTool ? post.primaryTool.description : 'Never upload confidential files to public servers. Use PrintSign client-side.' }}
               </p>
               <router-link
-                to="/editor"
+                :to="post.primaryTool ? post.primaryTool.route : '/editor'"
                 class="block w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold text-xs shadow-md shadow-cyan-500/20 transition active:scale-98"
               >
-                Launch Free Editor
+                {{ post.primaryTool ? post.primaryTool.ctaText : 'Launch Free Editor' }}
+              </router-link>
+              <router-link
+                to="/verify-redaction"
+                class="mt-2.5 block text-[11px] text-cyan-400 hover:underline"
+              >
+                Audit Redactions with Verifier →
               </router-link>
             </div>
           </div>

@@ -124,6 +124,81 @@ export const seoMetadata = {
       ]
     )
   },
+  '/ilovepdf-smallpdf-offline-alternative': {
+    title: 'Private Offline Alternative to iLovePDF & Smallpdf (No Upload)',
+    description: 'Compare cloud PDF editors vs. PrintSign\'s 100% client-side WebAssembly architecture. Edit, merge, and redact PDFs locally without uploading files.',
+    h1: 'The 100% Client-Side, Zero-Upload Alternative to Cloud PDF Tools',
+    toolMode: 'comparison',
+    ogType: 'website',
+    featureList: [
+      '100% Client-Side WebAssembly Processing',
+      'Zero Cloud File Retention',
+      'Unlimited Free PDF Tasks (No Paywalls)',
+      'Permanent 300 DPI Redaction',
+      'Offline Air-Gap Operation'
+    ],
+    schema: buildWebApplicationSchema(
+      'PrintSign Private Cloud PDF Alternative',
+      'Compare cloud PDF editors vs. PrintSign\'s 100% client-side WebAssembly architecture. Edit, merge, and redact PDFs locally without uploading files.',
+      'https://printsign.org/ilovepdf-smallpdf-offline-alternative',
+      [
+        'Zero-Upload PDF Manipulation',
+        'Client-Side WebAssembly Sandbox',
+        'Permanent 300 DPI Redaction',
+        'No Task Caps or Paywalls'
+      ]
+    )
+  },
+  '/hipaa-compliant-pdf-redaction': {
+    title: 'HIPAA-Compliant Local PDF Redaction & Sanitization | PrintSign',
+    description: 'Redact patient PHI and medical records 100% inside your browser RAM. Zero cloud uploads, no BAA required, and permanent 300 DPI pixel destruction.',
+    h1: 'HIPAA-Compliant Client-Side PDF Redaction for Healthcare & Legal Teams',
+    toolMode: 'compliance',
+    ogType: 'website',
+    featureList: [
+      'HIPAA Security Rule § 164.312 Compliant',
+      'Exempt from Third-Party Cloud BAA',
+      'Permanent 300 DPI PHI Pixel Destruction',
+      'Patient Identifier & Diagnostic Sanitization',
+      'Zero Telemetry or Cloud Logging'
+    ],
+    schema: buildWebApplicationSchema(
+      'PrintSign HIPAA PDF Redactor',
+      'Redact patient PHI and medical records 100% inside your browser RAM. Zero cloud uploads, no BAA required, and permanent 300 DPI pixel destruction.',
+      'https://printsign.org/hipaa-compliant-pdf-redaction',
+      [
+        'HIPAA § 164.312 Safe Harbor Redaction',
+        'No Cloud BAA Obligation',
+        'Permanent Pixel Burn-in at 300 DPI',
+        'In-Memory PHI Sanitization'
+      ]
+    )
+  },
+  '/nist-800-88-pdf-sanitization': {
+    title: 'NIST SP 800-88 PDF Sanitization & Metadata Scrubbing | PrintSign',
+    description: 'Meet NIST SP 800-88 media sanitization standards for PDF documents. Purge hidden XMP streams, Info dictionaries, and underlying vector text locally.',
+    h1: 'NIST SP 800-88 Aligned PDF Sanitization & Metadata Destruction',
+    toolMode: 'compliance',
+    ogType: 'website',
+    featureList: [
+      'NIST SP 800-88 Rev. 1 Logical Sanitization Aligned',
+      'Orphan Indirect Object Garbage Collection',
+      'Trailer /Info Dictionary & XMP Stream Purging',
+      'Cross-Reference Table Reconstruction',
+      'Cryptographic Canary Verification Scans'
+    ],
+    schema: buildWebApplicationSchema(
+      'PrintSign NIST SP 800-88 PDF Sanitizer',
+      'Meet NIST SP 800-88 media sanitization standards for PDF documents. Purge hidden XMP streams, Info dictionaries, and underlying vector text locally.',
+      'https://printsign.org/nist-800-88-pdf-sanitization',
+      [
+        'NIST SP 800-88 Rev. 1 Media Clearing',
+        'Orphan Indirect Object Purging',
+        'Trailer Info & XMP Eradication',
+        'In-Memory Verification Audits'
+      ]
+    )
+  },
   '/redact-pdf': {
     title: 'Redact PDF Online — Permanent 300 DPI Redaction',
     description: 'Permanently redact sensitive text and images from PDFs locally in your browser. Burns 300 DPI pixels with zero server uploads.',
