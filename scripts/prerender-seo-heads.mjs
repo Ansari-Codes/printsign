@@ -303,11 +303,12 @@ async function main() {
   // Create dist/CNAME for GitHub Pages custom domain (only when deploying to apex/custom domain)
   const rawBase = (process.env.BASE_URL || process.env.VITE_BASE_URL || '/').trim()
   const isApex = rawBase === '/' || rawBase === ''
+  const customDomain = process.env.CUSTOM_DOMAIN || (isApex ? 'printsign.org' : '')
   const cnamePath = path.resolve(distDir, 'CNAME')
 
-  if (isApex) {
-    fs.writeFileSync(cnamePath, 'printsign.org\n', 'utf8')
-    console.log(`✓ [CNAME] Generated dist/CNAME for printsign.org`)
+  if (customDomain) {
+    fs.writeFileSync(cnamePath, `${customDomain}\n`, 'utf8')
+    console.log(`✓ [CNAME] Generated dist/CNAME for ${customDomain}`)
   } else {
     if (fs.existsSync(cnamePath)) {
       fs.unlinkSync(cnamePath)

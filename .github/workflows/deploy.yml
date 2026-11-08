@@ -40,13 +40,15 @@ jobs:
       - name: Install Project Dependencies
         run: npm ci || npm install
 
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Build Application & Pre-render SEO Heads
         env:
-          BASE_URL: ${{ inputs.base_url || vars.BASE_URL || '/' }}
+          BASE_URL: ${{ inputs.base_url || vars.BASE_URL || steps.pages.outputs.base_path || '/' }}
+          CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN || '' }}
         run: npm run build
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
