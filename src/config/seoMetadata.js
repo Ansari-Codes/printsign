@@ -718,11 +718,11 @@ export function useRouteSeo(routePath) {
         { property: 'og:description', content: data.description },
         { property: 'og:url', content: canonicalUrl },
         { property: 'og:type', content: data.ogType || 'website' },
-        { property: 'og:image', content: 'https://printsign.org/pwa-512x512.svg' },
+        { property: 'og:image', content: 'https://printsign.org/favicon.svg' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: data.title },
         { name: 'twitter:description', content: data.description },
-        { name: 'twitter:image', content: 'https://printsign.org/pwa-512x512.svg' }
+        { name: 'twitter:image', content: 'https://printsign.org/favicon.svg' }
       ],
       link: [
         { rel: 'canonical', href: canonicalUrl }

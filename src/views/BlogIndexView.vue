@@ -58,37 +58,50 @@
 
       <!-- Featured Article (Shown when no search/filter active) -->
       <div v-if="featuredPost && !searchQuery && selectedCategory === 'All'" class="mb-14">
-        <div class="relative overflow-hidden rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-slate-900 via-[#0b1329] to-slate-900 p-8 sm:p-10 shadow-2xl">
+        <div class="relative overflow-hidden rounded-3xl border border-cyan-500/30 bg-gradient-to-r from-slate-900 via-[#0b1329] to-slate-900 p-6 sm:p-8 lg:p-10 shadow-2xl">
           <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none"></div>
-          <div class="max-w-3xl relative z-10">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 text-xs font-bold uppercase tracking-wide">
-                FEATURED EDITORIAL
-              </span>
-              <span class="text-xs text-slate-400 flex items-center gap-1">
-                <Clock class="w-3.5 h-3.5" />
-                {{ featuredPost.readTime }}
-              </span>
-            </div>
-            <router-link :to="`/blog/${featuredPost.slug}`">
-              <h2 class="text-2xl sm:text-3xl font-extrabold text-white hover:text-cyan-400 transition tracking-tight mb-3">
-                {{ featuredPost.title }}
-              </h2>
-            </router-link>
-            <p class="text-sm sm:text-base text-slate-300 mb-6 leading-relaxed">
-              {{ featuredPost.excerpt }}
-            </p>
-            <div class="flex flex-wrap items-center gap-4">
-              <router-link
-                :to="`/blog/${featuredPost.slug}`"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/20 transition active:scale-98"
-              >
-                <span>Read Full 1,500+ Word Guide</span>
-                <ArrowRight class="w-4 h-4" />
-              </router-link>
-              <div class="text-xs text-slate-400">
-                <span>By {{ featuredPost.author }}</span> &bull; <span>{{ featuredPost.date }}</span>
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="lg:col-span-7">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="px-2.5 py-0.5 rounded-md bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 text-xs font-bold uppercase tracking-wide">
+                  FEATURED EDITORIAL
+                </span>
+                <span class="text-xs text-slate-400 flex items-center gap-1">
+                  <Clock class="w-3.5 h-3.5" />
+                  {{ featuredPost.readTime }}
+                </span>
               </div>
+              <router-link :to="`/blog/${featuredPost.slug}`">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white hover:text-cyan-400 transition tracking-tight mb-3">
+                  {{ featuredPost.title }}
+                </h2>
+              </router-link>
+              <p class="text-sm sm:text-base text-slate-300 mb-6 leading-relaxed">
+                {{ featuredPost.excerpt }}
+              </p>
+              <div class="flex flex-wrap items-center gap-4">
+                <router-link
+                  :to="`/blog/${featuredPost.slug}`"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold text-xs shadow-lg shadow-cyan-500/20 transition active:scale-98"
+                >
+                  <span>Read Full 1,500+ Word Guide</span>
+                  <ArrowRight class="w-4 h-4" />
+                </router-link>
+                <div class="text-xs text-slate-400">
+                  <span>By {{ featuredPost.author }}</span> &bull; <span>{{ featuredPost.date }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="lg:col-span-5">
+              <router-link :to="`/blog/${featuredPost.slug}`" class="block rounded-2xl overflow-hidden border border-slate-700/80 shadow-2xl group">
+                <img
+                  :src="featuredPost.image || `/images/blogs/${featuredPost.slug}.png`"
+                  :alt="featuredPost.title"
+                  class="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
+                  onerror="this.style.display='none'"
+                />
+              </router-link>
             </div>
           </div>
         </div>
@@ -113,6 +126,18 @@
             :key="post.id"
             class="flex flex-col rounded-2xl border border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-cyan-500/40 transition duration-200 overflow-hidden group shadow-lg"
           >
+            <!-- Card Thumbnail Banner -->
+            <router-link :to="`/blog/${post.slug}`" class="block relative aspect-[16/9] w-full overflow-hidden bg-slate-950 border-b border-slate-800/80">
+              <img
+                :src="post.thumbnail || post.image || `/images/blogs/${post.slug}.png`"
+                :alt="post.title"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
+            </router-link>
+
             <div class="p-6 flex-1 flex flex-col justify-between">
               <div>
                 <!-- Card Header Badges -->

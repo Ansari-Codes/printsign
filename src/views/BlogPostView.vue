@@ -1,5 +1,13 @@
 <template>
-  <div class="min-h-screen bg-[#070b14] text-slate-100 flex flex-col">
+  <div class="min-h-screen bg-[#070b14] text-slate-100 flex flex-col relative">
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 right-0 h-1 bg-transparent z-50 pointer-events-none">
+      <div
+        class="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 transition-[width] duration-150 ease-out"
+        :style="{ width: `${readingProgress}%` }"
+      ></div>
+    </div>
+
     <!-- Navbar -->
     <SiteNavbar />
 
@@ -69,6 +77,17 @@
               <span>Launch Editor</span>
             </router-link>
           </div>
+        </div>
+
+        <!-- Article Hero Visual Banner -->
+        <div class="mt-8 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-950 group">
+          <img
+            :src="post.image || `/images/blogs/${post.slug}.png`"
+            :alt="post.title"
+            class="w-full aspect-[21/9] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+            loading="eager"
+            onerror="this.style.display='none'"
+          />
         </div>
       </header>
 
@@ -265,31 +284,44 @@
           <div
             v-for="rel in relatedPosts"
             :key="rel.id"
-            class="p-6 rounded-2xl border border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-cyan-500/40 transition flex flex-col justify-between group shadow-lg"
+            class="rounded-2xl border border-slate-800 bg-slate-900/60 hover:bg-slate-900 hover:border-cyan-500/40 transition flex flex-col justify-between group shadow-lg overflow-hidden"
           >
-            <div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-md border border-cyan-500/20">
-                  {{ rel.category }}
-                </span>
-                <span class="text-[10px] text-slate-400">{{ rel.readTime }}</span>
-              </div>
-              <router-link :to="`/blog/${rel.slug}`">
-                <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition leading-snug mb-2">
-                  {{ rel.title }}
-                </h4>
-              </router-link>
-              <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed mb-4">
-                {{ rel.excerpt }}
-              </p>
-            </div>
-            <router-link
-              :to="`/blog/${rel.slug}`"
-              class="inline-flex items-center gap-1 text-xs font-bold text-cyan-400 hover:text-cyan-300 pt-3 border-t border-slate-800/80 transition"
-            >
-              <span>Read Guide</span>
-              <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            <!-- Related Post Thumbnail -->
+            <router-link :to="`/blog/${rel.slug}`" class="block relative aspect-[16/9] w-full overflow-hidden bg-slate-950 border-b border-slate-800/80">
+              <img
+                :src="rel.thumbnail || rel.image || `/images/blogs/${rel.slug}.png`"
+                :alt="rel.title"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              />
             </router-link>
+
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-md border border-cyan-500/20">
+                    {{ rel.category }}
+                  </span>
+                  <span class="text-[10px] text-slate-400">{{ rel.readTime }}</span>
+                </div>
+                <router-link :to="`/blog/${rel.slug}`">
+                  <h4 class="text-sm font-bold text-white group-hover:text-cyan-400 transition leading-snug mb-2">
+                    {{ rel.title }}
+                  </h4>
+                </router-link>
+                <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed mb-4">
+                  {{ rel.excerpt }}
+                </p>
+              </div>
+              <router-link
+                :to="`/blog/${rel.slug}`"
+                class="inline-flex items-center gap-1 text-xs font-bold text-cyan-400 hover:text-cyan-300 pt-3 border-t border-slate-800/80 transition"
+              >
+                <span>Read Guide</span>
+                <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </router-link>
+            </div>
           </div>
         </div>
       </section>
@@ -344,6 +376,17 @@ import {
 const route = useRoute()
 const copied = ref(false)
 const openFaqs = ref<number[]>([0]) // First FAQ open by default
+const readingProgress = ref(0)
+
+function handleScroll() {
+  if (typeof window === 'undefined') return
+  const scrollTotal = document.documentElement.scrollHeight - window.innerHeight
+  if (scrollTotal <= 0) {
+    readingProgress.value = 0
+  } else {
+    readingProgress.value = Math.min(100, Math.max(0, (window.scrollY / scrollTotal) * 100))
+  }
+}
 
 interface TocItem {
   id: string;
@@ -464,7 +507,7 @@ function updateSeoAndSchema(currentPost: BlogPost) {
           url: 'https://printsign.org',
           logo: {
             '@type': 'ImageObject',
-            url: 'https://printsign.org/icons/icon-512x512.png'
+            url: 'https://printsign.org/favicon.svg'
           }
         },
         mainEntityOfPage: {
@@ -524,12 +567,177 @@ onMounted(() => {
   if (post.value) {
     updateSeoAndSchema(post.value)
   }
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  handleScroll()
 })
 
 onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
   const existingScript = document.getElementById('blog-post-schema')
   if (existingScript) {
     existingScript.remove()
   }
 })
 </script>
+
+<style>
+/* Rich styling for markdown/HTML elements rendered inside .article-content */
+.article-content {
+  overflow-wrap: break-word;
+}
+
+/* Responsive Table Styling */
+.article-content .table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 2rem 0;
+  border-radius: 1rem;
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background-color: rgba(15, 23, 42, 0.7);
+}
+
+.article-content th {
+  background: linear-gradient(to right, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.8);
+}
+
+.article-content td {
+  padding: 0.875rem 1rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.6);
+}
+
+.article-content tr:last-child td {
+  border-bottom: none;
+}
+
+.article-content tr:hover td {
+  background-color: rgba(30, 41, 59, 0.4);
+}
+
+/* Callout Containers */
+.article-content .callout {
+  margin: 1.75rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1rem;
+  border-left-width: 4px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  border-left-width: 4px;
+}
+
+.article-content .callout-info {
+  border-left-color: #38bdf8;
+  background: linear-gradient(to right, rgba(14, 116, 144, 0.15), rgba(15, 23, 42, 0.6));
+}
+
+.article-content .callout-warning {
+  border-left-color: #f59e0b;
+  background: linear-gradient(to right, rgba(180, 83, 9, 0.15), rgba(15, 23, 42, 0.6));
+}
+
+.article-content .callout-law {
+  border-left-color: #818cf8;
+  background: linear-gradient(to right, rgba(67, 56, 202, 0.15), rgba(15, 23, 42, 0.6));
+}
+
+.article-content .callout-title {
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.article-content .callout-info .callout-title {
+  color: #38bdf8;
+}
+
+.article-content .callout-warning .callout-title {
+  color: #fbbf24;
+}
+
+.article-content .callout-law .callout-title {
+  color: #a5b4fc;
+}
+
+/* Math / Formula Block Styling */
+.article-content .math-block {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(8, 12, 22, 0.98));
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.article-content .math-formula {
+  font-family: 'KaTeX_Main', 'Times New Roman', Cambria, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.03em;
+  color: #38bdf8;
+  padding: 0.5rem 0;
+  overflow-x: auto;
+}
+
+.article-content .math-caption {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* Architecture / Mermaid Diagram Box */
+.article-content .mermaid-diagram {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: #030712;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.article-content .diagram-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+  color: #818cf8;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.article-content .mermaid-diagram pre {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #a5f3fc;
+  overflow-x: auto;
+}
+</style>
