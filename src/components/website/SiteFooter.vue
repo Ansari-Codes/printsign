@@ -1,10 +1,10 @@
 <template>
   <footer class="bg-[#050810] border-t border-slate-800/80 pt-16 pb-12 px-4 sm:px-6 lg:px-8 text-slate-400 select-none">
     <div class="max-w-7xl mx-auto">
-      <!-- Main Columns Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12 mb-12">
-        <!-- Brand Description (Spans 1 col on lg) -->
-        <div class="space-y-4">
+      <!-- Main Columns Grid (Responsive 2-col on mobile, 5-col on desktop) -->
+      <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 mb-12">
+        <!-- Brand Description (Spans 2 cols on mobile/tablet, 1 col on lg) -->
+        <div class="col-span-2 md:col-span-3 lg:col-span-1 space-y-4">
           <router-link to="/" class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold shadow-md shadow-cyan-500/20">
               <ShieldCheck class="w-5 h-5" />
@@ -19,7 +19,7 @@
             The private, zero-telemetry alternative to commercial cloud PDF editors. All parsing, rendering, redaction, and sanitization execute strictly inside your local browser memory sandbox.
           </p>
 
-          <div class="flex items-center gap-2 pt-2">
+          <div class="flex flex-wrap items-center gap-2 pt-1">
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-medium">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               Zero Network Exfiltration
@@ -31,13 +31,13 @@
         </div>
 
         <!-- Col 1: Editor Tools -->
-        <div class="space-y-3">
+        <div class="col-span-1 space-y-3">
           <h4 class="text-xs font-bold text-white uppercase tracking-wider">Document Tools</h4>
           <ul class="space-y-2 text-xs">
             <li>
-              <router-link to="/verify-redaction" class="hover:text-cyan-400 transition flex items-center gap-1.5 font-medium text-cyan-300">
-                <span>Redaction & Metadata Verifier</span>
-                <span class="px-1.5 py-0.2 rounded text-[9px] bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-500/30">Free Audit</span>
+              <router-link to="/verify-redaction" class="hover:text-cyan-400 transition flex items-center gap-1.5 font-medium text-emerald-300">
+                <span>Redaction Verifier</span>
+                <span class="px-1 py-0.2 rounded text-[9px] bg-emerald-500/20 text-emerald-300 font-semibold border border-emerald-500/30">Audit</span>
               </router-link>
             </li>
             <li>
@@ -47,7 +47,7 @@
             </li>
             <li>
               <router-link to="/reorder-rotate-pdf" class="hover:text-cyan-400 transition">
-                Page Reorder & Rotate
+                Page Reorder &amp; Rotate
               </router-link>
             </li>
             <li>
@@ -62,7 +62,7 @@
             </li>
             <li>
               <router-link to="/scrub-pdf-metadata" class="hover:text-cyan-400 transition">
-                Metadata & XMP Scrubber
+                Metadata Scrubber
               </router-link>
             </li>
             <li>
@@ -72,16 +72,22 @@
             </li>
             <li>
               <router-link to="/compress-pdf" class="hover:text-cyan-400 transition">
-                Lossless PDF Compressor
+                Lossless Compressor
               </router-link>
             </li>
           </ul>
         </div>
 
         <!-- Col 2: Compliance & Privacy -->
-        <div class="space-y-3">
+        <div class="col-span-1 space-y-3">
           <h4 class="text-xs font-bold text-white uppercase tracking-wider">Compliance &amp; Trust</h4>
           <ul class="space-y-2 text-xs">
+            <li>
+              <router-link to="/f12-network-audit" class="hover:text-cyan-400 transition flex items-center gap-1.5 font-medium text-cyan-300">
+                <span>F12 Network Audit</span>
+                <span class="text-[9px] px-1 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono">Live</span>
+              </router-link>
+            </li>
             <li>
               <router-link to="/ilovepdf-smallpdf-offline-alternative" class="hover:text-cyan-400 transition">
                 Private Cloud Alternative
@@ -99,20 +105,19 @@
             </li>
             <li>
               <router-link to="/security-architecture" class="hover:text-cyan-400 transition">
-                Security Architecture
+                Security Threat Model
               </router-link>
             </li>
             <li>
-              <router-link to="/f12-network-audit" class="hover:text-cyan-400 transition flex items-center gap-1.5 font-medium text-cyan-300">
-                <span>F12 Zero-Network Audit</span>
-                <span class="text-[9px] px-1 py-0.2 rounded bg-cyan-500/20 text-cyan-300 font-mono">Live</span>
+              <router-link to="/features" class="hover:text-cyan-400 transition">
+                Technical Specifications
               </router-link>
             </li>
           </ul>
         </div>
 
-        <!-- Col 2: Knowledge Base -->
-        <div class="space-y-3">
+        <!-- Col 3: Knowledge Base -->
+        <div class="col-span-1 space-y-3">
           <h4 class="text-xs font-bold text-white uppercase tracking-wider">Knowledge Base</h4>
           <ul class="space-y-2 text-xs">
             <li>
@@ -121,23 +126,23 @@
               </router-link>
             </li>
             <li>
-              <router-link to="/guides" class="hover:text-cyan-400 transition">
+              <router-link to="/blog/why-black-boxes-fail-pdf-redaction-disasters" class="hover:text-cyan-400 transition">
                 Why Black Boxes Fail
               </router-link>
             </li>
             <li>
-              <router-link to="/guides" class="hover:text-cyan-400 transition">
-                In-Browser Web Workers
+              <router-link to="/blog/zero-trust-architecture-browser-webassembly" class="hover:text-cyan-400 transition">
+                Web Workers &amp; WASM
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/blog/hidden-pdf-metadata-scrub-xmp-streams" class="hover:text-cyan-400 transition">
+                Scrub Hidden Metadata
               </router-link>
             </li>
             <li>
               <router-link to="/guides" class="hover:text-cyan-400 transition">
-                Sanitizing XMP Streams
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/guides" class="hover:text-cyan-400 transition">
-                NIST SP 800-88 Standards
+                Guides &amp; Walkthroughs
               </router-link>
             </li>
             <li>
@@ -148,18 +153,18 @@
           </ul>
         </div>
 
-        <!-- Col 3: Governance & Legal -->
-        <div class="space-y-3">
-          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Company & Legal</h4>
+        <!-- Col 4: Governance & Legal -->
+        <div class="col-span-1 space-y-3">
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider">Company &amp; Legal</h4>
           <ul class="space-y-2 text-xs">
             <li>
               <router-link to="/about-us" class="hover:text-cyan-400 transition">
-                About Us & Mission
+                About Us &amp; Mission
               </router-link>
             </li>
             <li>
               <router-link to="/contact-us" class="hover:text-cyan-400 transition">
-                Contact & Support
+                Contact &amp; Support
               </router-link>
             </li>
             <li>
@@ -174,13 +179,19 @@
             </li>
             <li>
               <router-link to="/cookie-policy" class="hover:text-cyan-400 transition">
-                Cookie Policy & Consent
+                Cookie Policy &amp; Consent
               </router-link>
             </li>
             <li>
-              <router-link to="/features" class="hover:text-cyan-400 transition">
-                Security Architecture
-              </router-link>
+              <a
+                href="https://github.com/Ansari-Codes/printsign"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-cyan-400 transition flex items-center gap-1.5"
+              >
+                <span>GitHub Source</span>
+                <span class="text-[9px] px-1 py-0.2 rounded bg-slate-800 text-slate-300 font-mono">MIT</span>
+              </a>
             </li>
           </ul>
         </div>
@@ -188,11 +199,11 @@
 
       <!-- Bottom Bar -->
       <div class="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-        <div>
-          <span>© {{ currentYear }} PrintSign. 100% Client-side document utilities. No tracking, zero servers.</span>
+        <div class="text-center sm:text-left">
+          <span>© {{ currentYear }} PrintSign. 100% Client-side document utilities. Open-source under MIT License.</span>
         </div>
 
-        <div class="flex items-center gap-6">
+        <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
           <router-link to="/privacy-policy" class="hover:text-slate-300 transition">
             Privacy
           </router-link>
