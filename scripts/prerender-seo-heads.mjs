@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import katex from 'katex'
 import { seoMetadata } from '../src/config/seoMetadata.js'
 import { toolSeoContent } from '../src/config/seoContent.js'
 import { generateSitemap } from './generate-sitemap.mjs'
@@ -44,10 +45,45 @@ function loadBlogPosts() {
 }
 
 function generateSemanticBody(routePath, seo) {
+  if (seo.blogContent) {
+    let articleHtml = seo.blogContent
+    // Render KaTeX for <div class="math-formula">...</div>
+    articleHtml = articleHtml.replace(/<div class="math-formula">([\s\S]*?)<\/div>/gi, (_match, formula) => {
+      try {
+        const cleanFormula = formula
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .trim()
+        const rendered = katex.renderToString(cleanFormula, {
+          displayMode: true,
+          throwOnError: false
+        })
+        return `<div class="math-formula katex-rendered">${rendered}</div>`
+      } catch {
+        return _match
+      }
+    })
+
+    return `<div id="app">
+    <header>
+      <h1>${escapeAttr(seo.h1 || seo.title)}</h1>
+      <p class="tool-lead">${escapeAttr(seo.description)}</p>
+    </header>
+    <main>
+      <article class="article-content">
+        ${articleHtml}
+      </article>
+    </main>
+  </div>`
+  }
+
   const content = toolSeoContent[routePath]
 
   if (!content) {
-    // For non-tool routes (homepage, blog, etc.), render clean semantic header & description
+    // For non-tool routes (homepage, blog index, etc.), render clean semantic header & description
     return `<div id="app">
     <header class="sr-only">
       <h1>${escapeAttr(seo.h1 || seo.title)}</h1>
@@ -266,6 +302,7 @@ async function main() {
       description: blogDescription,
       h1: blog.title,
       ogType: 'article',
+      blogContent: blog.content,
       schema
     })
   }

@@ -352,6 +352,8 @@
 <script setup lang="ts">
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
+import katex from 'katex'
+import 'katex/dist/katex.min.css'
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
 import ToolComparisonTable from '../components/website/ToolComparisonTable.vue'
@@ -406,7 +408,7 @@ const relatedPosts = computed<BlogPost[]>(() => {
   return getRelatedPosts(post.value.slug, 3)
 })
 
-// Process content to inject slug IDs into h2 and h3 headers for TOC jump links
+// Process content to inject slug IDs into h2 and h3 headers for TOC jump links & render KaTeX math
 const processedContent = computed(() => {
   if (!post.value) return ''
   let html = post.value.content
@@ -426,6 +428,65 @@ const processedContent = computed(() => {
       level: tag.toLowerCase() === 'h2' ? 2 : 3
     })
     return `<${tag} id="${id}">${text}</${tag}>`
+  })
+
+  // Render KaTeX for <div class="math-formula">...</div>
+  html = html.replace(/<div class="math-formula">([\s\S]*?)<\/div>/gi, (_match, formula) => {
+    try {
+      const cleanFormula = formula
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .trim()
+      const rendered = katex.renderToString(cleanFormula, {
+        displayMode: true,
+        throwOnError: false
+      })
+      return `<div class="math-formula katex-rendered">${rendered}</div>`
+    } catch {
+      return _match
+    }
+  })
+
+  // Render KaTeX for block $$...$$
+  html = html.replace(/\$\$([\s\S]*?)\$\$/g, (_match, formula) => {
+    try {
+      const cleanFormula = formula
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .trim()
+      const rendered = katex.renderToString(cleanFormula, {
+        displayMode: true,
+        throwOnError: false
+      })
+      return `<div class="math-block"><div class="math-formula katex-rendered">${rendered}</div></div>`
+    } catch {
+      return _match
+    }
+  })
+
+  // Render KaTeX for inline \(...\)
+  html = html.replace(/\\\(([\s\S]*?)\\\)/g, (_match, formula) => {
+    try {
+      const cleanFormula = formula
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .trim()
+      return katex.renderToString(cleanFormula, {
+        displayMode: false,
+        throwOnError: false
+      })
+    } catch {
+      return _match
+    }
   })
 
   tableOfContents.value = toc
@@ -684,25 +745,38 @@ onUnmounted(() => {
   padding: 1.5rem;
   border-radius: 1rem;
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(8, 12, 22, 0.98));
-  border: 1px solid rgba(56, 189, 248, 0.25);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
   text-align: center;
 }
 
 .article-content .math-formula {
-  font-family: 'KaTeX_Main', 'Times New Roman', Cambria, serif;
   font-size: 1.25rem;
-  letter-spacing: 0.03em;
-  color: #38bdf8;
+  letter-spacing: 0.02em;
   padding: 0.5rem 0;
   overflow-x: auto;
 }
 
+.article-content .katex {
+  color: #38bdf8;
+  font-size: 1.15em;
+  line-height: 1.2;
+  text-rendering: auto;
+}
+
+.article-content .katex-display {
+  margin: 0.25rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5rem 0;
+}
+
 .article-content .math-caption {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   font-size: 0.75rem;
   color: #94a3b8;
   font-style: italic;
+  letter-spacing: 0.025em;
 }
 
 /* Architecture / Mermaid Diagram Box */
