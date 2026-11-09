@@ -43,6 +43,7 @@
             type="file"
             accept="application/pdf"
             class="hidden"
+            aria-label="Upload PDF file to audit"
             @change="handleFileInput"
           />
 
@@ -61,12 +62,14 @@
             <button
               type="button"
               class="px-5 py-2.5 bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-bold rounded-xl text-xs shadow-md shadow-cyan-500/20 transition active:scale-98"
+              aria-label="Select PDF file to audit"
             >
               Select PDF File
             </button>
             <button
               type="button"
               class="px-4 py-2.5 bg-slate-800 hover:bg-slate-750 border border-slate-700 text-slate-300 hover:text-white font-medium rounded-xl text-xs transition"
+              aria-label="Test with sample document"
               @click.stop="loadSyntheticTestDoc"
             >
               Test with Sample Document
@@ -199,6 +202,7 @@
             <button
               type="button"
               class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-medium transition cursor-pointer"
+              aria-label="Copy SHA-256 Hash"
               @click="copySha256"
             >
               <component :is="copiedHash ? Check : Copy" class="w-3.5 h-3.5 text-cyan-400" />
@@ -212,6 +216,7 @@
               type="button"
               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-600 to-cyan-600 hover:from-emerald-400 hover:to-cyan-500 text-slate-950 font-extrabold text-xs shadow-lg shadow-emerald-500/20 transition active:scale-98 cursor-pointer disabled:opacity-50"
               :disabled="isGeneratingCert"
+              aria-label="Download Official Sanitization Certificate (PDF)"
               @click="downloadCertificatePdf"
             >
               <Award class="w-4 h-4 text-slate-950" />
@@ -221,6 +226,7 @@
             <button
               type="button"
               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 border border-slate-700 hover:border-slate-600 text-xs font-semibold transition cursor-pointer"
+              aria-label="Export Audit JSON"
               @click="downloadAuditJson"
             >
               <FileCode class="w-4 h-4 text-cyan-400" />
@@ -480,6 +486,8 @@
                 class="h-8 w-auto"
                 width="232"
                 height="32"
+                loading="lazy"
+                decoding="async"
               />
             </a>
             <span class="text-[10px] text-cyan-400/80 font-mono">Resolves to printsign.org/verify-redaction</span>
@@ -506,6 +514,7 @@
             <button
               type="button"
               class="mt-4 w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer"
+              aria-label="Copy Markdown badge snippet"
               @click="copyBadgeSnippet('md')"
             >
               <component :is="copiedBadge === 'md' ? Check : Copy" class="w-3.5 h-3.5 text-cyan-400" />
@@ -533,6 +542,7 @@
             <button
               type="button"
               class="mt-4 w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 hover:text-white border border-slate-700 text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer"
+              aria-label="Copy HTML badge snippet"
               @click="copyBadgeSnippet('html')"
             >
               <component :is="copiedBadge === 'html' ? Check : Copy" class="w-3.5 h-3.5 text-emerald-400" />

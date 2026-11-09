@@ -52,6 +52,39 @@ export default defineConfig({
   worker: {
     format: 'es'
   },
+  build: {
+    chunkSizeWarningLimit: 1200,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('pdfjs-dist')) {
+              return 'vendor-pdfjs'
+            }
+            if (id.includes('pdf-lib')) {
+              return 'vendor-pdflib'
+            }
+            if (id.includes('katex')) {
+              return 'vendor-katex'
+            }
+            if (id.includes('lucide-vue-next') || id.includes('@lucide/vue') || id.includes('lucide')) {
+              return 'vendor-icons'
+            }
+            if (
+              id.includes('/vue/') ||
+              id.includes('\\vue\\') ||
+              id.includes('@vue') ||
+              id.includes('vue-router') ||
+              id.includes('@unhead') ||
+              id.includes('pinia')
+            ) {
+              return 'vendor-framework'
+            }
+          }
+        }
+      }
+    }
+  },
   // SSG (Static Site Generation) Options for unbundled crawlable tool routes
   // @ts-ignore
   ssgOptions: {

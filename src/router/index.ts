@@ -1,55 +1,39 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import EditorView from '../views/EditorView.vue'
-import FeaturesView from '../views/FeaturesView.vue'
-import AboutView from '../views/AboutView.vue'
-import ContactView from '../views/ContactView.vue'
-import PrivacyPolicyView from '../views/PrivacyPolicyView.vue'
-import TermsView from '../views/TermsView.vue'
-import CookiePolicyView from '../views/CookiePolicyView.vue'
-import GuidesView from '../views/GuidesView.vue'
-import FaqView from '../views/FaqView.vue'
-import GeneralEditorView from '../views/GeneralEditorView.vue'
-import BlogIndexView from '../views/BlogIndexView.vue'
-import BlogPostView from '../views/BlogPostView.vue'
-import VerifyRedactionView from '../views/VerifyRedactionView.vue'
-import ComplianceComparisonView from '../views/ComplianceComparisonView.vue'
-import NetworkAuditView from '../views/NetworkAuditView.vue'
-import IndustryRoleView from '../views/IndustryRoleView.vue'
 
 const isFileProtocol = typeof window !== 'undefined' && window.location.protocol === 'file:'
 
+// Code-split all views into on-demand chunks so marketing/blog/compliance routes never load heavy PDF engines upfront
 const routes = [
-  { path: '/', name: 'home', component: HomeView },
-  { path: '/editor', name: 'editor', component: EditorView },
-  { path: '/verify-redaction', name: 'verify-redaction', component: VerifyRedactionView },
-  { path: '/f12-network-audit', name: 'network-audit', component: NetworkAuditView },
-  { path: '/for-lawyers', name: 'for-lawyers', component: IndustryRoleView },
-  { path: '/for-healthcare', name: 'for-healthcare', component: IndustryRoleView },
-  { path: '/for-journalists', name: 'for-journalists', component: IndustryRoleView },
-  { path: '/ilovepdf-smallpdf-offline-alternative', name: 'comparison-cloud-alternative', component: ComplianceComparisonView },
-  { path: '/hipaa-compliant-pdf-redaction', name: 'compliance-hipaa', component: ComplianceComparisonView },
-  { path: '/nist-800-88-pdf-sanitization', name: 'compliance-nist', component: ComplianceComparisonView },
-  { path: '/redact-pdf', name: 'tool-redact', component: EditorView, meta: { toolMode: 'redact' } },
-  { path: '/scrub-pdf-metadata', name: 'tool-metadata', component: EditorView, meta: { toolMode: 'metadata' } },
-  { path: '/merge-pdf', name: 'tool-merge', component: EditorView, meta: { toolMode: 'merge' } },
-  { path: '/split-pdf', name: 'tool-split', component: EditorView, meta: { toolMode: 'split' } },
-  { path: '/flatten-rasterize-pdf', name: 'tool-rasterize', component: EditorView, meta: { toolMode: 'rasterize' } },
-  { path: '/reorder-rotate-pdf', name: 'tool-organize', component: EditorView, meta: { toolMode: 'organize' } },
-  { path: '/compress-pdf', name: 'tool-compress', component: EditorView, meta: { toolMode: 'compress' } },
-  { path: '/general-editor', name: 'general-editor', component: GeneralEditorView },
+  { path: '/', name: 'home', component: () => import('../views/HomeView.vue') },
+  { path: '/editor', name: 'editor', component: () => import('../views/EditorView.vue') },
+  { path: '/verify-redaction', name: 'verify-redaction', component: () => import('../views/VerifyRedactionView.vue') },
+  { path: '/f12-network-audit', name: 'network-audit', component: () => import('../views/NetworkAuditView.vue') },
+  { path: '/for-lawyers', name: 'for-lawyers', component: () => import('../views/IndustryRoleView.vue') },
+  { path: '/for-healthcare', name: 'for-healthcare', component: () => import('../views/IndustryRoleView.vue') },
+  { path: '/for-journalists', name: 'for-journalists', component: () => import('../views/IndustryRoleView.vue') },
+  { path: '/ilovepdf-smallpdf-offline-alternative', name: 'comparison-cloud-alternative', component: () => import('../views/ComplianceComparisonView.vue') },
+  { path: '/hipaa-compliant-pdf-redaction', name: 'compliance-hipaa', component: () => import('../views/ComplianceComparisonView.vue') },
+  { path: '/nist-800-88-pdf-sanitization', name: 'compliance-nist', component: () => import('../views/ComplianceComparisonView.vue') },
+  { path: '/redact-pdf', name: 'tool-redact', component: () => import('../views/EditorView.vue'), meta: { toolMode: 'redact' } },
+  { path: '/scrub-pdf-metadata', name: 'tool-metadata', component: () => import('../views/EditorView.vue'), meta: { toolMode: 'metadata' } },
+  { path: '/merge-pdf', name: 'tool-merge', component: () => import('../views/EditorView.vue'), meta: { toolMode: 'merge' } },
+  { path: '/split-pdf', name: 'tool-split', component: () => import('../views/EditorView.vue'), meta: { toolMode: 'split' } },
+  { path: '/flatten-rasterize-pdf', name: 'tool-rasterize', component: () => import('../views/EditorView.vue'), meta: { toolMode: 'rasterize' } },
+  { path: '/reorder-rotate-pdf', name: 'tool-organize', component: () => import('../views/EditorView.vue'), meta: { toolMode: 'organize' } },
+  { path: '/compress-pdf', name: 'tool-compress', component: () => import('../views/EditorView.vue'), meta: { toolMode: 'compress' } },
+  { path: '/general-editor', name: 'general-editor', component: () => import('../views/GeneralEditorView.vue') },
   { path: '/document-editor', redirect: '/general-editor' },
-  { path: '/features', name: 'features', component: FeaturesView },
+  { path: '/features', name: 'features', component: () => import('../views/FeaturesView.vue') },
   { path: '/security-architecture', redirect: '/features' },
-  { path: '/about-us', name: 'about', component: AboutView },
-  { path: '/contact-us', name: 'contact', component: ContactView },
-  { path: '/privacy-policy', name: 'privacy', component: PrivacyPolicyView },
-  { path: '/terms-of-service', name: 'terms', component: TermsView },
-  { path: '/cookie-policy', name: 'cookies', component: CookiePolicyView },
-  { path: '/guides', name: 'guides', component: GuidesView },
-  { path: '/blog', name: 'blog', component: BlogIndexView },
-  { path: '/blog/:slug', name: 'blog-post', component: BlogPostView },
-  { path: '/faq', name: 'faq', component: FaqView },
+  { path: '/about-us', name: 'about', component: () => import('../views/AboutView.vue') },
+  { path: '/contact-us', name: 'contact', component: () => import('../views/ContactView.vue') },
+  { path: '/privacy-policy', name: 'privacy', component: () => import('../views/PrivacyPolicyView.vue') },
+  { path: '/terms-of-service', name: 'terms', component: () => import('../views/TermsView.vue') },
+  { path: '/cookie-policy', name: 'cookies', component: () => import('../views/CookiePolicyView.vue') },
+  { path: '/guides', name: 'guides', component: () => import('../views/GuidesView.vue') },
+  { path: '/blog', name: 'blog', component: () => import('../views/BlogIndexView.vue') },
+  { path: '/blog/:slug', name: 'blog-post', component: () => import('../views/BlogPostView.vue') },
+  { path: '/faq', name: 'faq', component: () => import('../views/FaqView.vue') },
   { path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 

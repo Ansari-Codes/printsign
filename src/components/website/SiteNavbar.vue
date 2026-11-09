@@ -36,6 +36,8 @@
             type="button"
             class="px-3 py-1.5 rounded-xl transition text-slate-400 hover:text-white flex items-center gap-1 focus:outline-hidden"
             :class="{ 'bg-slate-800 !text-white': isToolsOpen || isToolRouteActive }"
+            aria-label="PDF Tools Menu"
+            :aria-expanded="isToolsOpen"
           >
             <span>Tools</span>
             <ChevronDown class="w-3.5 h-3.5 transition-transform" :class="{ 'rotate-180': isToolsOpen }" />
@@ -226,6 +228,7 @@
                 type="button"
                 @click.stop="showNetworkTooltip = false"
                 class="text-slate-400 hover:text-white text-xs px-1"
+                aria-label="Close Network Status Information"
               >✕</button>
             </div>
             <p class="leading-relaxed text-[11px] text-slate-300 mb-2.5">
@@ -261,6 +264,7 @@
             accept="application/pdf"
             multiple
             class="hidden"
+            aria-label="Open PDF files from device"
             @change="handleFileInput"
           />
         </label>
@@ -288,6 +292,7 @@
           @click="isMobileMenuOpen = !isMobileMenuOpen"
           class="xl:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition focus:outline-hidden"
           aria-label="Toggle Navigation Menu"
+          :aria-expanded="isMobileMenuOpen"
         >
           <Menu v-if="!isMobileMenuOpen" class="w-5 h-5" />
           <X v-else class="w-5 h-5" />

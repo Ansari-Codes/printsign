@@ -98,7 +98,11 @@
                   :src="featuredPost.image || `/images/blogs/${featuredPost.slug}.png`"
                   :alt="featuredPost.title"
                   class="w-full aspect-[16/9] object-cover transition-transform duration-500 group-hover:scale-105"
+                  width="640"
+                  height="360"
                   loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
                   onerror="this.style.display='none'"
                 />
               </router-link>
@@ -132,7 +136,10 @@
                 :src="post.thumbnail || post.image || `/images/blogs/${post.slug}.png`"
                 :alt="post.title"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                width="640"
+                height="360"
                 loading="lazy"
+                decoding="async"
                 onerror="this.style.display='none'"
               />
               <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>

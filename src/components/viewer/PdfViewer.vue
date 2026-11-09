@@ -98,6 +98,8 @@
               @click="prevPage"
               :disabled="pdfStore.currentPageIndex <= 0"
               class="p-1 hover:text-white disabled:opacity-30 rounded-full hover:bg-slate-800 transition"
+              aria-label="Previous Page"
+              title="Previous Page"
             >
               <ChevronLeft class="w-4 h-4" />
             </button>
@@ -108,6 +110,8 @@
               @click="nextPage"
               :disabled="pdfStore.currentPageIndex >= pdfStore.pageDimensions.length - 1"
               class="p-1 hover:text-white disabled:opacity-30 rounded-full hover:bg-slate-800 transition"
+              aria-label="Next Page"
+              title="Next Page"
             >
               <ChevronRight class="w-4 h-4" />
             </button>

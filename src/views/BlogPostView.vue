@@ -85,7 +85,11 @@
             :src="post.image || `/images/blogs/${post.slug}.png`"
             :alt="post.title"
             class="w-full aspect-[21/9] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+            width="1200"
+            height="514"
             loading="eager"
+            fetchpriority="high"
+            decoding="async"
             onerror="this.style.display='none'"
           />
         </div>
@@ -292,7 +296,10 @@
                 :src="rel.thumbnail || rel.image || `/images/blogs/${rel.slug}.png`"
                 :alt="rel.title"
                 class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                width="640"
+                height="360"
                 loading="lazy"
+                decoding="async"
                 onerror="this.style.display='none'"
               />
             </router-link>

@@ -5,6 +5,40 @@
     --app-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
 
+  /* Ensure font-display: swap for web fonts to completely prevent Flash of Invisible Text (FOIT) */
+  @font-face {
+    font-family: 'KaTeX_Main';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'KaTeX_Math';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'KaTeX_AMS';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'KaTeX_Caligraphic';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'KaTeX_Fraktur';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'KaTeX_SansSerif';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'KaTeX_Script';
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'KaTeX_Typewriter';
+    font-display: swap;
+  }
+
   body {
     font-family: var(--app-font);
     background-color: #070b14;
