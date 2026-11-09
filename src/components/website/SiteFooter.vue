@@ -113,6 +113,27 @@
                 Technical Specifications
               </router-link>
             </li>
+            <li class="pt-2 border-t border-slate-800/80">
+              <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider block mb-1">Industry Solutions</span>
+            </li>
+            <li>
+              <router-link to="/for-lawyers" class="hover:text-cyan-400 transition flex items-center gap-1.5">
+                <span>⚖️</span>
+                <span>For Lawyers (FRCP 5.2)</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/for-healthcare" class="hover:text-cyan-400 transition flex items-center gap-1.5">
+                <span>🩺</span>
+                <span>For Healthcare (HIPAA)</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/for-journalists" class="hover:text-cyan-400 transition flex items-center gap-1.5">
+                <span>📰</span>
+                <span>For Journalists (FOIA)</span>
+              </router-link>
+            </li>
           </ul>
         </div>
 

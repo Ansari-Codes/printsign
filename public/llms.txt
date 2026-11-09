@@ -19,6 +19,11 @@
 - [HIPAA-Compliant PDF Redaction](https://printsign.org/hipaa-compliant-pdf-redaction): Compliance guide detailing how local browser memory sanitization fulfills HIPAA Security Rule 45 CFR § 164.312 without Business Associate Agreements (BAA).
 - [NIST SP 800-88 PDF Sanitization](https://printsign.org/nist-800-88-pdf-sanitization): Federal media sanitization protocols (Clear / Purge) applied to digital document object graphs and residual trailer objects.
 
+## Vertical Industry & Professional Solutions
+- [Client-Side PDF Redaction & Bates Prep for Lawyers](https://printsign.org/for-lawyers): FRCP Rule 5.2 court-compliant redaction, 300 DPI destructive rasterization, and privileged discovery exhibit assembly in browser RAM.
+- [Local PHI & Medical Record PDF Redactor for Healthcare](https://printsign.org/for-healthcare): HIPAA Safe Harbor de-identification stripping 18 patient identifiers and EHR metadata with zero cloud upload liabilities.
+- [FOIA & Source-Protection PDF Metadata Scrubber for Journalists](https://printsign.org/for-journalists): Forensic document sanitization stripping author/device XMP streams, hidden vector layers, and printer tracking dots.
+
 ## Engineering & Legal Knowledge Base
 - [How to Permanently Redact a PDF: Step-by-Step Legal & Court Compliance Guide](https://printsign.org/blog/how-to-permanently-redact-pdf-court-compliant): Drawing black rectangles over text is not redaction—it is an optical illusion that has leaked state secrets and legal strategies. Discover how true, court-compliant PDF redaction works.
 - [PrintSign vs Smallpdf & iLovePDF: Why Cloud PDF Editors Risk Your Confidential Data](https://printsign.org/blog/printsign-vs-smallpdf-ilovepdf-cloud-security): Cloud converters advertise convenience, but every upload sends your contracts, tax returns, and medical records to third-party servers. We compare PrintSign against Smallpdf and iLovePDF.

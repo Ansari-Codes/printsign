@@ -44,6 +44,9 @@ describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
   it('asserts dist/ HTML files contain zero ADVERTISEMENT/AdSense and have unique titles & canonicals', () => {
     const targetFiles = [
       'f12-network-audit/index.html',
+      'for-lawyers/index.html',
+      'for-healthcare/index.html',
+      'for-journalists/index.html',
       'contact-us/index.html',
       'blog/compress-pdf-file-size-without-losing-quality/index.html'
     ]

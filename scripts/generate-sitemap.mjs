@@ -53,6 +53,10 @@ export function generateSitemap() {
     { loc: 'https://printsign.org/ilovepdf-smallpdf-offline-alternative', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/hipaa-compliant-pdf-redaction', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/nist-800-88-pdf-sanitization', changefreq: 'weekly', priority: '0.9' },
+    // Vertical Industry Hub Routes
+    { loc: 'https://printsign.org/for-lawyers', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/for-healthcare', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/for-journalists', changefreq: 'weekly', priority: '0.9' },
     // Knowledge Base, FAQ, Features, Security
     { loc: 'https://printsign.org/guides', changefreq: 'weekly', priority: '0.8' },
     { loc: 'https://printsign.org/faq', changefreq: 'monthly', priority: '0.8' },

@@ -126,6 +126,33 @@ export const ogRoutesData = [
     subtitle: 'Defensible Clear & Purge Protocols for Digital PDF Object Graphs',
     icon: '🏛️',
     tag: 'NIST SP 800-88 R1'
+  },
+  {
+    fileName: 'for-lawyers.png',
+    route: '/for-lawyers',
+    category: 'LEGAL DISCOVERY & COURT COMPLIANCE',
+    title: 'Court-Compliant PDF Redaction for Lawyers',
+    subtitle: 'FRCP 5.2 Defensible 300 DPI Pixel Burn • Bates Prep • ABA Model Rule 1.6',
+    icon: '⚖️',
+    tag: 'FRCP RULE 5.2'
+  },
+  {
+    fileName: 'for-healthcare.png',
+    route: '/for-healthcare',
+    category: 'HEALTHCARE PHI PRIVACY & SAFE HARBOR',
+    title: 'Zero-Cloud Medical Record Redaction for Healthcare',
+    subtitle: 'Strip 18 HIPAA Identifiers & Medical Record Metadata Locally in RAM',
+    icon: '🩺',
+    tag: 'HIPAA COMPLIANT'
+  },
+  {
+    fileName: 'for-journalists.png',
+    route: '/for-journalists',
+    category: 'INVESTIGATIVE SOURCE PROTECTION',
+    title: 'Forensic PDF Sanitization for Journalists',
+    subtitle: 'Purge FOIA Vector Layers, XMP Streams & Hidden Printer/Camera Metadata',
+    icon: '📰',
+    tag: 'SOURCE DEFENSE'
   }
 ]
 

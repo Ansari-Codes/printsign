@@ -81,16 +81,19 @@ describe('Generative Engine Optimization (GEO) & Machine-Readable Standards Suit
     expect(fs.readFileSync(keyFilePath, 'utf8').trim()).toBe(INDEXNOW_KEY)
 
     const urls = getSitemapUrls()
-    expect(urls.length).toBe(43)
+    expect(urls.length).toBe(46)
     expect(urls).toContain('https://printsign.org/')
     expect(urls).toContain('https://printsign.org/verify-redaction')
     expect(urls).toContain('https://printsign.org/f12-network-audit')
     expect(urls).toContain('https://printsign.org/hipaa-compliant-pdf-redaction')
+    expect(urls).toContain('https://printsign.org/for-lawyers')
+    expect(urls).toContain('https://printsign.org/for-healthcare')
+    expect(urls).toContain('https://printsign.org/for-journalists')
 
     // Test submission payload construction in dry-run mode
     const dryRunResult = await submitIndexNow({ dryRun: true })
     expect(dryRunResult.ok).toBe(true)
-    expect(dryRunResult.count).toBe(43)
+    expect(dryRunResult.count).toBe(46)
   })
 
   it('confirms robots.txt explicitly welcomes modern AI search engines and references llms.txt', () => {

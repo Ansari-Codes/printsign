@@ -15,6 +15,7 @@ import BlogPostView from '../views/BlogPostView.vue'
 import VerifyRedactionView from '../views/VerifyRedactionView.vue'
 import ComplianceComparisonView from '../views/ComplianceComparisonView.vue'
 import NetworkAuditView from '../views/NetworkAuditView.vue'
+import IndustryRoleView from '../views/IndustryRoleView.vue'
 
 const isFileProtocol = typeof window !== 'undefined' && window.location.protocol === 'file:'
 
@@ -23,6 +24,9 @@ const routes = [
   { path: '/editor', name: 'editor', component: EditorView },
   { path: '/verify-redaction', name: 'verify-redaction', component: VerifyRedactionView },
   { path: '/f12-network-audit', name: 'network-audit', component: NetworkAuditView },
+  { path: '/for-lawyers', name: 'for-lawyers', component: IndustryRoleView },
+  { path: '/for-healthcare', name: 'for-healthcare', component: IndustryRoleView },
+  { path: '/for-journalists', name: 'for-journalists', component: IndustryRoleView },
   { path: '/ilovepdf-smallpdf-offline-alternative', name: 'comparison-cloud-alternative', component: ComplianceComparisonView },
   { path: '/hipaa-compliant-pdf-redaction', name: 'compliance-hipaa', component: ComplianceComparisonView },
   { path: '/nist-800-88-pdf-sanitization', name: 'compliance-nist', component: ComplianceComparisonView },

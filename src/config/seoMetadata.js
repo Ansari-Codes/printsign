@@ -350,6 +350,114 @@ export const seoMetadata = {
       ])
     })
   },
+  '/for-lawyers': {
+    title: 'Client-Side PDF Redaction & Bates Prep for Lawyers (FRCP 5.2)',
+    description: 'Redact court filings, discovery exhibits, and privileged legal PDFs 100% in browser RAM. Prevent failed black-box redactions with 300 DPI pixel destruction.',
+    h1: 'Court-Compliant Local PDF Redaction & Discovery Sanitization for Legal Teams',
+    toolMode: 'role',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/for-lawyers.png',
+    ogImageAlt: 'Client-Side PDF Redaction & Bates Prep for Lawyers',
+    featureList: [
+      'FRCP Rule 5.2 Mandatory Redaction Compliance',
+      'Permanent 300 DPI Pixel Destruction & Orphan GC',
+      'Zero Cloud Subpoena or US CLOUD Act Liability',
+      'ABA Model Rule 1.6 Confidentiality Defensibility',
+      'Bates Numbering Preparation & Page Reordering',
+      'Air-Gapped In-Memory Redaction Verifier'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign for Lawyers & Legal Teams',
+        'Redact court filings, discovery exhibits, and privileged legal PDFs 100% in browser RAM. Prevent failed black-box redactions with 300 DPI pixel destruction.',
+        'https://printsign.org/for-lawyers',
+        [
+          'FRCP Rule 5.2 Court Redaction',
+          'ABA Model Rule 1.6 Privilege Protection',
+          'Permanent 300 DPI Pixel Burn',
+          'In-Memory Bates Preparation'
+        ]
+      ),
+      sourceCode: buildSoftwareSourceCodeSchema(),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Industry Solutions', url: 'https://printsign.org/#solutions' },
+        { name: 'For Lawyers', url: 'https://printsign.org/for-lawyers' }
+      ])
+    })
+  },
+  '/for-healthcare': {
+    title: 'Local PHI & Medical Record PDF Redactor for Healthcare | PrintSign',
+    description: 'Sanitize patient medical records, insurance claims, and EHR exports locally in browser memory. Zero cloud uploads and full HIPAA Safe Harbor alignment.',
+    h1: 'Zero-Upload Medical Record PDF Redaction & Metadata Scrubbing for Healthcare',
+    toolMode: 'role',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/for-healthcare.png',
+    ogImageAlt: 'Local PHI & Medical Record PDF Redactor for Healthcare',
+    featureList: [
+      'HIPAA Safe Harbor 18 De-Identification Rules',
+      'Zero Cloud Storage & No BAA Mandate Required',
+      'EHR & Diagnostic Scan Metadata Scrubbing',
+      'NIST SP 800-88 Aligned Digital Media Purging',
+      'Volatile RAM Execution with Instant Tab GC',
+      'Downloadable SHA-256 Sanitization Certificate'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign for Healthcare & Medical Teams',
+        'Sanitize patient medical records, insurance claims, and EHR exports locally in browser memory. Zero cloud uploads and full HIPAA Safe Harbor alignment.',
+        'https://printsign.org/for-healthcare',
+        [
+          'HIPAA Safe Harbor PHI De-Identification',
+          'Zero Cloud Transit (No BAA Needed)',
+          'EHR & Lab Report Metadata Stripping',
+          'SHA-256 Audit Certification'
+        ]
+      ),
+      sourceCode: buildSoftwareSourceCodeSchema(),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Industry Solutions', url: 'https://printsign.org/#solutions' },
+        { name: 'For Healthcare', url: 'https://printsign.org/for-healthcare' }
+      ])
+    })
+  },
+  '/for-journalists': {
+    title: 'FOIA & Source-Protection PDF Metadata Scrubber for Journalists',
+    description: 'Protect confidential sources by stripping hidden XMP streams, printer/author metadata, and underlying vector text locally in an air-gapped browser tab.',
+    h1: 'Forensic PDF Metadata Sanitization & Source Protection for Investigative Journalists',
+    toolMode: 'role',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/for-journalists.png',
+    ogImageAlt: 'FOIA & Source-Protection PDF Metadata Scrubber for Journalists',
+    featureList: [
+      'Deep FOIA Vector Layer Text Destruction',
+      'XMP & EXIF Device Metadata Eradication',
+      'Printer Tracking Dot Countermeasures (Rasterization)',
+      'Confidential Whistleblower Source Defense',
+      'Offline Air-Gap Resilience (No WiFi Required)',
+      'Forensic Pre-Publication Hex & Text Audit'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign for Journalists & Newsrooms',
+        'Protect confidential sources by stripping hidden XMP streams, printer/author metadata, and underlying vector text locally in an air-gapped browser tab.',
+        'https://printsign.org/for-journalists',
+        [
+          'Forensic Source Protection & XMP Scrubbing',
+          'FOIA Optical Redaction Neutralization',
+          'Air-Gapped Offline Operation',
+          'Pre-Publication Canary Hex Audit'
+        ]
+      ),
+      sourceCode: buildSoftwareSourceCodeSchema(),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Industry Solutions', url: 'https://printsign.org/#solutions' },
+        { name: 'For Journalists', url: 'https://printsign.org/for-journalists' }
+      ])
+    })
+  },
   '/redact-pdf': {
     title: 'Redact PDF Online — Permanent 300 DPI Redaction',
     description: 'Permanently redact sensitive text and images from PDFs locally in your browser. Burns 300 DPI pixels with zero server uploads.',

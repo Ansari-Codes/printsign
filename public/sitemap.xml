@@ -91,6 +91,24 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://printsign.org/for-lawyers</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://printsign.org/for-healthcare</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://printsign.org/for-journalists</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://printsign.org/guides</loc>
     <lastmod>2026-11-09</lastmod>
     <changefreq>weekly</changefreq>

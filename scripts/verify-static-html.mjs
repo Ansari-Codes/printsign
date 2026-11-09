@@ -5,6 +5,9 @@ const distDir = path.resolve(process.cwd(), 'dist')
 
 const filesToCheck = [
   'f12-network-audit/index.html',
+  'for-lawyers/index.html',
+  'for-healthcare/index.html',
+  'for-journalists/index.html',
   'contact-us/index.html',
   'blog/compress-pdf-file-size-without-losing-quality/index.html'
 ]
