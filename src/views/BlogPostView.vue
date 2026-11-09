@@ -430,63 +430,43 @@ const processedContent = computed(() => {
     return `<${tag} id="${id}">${text}</${tag}>`
   })
 
-  // Render KaTeX for <div class="math-formula">...</div>
-  html = html.replace(/<div class="math-formula">([\s\S]*?)<\/div>/gi, (_match, formula) => {
+  // Helper to sanitize LaTeX and render via KaTeX
+  function renderLatex(formula: string, displayMode: boolean): string {
     try {
-      const cleanFormula = formula
+      let clean = formula
         .replace(/&amp;/g, '&')
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
         .replace(/&quot;/g, '"')
         .replace(/&#39;/g, "'")
         .trim()
-      const rendered = katex.renderToString(cleanFormula, {
-        displayMode: true,
+      // Normalize any consecutive backslashes before a LaTeX command/macro/symbol to exactly ONE backslash
+      // e.g. \\frac -> \frac, \\left -> \left, \\right -> \right, \\text -> \text, \\times -> \times
+      clean = clean.replace(/\\+([a-zA-Z{}$%&_#])/g, '\\$1')
+      return katex.renderToString(clean, {
+        displayMode,
         throwOnError: false
       })
-      return `<div class="math-formula katex-rendered">${rendered}</div>`
     } catch {
-      return _match
+      return formula
     }
+  }
+
+  // Render KaTeX for <div class="math-formula">...</div>
+  html = html.replace(/<div class="math-formula">([\s\S]*?)<\/div>/gi, (_match, formula) => {
+    const rendered = renderLatex(formula, true)
+    return `<div class="math-formula katex-rendered">${rendered}</div>`
   })
 
   // Render KaTeX for block $$...$$
   html = html.replace(/\$\$([\s\S]*?)\$\$/g, (_match, formula) => {
-    try {
-      const cleanFormula = formula
-        .replace(/&amp;/g, '&')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'")
-        .trim()
-      const rendered = katex.renderToString(cleanFormula, {
-        displayMode: true,
-        throwOnError: false
-      })
-      return `<div class="math-block"><div class="math-formula katex-rendered">${rendered}</div></div>`
-    } catch {
-      return _match
-    }
+    const rendered = renderLatex(formula, true)
+    return `<div class="math-block"><div class="math-formula katex-rendered">${rendered}</div></div>`
   })
 
   // Render KaTeX for inline \(...\)
   html = html.replace(/\\\(([\s\S]*?)\\\)/g, (_match, formula) => {
-    try {
-      const cleanFormula = formula
-        .replace(/&amp;/g, '&')
-        .replace(/&lt;/g, '<')
-        .replace(/&gt;/g, '>')
-        .replace(/&quot;/g, '"')
-        .replace(/&#39;/g, "'")
-        .trim()
-      return katex.renderToString(cleanFormula, {
-        displayMode: false,
-        throwOnError: false
-      })
-    } catch {
-      return _match
-    }
+    return renderLatex(formula, false)
   })
 
   tableOfContents.value = toc
@@ -751,16 +731,18 @@ onUnmounted(() => {
 }
 
 .article-content .math-formula {
-  font-size: 1.25rem;
-  letter-spacing: 0.02em;
+  font-size: clamp(0.875rem, 1.8vw, 1.05rem);
+  letter-spacing: 0.01em;
   padding: 0.5rem 0;
   overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.4) transparent;
 }
 
 .article-content .katex {
   color: #38bdf8;
-  font-size: 1.15em;
-  line-height: 1.2;
+  font-size: 1.05em;
+  line-height: 1.25;
   text-rendering: auto;
 }
 

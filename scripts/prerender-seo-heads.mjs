@@ -45,27 +45,45 @@ function loadBlogPosts() {
   }
 }
 
+function renderLatex(formula, displayMode = true) {
+  try {
+    let clean = formula
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .trim()
+    // Normalize any consecutive backslashes before a LaTeX command/macro/symbol to exactly ONE backslash
+    // e.g. \\frac -> \frac, \\left -> \left, \\right -> \right, \\text -> \text, \\times -> \times
+    clean = clean.replace(/\\+([a-zA-Z{}$%&_#])/g, '\\$1')
+    return katex.renderToString(clean, {
+      displayMode,
+      throwOnError: false
+    })
+  } catch {
+    return formula
+  }
+}
+
 function generateSemanticBody(routePath, seo) {
   if (seo.blogContent) {
     let articleHtml = seo.blogContent
     // Render KaTeX for <div class="math-formula">...</div>
     articleHtml = articleHtml.replace(/<div class="math-formula">([\s\S]*?)<\/div>/gi, (_match, formula) => {
-      try {
-        const cleanFormula = formula
-          .replace(/&amp;/g, '&')
-          .replace(/&lt;/g, '<')
-          .replace(/&gt;/g, '>')
-          .replace(/&quot;/g, '"')
-          .replace(/&#39;/g, "'")
-          .trim()
-        const rendered = katex.renderToString(cleanFormula, {
-          displayMode: true,
-          throwOnError: false
-        })
-        return `<div class="math-formula katex-rendered">${rendered}</div>`
-      } catch {
-        return _match
-      }
+      const rendered = renderLatex(formula, true)
+      return `<div class="math-formula katex-rendered">${rendered}</div>`
+    })
+
+    // Render KaTeX for block $$...$$
+    articleHtml = articleHtml.replace(/\$\$([\s\S]*?)\$\$/g, (_match, formula) => {
+      const rendered = renderLatex(formula, true)
+      return `<div class="math-block"><div class="math-formula katex-rendered">${rendered}</div></div>`
+    })
+
+    // Render KaTeX for inline \(...\)
+    articleHtml = articleHtml.replace(/\\\(([\s\S]*?)\\\)/g, (_match, formula) => {
+      return renderLatex(formula, false)
     })
 
     return `<div id="app">

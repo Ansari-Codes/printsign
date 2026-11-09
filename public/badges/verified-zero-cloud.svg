@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="232" height="32" viewBox="0 0 232 32" role="img" aria-label="PrintSign: Verified Zero-Leak">
+  <title>PrintSign — Verified Zero-Leak Client-Side PDF</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0a101d"/>
+      <stop offset="52%" stop-color="#0d1527"/>
+      <stop offset="52%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="232" height="32" rx="6" fill="url(#bg)"/>
+  <rect width="232" height="32" rx="6" fill="url(#shine)"/>
+  <rect width="232" height="32" rx="6" fill="none" stroke="#38bdf8" stroke-opacity="0.35" stroke-width="1"/>
+  
+  <!-- Left Side: Shield + PRINTSIGN -->
+  <g transform="translate(10, 8)">
+    <path d="M7 1.5 L12 3.5 V7.5 C12 10.5 7 13 7 13 C7 13 2 10.5 2 7.5 V3.5 Z" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M5 7 L6.5 8.5 L9.5 5.5" fill="none" stroke="#38bdf8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="32" y="20.5" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="0.5">PRINTSIGN</text>
+
+  <!-- Right Side: Checkmark + VERIFIED ZERO-LEAK -->
+  <g transform="translate(128, 8)">
+    <circle cx="6" cy="8" r="5" fill="#10b981" fill-opacity="0.25"/>
+    <circle cx="6" cy="8" r="2.5" fill="#34d399"/>
+  </g>
+  <text x="144" y="20.5" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="0.4">ZERO-LEAK PDF</text>
+</svg>
