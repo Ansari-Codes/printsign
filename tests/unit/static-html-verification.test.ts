@@ -4,6 +4,8 @@ import path from 'node:path'
 
 describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
   const distDir = path.resolve(process.cwd(), 'dist')
+  const rootIndexHtml = path.resolve(process.cwd(), 'index.html')
+  const prohibitedTrackers = /googletagmanager|google-analytics|gtag\(|adsbygoogle|preconnect.*(?:googletagmanager|google-analytics|doubleclick)/i
 
   it('ensures zero occurrences of ADVERTISEMENT or AdSense in src components and views', () => {
     function walk(dir: string): string[] {
@@ -34,6 +36,12 @@ describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
     expect(violatingFiles).toEqual([])
   })
 
+  it('ensures zero third-party tracking scripts, preconnects, or telemetry in root index.html', () => {
+    expect(fs.existsSync(rootIndexHtml)).toBe(true)
+    const content = fs.readFileSync(rootIndexHtml, 'utf8')
+    expect(content).not.toMatch(prohibitedTrackers)
+  })
+
   it('ensures zero legacy printsign.org/editor links in blog tutorials', () => {
     const blogsPath = path.resolve(process.cwd(), 'src/data/blogs.ts')
     const blogsContent = fs.readFileSync(blogsPath, 'utf8')
@@ -41,14 +49,15 @@ describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
     expect(matches.length).toBe(0)
   })
 
-  it('asserts dist/ HTML files contain zero ADVERTISEMENT/AdSense and have unique titles & canonicals', () => {
+  it('asserts dist/ HTML files contain zero ADVERTISEMENT/AdSense/trackers and have unique titles & canonicals', () => {
     const targetFiles = [
       'f12-network-audit/index.html',
       'for-lawyers/index.html',
       'for-healthcare/index.html',
       'for-journalists/index.html',
       'contact-us/index.html',
-      'blog/compress-pdf-file-size-without-losing-quality/index.html'
+      'blog/compress-pdf-file-size-without-losing-quality/index.html',
+      'blog/how-to-permanently-redact-pdf-court-compliant/index.html'
     ]
 
     const titles = new Set<string>()
@@ -62,6 +71,9 @@ describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
 
       // Assert zero occurrences of ADVERTISEMENT or AdSense
       expect(html).not.toMatch(/ADVERTISEMENT|AdSense/i)
+
+      // Assert zero tracking scripts or preconnects
+      expect(html).not.toMatch(prohibitedTrackers)
 
       // Assert unique title
       const titleMatch = html.match(/<title>(.*?)<\/title>/i)
@@ -83,6 +95,16 @@ describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
       const h1Match = html.match(/<h1>(.*?)<\/h1>/i)
       expect(h1Match).toBeTruthy()
       expect(h1Match![1].trim().length).toBeGreaterThan(0)
+    }
+  })
+
+  it('asserts math blog pre-renders KaTeX DOM and MathML correctly', () => {
+    const mathBlogPath = path.resolve(distDir, 'blog/how-to-permanently-redact-pdf-court-compliant/index.html')
+    if (fs.existsSync(mathBlogPath)) {
+      const html = fs.readFileSync(mathBlogPath, 'utf8')
+      expect(html).toContain('katex-rendered')
+      expect(html).toContain('class="katex"')
+      expect(html).toContain('<math xmlns="http://www.w3.org/1998/Math/MathML"')
     }
   })
 })
