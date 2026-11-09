@@ -5,6 +5,7 @@ import katex from 'katex'
 import { seoMetadata } from '../src/config/seoMetadata.js'
 import { toolSeoContent } from '../src/config/seoContent.js'
 import { generateSitemap } from './generate-sitemap.mjs'
+import { generateLlmsTxt } from './generate-llms-txt.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -356,6 +357,9 @@ async function main() {
   // Dynamic Sitemap & Robots.txt generation
   console.log('\n--- Generating Dynamic Sitemap & Robots.txt ---')
   generateSitemap()
+
+  // Generate llms.txt & llms-full.txt for Generative Engine Optimization (GEO)
+  generateLlmsTxt()
 
   console.log(`\n[prerender] Success! Total ${count} dedicated HTML files pre-rendered with semantic SEO heads and crawlable content.\n`)
 }

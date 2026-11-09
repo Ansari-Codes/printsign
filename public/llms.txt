@@ -1,31 +1,48 @@
-# PrintSign PDF Editor
-> 100% Client-Side PDF Editor, Permanent Redactor, Splitter, and Sanitizer.
+# PrintSign.org — 100% Client-Side PDF Redactor, Metadata Scrubber & Offline PWA
 
-PrintSign is a zero-server, zero-telemetry web application that enables users and AI agents to manipulate, reorganize, sanitize, and permanently redact PDF documents directly inside browser memory without uploading any bytes to a remote server.
+> PrintSign (https://printsign.org) is an open-source, zero-cloud PDF privacy and engineering suite that executes 100% inside your local browser memory sandbox via WebAssembly and Web Workers. No files or telemetry are uploaded to external servers. All operations—including permanent 300/600 DPI redaction rasterization, XMP metadata scrubbing, lossless compression, merging, splitting, and orphan object garbage collection—leave 0 network footprint and are completely verifiable with DevTools (F12).
 
-## Dedicated Pages & Endpoints
-- Homepage & Live Dropzone: https://printsign.org/
-- Full Web Application Editor: https://printsign.org/editor
-- Features & Architectural Specifications: https://printsign.org/features
-- About Us & Engineering Mission: https://printsign.org/about-us
-- Contact & Technical Support: https://printsign.org/contact-us
-- Legal Privacy Policy (GDPR / CCPA / AdSense): https://printsign.org/privacy-policy
-- Terms of Service Agreement: https://printsign.org/terms-of-service
-- Cookie Policy & Advertising Consent: https://printsign.org/cookie-policy
-- Knowledge Base & Forensics Whitepapers: https://printsign.org/guides
-- Frequently Asked Questions: https://printsign.org/faq
+## Core Document Tools
+- [Permanent PDF Redactor](https://printsign.org/redact-pdf): True 300/600 DPI canvas rasterization that burns in redactions and purges underlying vector text streams to prevent forensic copy-paste recovery.
+- [PDF Redaction & Metadata Verifier](https://printsign.org/verify-redaction): Instant client-side inspection tool that audits PDFs for cosmetic black vector rectangles, selectable text layers, and embedded XMP schemas.
+- [Scrub PDF Metadata](https://printsign.org/scrub-pdf-metadata): Strips /Info dictionary author, title, creation timestamps, and raw XML XMP streams without altering page layouts.
+- [Merge PDF Files](https://printsign.org/merge-pdf): Concatenates multiple PDF files in browser RAM by merging cross-reference (XRef) tables without cloud transit.
+- [Split PDF Pages](https://printsign.org/split-pdf): Extracts arbitrary page ranges and individual sheets into new, sanitized, orphan-purged PDF files.
+- [Flatten & Rasterize PDF](https://printsign.org/flatten-rasterize-pdf): Converts interactive AcroForms, digital signatures, and vector layers into flattened 300 DPI high-resolution bitmaps.
+- [Reorder & Rotate PDF](https://printsign.org/reorder-rotate-pdf): Visually reorders pages, changes orientations (90°/180°/270°), and updates PDF page tree rotation dictionaries offline.
+- [Compress PDF](https://printsign.org/compress-pdf): Losslessly compresses PDF file size by deflating object streams and pruning orphan trailer objects.
+- [F12 Network & RAM Security Audit](https://printsign.org/f12-network-audit): Interactive live DevTools benchmark proving zero outbound HTTP requests, 0 remote API telemetry, and strict CSP enforcement.
+- [PrintSign Web Editor](https://printsign.org/editor): Universal offline-first Progressive Web App (PWA) workspace containing the full suite of PDF editing tools.
 
-## Core Capabilities
-- **Permanent Redaction:** 300 DPI canvas raster burn-in with Trailer and Catalog indirect object graph traversal garbage collection. Purges underlying vector text and binary canary strings completely (NIST SP 800-88 compliant).
-- **Page Organization:** Rotate clockwise 90°, delete single or multiple pages, reorder by drag-and-drop, insert blank pages, duplicate pages, visual cropping.
-- **Split & Merge:** Multi-file merging in client memory; page range splitting (e.g. 1-3, 5, 8-10) with multi-file client-side ZIP packaging via fflate.
-- **Metadata Scrubbing:** Complete purge of Info dictionary keys (Title, Author, Subject, Keywords, Creator, Producer, CreationDate, ModDate) and raw XML RDF XMP streams.
-- **High-DPI Rasterizer:** Render PDF pages to PNG, JPEG, or WebP at 72, 150, 300, or 600 DPI, with flattening to image-only PDF.
-- **Offline PWA:** Fully cached via Service Worker. Operates on air-gapped computers with zero internet connection.
-- **Local Autosave:** Preserves drafts locally in browser IndexedDB with zero cloud exposure.
+## Compliance & Privacy Comparison Guides
+- [Private Offline Alternative to iLovePDF & Smallpdf](https://printsign.org/ilovepdf-smallpdf-offline-alternative): Architectural comparison contrasting multi-tenant cloud PDF processing risks with PrintSign's zero-upload WebAssembly model.
+- [HIPAA-Compliant PDF Redaction](https://printsign.org/hipaa-compliant-pdf-redaction): Compliance guide detailing how local browser memory sanitization fulfills HIPAA Security Rule 45 CFR § 164.312 without Business Associate Agreements (BAA).
+- [NIST SP 800-88 PDF Sanitization](https://printsign.org/nist-800-88-pdf-sanitization): Federal media sanitization protocols (Clear / Purge) applied to digital document object graphs and residual trailer objects.
 
-## Security & Verification Posture
-- 0 bytes transmitted over network.
-- 0 external runtime CDNs or remote font endpoints.
-- Isolated multi-document history and redaction state.
-- Automated canary string byte-level audit on all redactions.
+## Engineering & Legal Knowledge Base
+- [How to Permanently Redact a PDF: Step-by-Step Legal & Court Compliance Guide](https://printsign.org/blog/how-to-permanently-redact-pdf-court-compliant): Drawing black rectangles over text is not redaction—it is an optical illusion that has leaked state secrets and legal strategies. Discover how true, court-compliant PDF redaction works.
+- [PrintSign vs Smallpdf & iLovePDF: Why Cloud PDF Editors Risk Your Confidential Data](https://printsign.org/blog/printsign-vs-smallpdf-ilovepdf-cloud-security): Cloud converters advertise convenience, but every upload sends your contracts, tax returns, and medical records to third-party servers. We compare PrintSign against Smallpdf and iLovePDF.
+- [How to Merge Multiple PDF Documents Without Uploading to Cloud Servers](https://printsign.org/blog/merge-pdf-files-without-uploading-private): Learn how to combine invoices, contracts, and research reports into a unified PDF without exposing your files to third-party servers. Fast client-side merging explained.
+- [The Complete Guide to Splitting PDFs and Extracting Custom Page Ranges Offline](https://printsign.org/blog/split-pdf-extract-pages-offline): Extracting specific chapters or pages from a massive 500-page PDF shouldn't require cloud uploads or expensive licenses. Master offline PDF splitting with custom ranges.
+- [Exposing Hidden PDF Metadata: How to Scrub Author, Timestamps & XMP Packets](https://printsign.org/blog/hidden-pdf-metadata-scrub-xmp-streams): Every PDF you export leaks your computer username, operating system, file paths, and printer serial numbers. Here is how digital forensic analysts extract it—and how to permanently scrub it.
+- [Why Black Rectangle Redactions Fail: Forensic Analysis of Famous PDF Data Leaks](https://printsign.org/blog/why-black-boxes-fail-pdf-redaction-disasters): Drawing black rectangles in Preview or basic PDF tools is not redaction. Forensic analysts explain why character vectors remain in the file and how journalists easily uncover them.
+- [HIPAA-Friendly PDF Editing: Safely Redacting and Merging Patient Records](https://printsign.org/blog/hipaa-compliant-pdf-editor-medical-records): Uploading medical charts and patient forms to online PDF tools is an automatic HIPAA violation. Discover how zero-cloud client-side processing guarantees compliance.
+- [Best Free Adobe Acrobat Pro Alternatives in 2026: An Exhaustive Privacy & Feature Benchmark](https://printsign.org/blog/best-free-adobe-acrobat-alternatives-2026): Adobe Acrobat Pro costs $239.88 every single year and forces users into cloud telemetry. Discover the best free, private, and subscription-free alternatives in 2026.
+- [PDF DPI Explained: Choosing Between 72, 150, 300, and 600 DPI for Print & Legal](https://printsign.org/blog/high-dpi-pdf-rasterization-guide-300-600-dpi): What is DPI in PDF documents, and how does it affect file size, legibility, and legal court compliance? We explain the math and benchmarks behind 72, 150, 300, and 600 DPI.
+- [How In-Browser Progressive Web Apps (PWAs) Allow 100% Offline PDF Manipulation](https://printsign.org/blog/offline-pwa-pdf-editor-how-it-works): You don't need a cloud connection to edit sensitive documents. Learn how Service Workers, CacheStorage, and WebAssembly turn modern browsers into offline operating environments.
+- [GDPR Article 32 & Document Privacy: Mitigating Enterprise PDF Security Vulnerabilities](https://printsign.org/blog/gdpr-article-32-pdf-data-protection): Under GDPR Article 32, organizations must ensure security of processing. Discover how client-side PDF editing eliminates third-party data transfers and processor liabilities.
+- [How to Organize, Reorder, Rotate, and Delete PDF Pages Instantly in Your Browser](https://printsign.org/blog/how-to-rotate-reorder-delete-pdf-pages): Fix upside-down scans and delete accidental blank pages in seconds. Discover how to organize your PDF pages with intuitive visual drag-and-drop tools.
+- [How to Flatten PDF Forms, Signatures & Annotations for Defensible Legal Security](https://printsign.org/blog/flatten-pdf-form-fields-signatures-security): Interactive PDF form fields and signature annotations can be easily altered or forged if left unflattened. Discover how document flattening creates tamper-proof, court-admissible PDFs.
+- [E-Discovery PDF Sanitization: FRCP Rule 26 & 37 Compliance for Litigation Document Production](https://printsign.org/blog/legal-discovery-ediscovery-pdf-sanitization): In federal litigation, accidental metadata leaks or inadvertent disclosure of privileged work-product can destroy cases. Discover defensible e-discovery PDF sanitization protocols.
+- [Financial Document Redaction: Securing Tax Returns, Bank Statements & W-2s Against Identity Theft](https://printsign.org/blog/financial-document-redaction-tax-banking-privacy): Applying for a mortgage or sharing tax returns exposes your most sensitive financial secrets. Discover how to permanently redact SSNs, account numbers, and salary history offline.
+- [Zero-Trust Document Computing: Why Browser WebAssembly is the Future of Enterprise PDF Security](https://printsign.org/blog/zero-trust-architecture-browser-webassembly): Cloud document converters are an existential breach risk for zero-trust enterprises. Discover how client-side WebAssembly enforces mathematically verifiable zero-trust computing.
+- [How to Compress PDF Files Without Blurring Text: The Science of Lossless Document Optimization](https://printsign.org/blog/compress-pdf-file-size-without-losing-quality): Email gateway rejecting your 35MB PDF? Learn how to compress document size without sacrificing typography sharpness using client-side object pruning.
+- [How to Remove PDF Passwords & Unlock Document Permissions Securely in Your Browser](https://printsign.org/blog/remove-passwords-decrypt-pdf-client-side): Locked out of printing or editing your own PDF? Learn the cryptographic difference between User and Owner passwords and how to decrypt documents securely offline.
+
+## System Architecture & Security Specifications
+- [Security Architecture & Threat Model](https://printsign.org/security-architecture): Technical whitepaper on browser RAM allocation, TypedArray buffers, and garbage collection mechanisms.
+- [Technical Specifications & Features](https://printsign.org/features): Full list of supported PDF standards (ISO 32000-1), DPI presets, and cryptographic checks.
+- [Frequently Asked Questions](https://printsign.org/faq): Complete architectural FAQ answering data privacy, courtroom defensibility, and browser compatibility questions.
+
+## Full Documentation Corpus
+- [Full Documentation & Deep Dives](https://printsign.org/llms-full.txt): Complete uncompressed compilation of all tool specifications, compliance frameworks, and engineering guides for LLM ingestion.
