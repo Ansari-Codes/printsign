@@ -4,6 +4,9 @@
     <SiteNavbar />
 
     <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full select-text">
+      <!-- Breadcrumbs & Trust Bar -->
+      <ToolTrustBar />
+
       <!-- Hero Header Section -->
       <header class="text-center max-w-4xl mx-auto mb-14">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/25 text-cyan-400 text-xs font-semibold mb-4">
@@ -232,6 +235,7 @@ import {
 import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
 import SeoContentSection from '../components/website/SeoContentSection.vue'
+import ToolTrustBar from '../components/common/ToolTrustBar.vue'
 import { useRouteSeo } from '../config/seoMetadata'
 
 const route = useRoute()

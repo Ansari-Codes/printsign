@@ -197,6 +197,14 @@ function prerenderRoute(template, routePath, seo) {
     `<meta property="og:type" content="${seo.ogType || 'website'}" />`
   )
 
+  const ogImg = seo.ogImage || (routePath.startsWith('/blog/') ? `https://printsign.org/images/blogs/${routePath.replace('/blog/', '')}.png` : 'https://printsign.org/images/og/home.png')
+  const ogAlt = seo.ogImageAlt || seo.title
+
+  html = html.replace(
+    /<meta\s+property=["']og:image["']\s+content=["'][^"']*["']\s*\/?>/i,
+    `<meta property="og:image" content="${ogImg}" />\n    <meta property="og:image:width" content="1200" />\n    <meta property="og:image:height" content="630" />\n    <meta property="og:image:type" content="image/png" />\n    <meta property="og:image:alt" content="${escapeAttr(ogAlt)}" />`
+  )
+
   // Replace Twitter
   html = html.replace(
     /<meta\s+property=["']twitter:title["']\s+content=["'][^"']*["']\s*\/?>/i,
@@ -205,6 +213,10 @@ function prerenderRoute(template, routePath, seo) {
   html = html.replace(
     /<meta\s+property=["']twitter:description["']\s+content=["'][^"']*["']\s*\/?>/i,
     `<meta property="twitter:description" content="${escapeAttr(seo.description)}" />`
+  )
+  html = html.replace(
+    /<meta\s+property=["']twitter:image["']\s+content=["'][^"']*["']\s*\/?>/i,
+    `<meta property="twitter:image" content="${ogImg}" />\n    <meta property="twitter:image:alt" content="${escapeAttr(ogAlt)}" />`
   )
 
   // Replace JSON-LD schema
@@ -352,6 +364,18 @@ async function main() {
       fs.unlinkSync(cnamePath)
       console.log(`✓ [CNAME] Removed dist/CNAME for subpath deployment (${rawBase})`)
     }
+  }
+
+  // Copy OpenGraph route banner images to dist
+  const publicOgDir = path.resolve(rootDir, 'public', 'images', 'og')
+  const distOgDir = path.resolve(distDir, 'images', 'og')
+  if (fs.existsSync(publicOgDir)) {
+    fs.mkdirSync(distOgDir, { recursive: true })
+    const ogFiles = fs.readdirSync(publicOgDir)
+    for (const file of ogFiles) {
+      fs.copyFileSync(path.join(publicOgDir, file), path.join(distOgDir, file))
+    }
+    console.log(`✓ [OG Images] Copied ${ogFiles.length} 1200x630 banners to dist/images/og/`)
   }
 
   // Dynamic Sitemap & Robots.txt generation

@@ -50,6 +50,56 @@ export const faqJsonLd = {
   }))
 }
 
+export function buildBreadcrumbSchema(items) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: item.url
+    }))
+  }
+}
+
+export function buildHowToSchema(name, description, url, steps) {
+  return {
+    '@type': 'HowTo',
+    name,
+    description,
+    totalTime: 'PT1M',
+    tool: [
+      {
+        '@type': 'HowToTool',
+        name: 'Web Browser with WebAssembly (Chrome, Firefox, Safari, Edge)'
+      }
+    ],
+    step: steps.map((s, idx) => ({
+      '@type': 'HowToStep',
+      position: idx + 1,
+      name: s.name,
+      text: s.text,
+      url: `${url}#step-${idx + 1}`
+    }))
+  }
+}
+
+export function buildSoftwareSourceCodeSchema() {
+  return {
+    '@type': 'SoftwareSourceCode',
+    name: 'PrintSign Client-Side PDF Engine',
+    codeRepository: 'https://github.com/Ansari-Codes/printsign',
+    programmingLanguage: ['TypeScript', 'Vue 3', 'WebAssembly', 'JavaScript'],
+    runtimePlatform: 'Browser Sandbox (WebAssembly & HTML5 Canvas)',
+    license: 'https://opensource.org/licenses/MIT',
+    author: {
+      '@type': 'Organization',
+      name: 'PrintSign Open Source Community',
+      url: 'https://printsign.org'
+    }
+  }
+}
+
 export function buildWebApplicationSchema(name, description, url, featureList) {
   return {
     '@context': 'https://schema.org',
@@ -73,6 +123,21 @@ export function buildWebApplicationSchema(name, description, url, featureList) {
   }
 }
 
+export function buildCompositeSchema({ webApp, howTo, breadcrumbs, sourceCode }) {
+  const base = webApp || {}
+  const graph = [
+    webApp,
+    howTo,
+    breadcrumbs,
+    sourceCode
+  ].filter(Boolean)
+
+  return {
+    ...base,
+    '@graph': graph
+  }
+}
+
 export const seoMetadata = {
   '/': {
     title: 'PrintSign: 100% Client-Side PDF Editor & Redactor',
@@ -80,24 +145,29 @@ export const seoMetadata = {
     h1: 'Zero-Cloud PDF Editor & Permanent Redaction Suite',
     toolMode: null,
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/home.png',
+    ogImageAlt: 'PrintSign: 100% Client-Side PDF Editor & Redactor',
     featureList: [
       '100% Client-Side PDF Redaction',
       'Offline PDF Splitting & Merging',
       'Local Browser Storage & IndexedDB Recovery',
       'Zero Server Uploads & Zero Telemetry'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign PDF Editor & Redactor',
-      'Edit, split, merge, and permanently redact PDFs locally in your browser. Zero cloud uploads, 100% private, and full offline PWA support.',
-      'https://printsign.org/',
-      [
-        'Permanent Byte-Level Redaction',
-        'In-Browser PDF Merge & Split',
-        'Metadata & XMP Packet Scrubber',
-        'High-DPI Rasterizer',
-        'Offline PWA Support'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign PDF Editor & Redactor',
+        'Edit, split, merge, and permanently redact PDFs locally in your browser. Zero cloud uploads, 100% private, and full offline PWA support.',
+        'https://printsign.org/',
+        [
+          'Permanent Byte-Level Redaction',
+          'In-Browser PDF Merge & Split',
+          'Metadata & XMP Packet Scrubber',
+          'High-DPI Rasterizer',
+          'Offline PWA Support'
+        ]
+      ),
+      sourceCode: buildSoftwareSourceCodeSchema()
+    })
   },
   '/verify-redaction': {
     title: 'PDF Redaction & Metadata Verifier — Local Inspection Tool',
@@ -105,6 +175,8 @@ export const seoMetadata = {
     h1: 'Client-Side PDF Sanitization & Redaction Verifier',
     toolMode: 'verifier',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/verify-redaction.png',
+    ogImageAlt: 'PDF Redaction & Metadata Verifier — Local Inspection Tool',
     featureList: [
       'Local PDF Redaction Verification',
       'Selectable Text Layer Detection',
@@ -113,16 +185,33 @@ export const seoMetadata = {
       'Pure Raster Verification',
       'Zero Cloud Upload'
     ],
-    schema: buildWebApplicationSchema(
-      'PDF Redaction & Metadata Verifier',
-      'Check if a redacted PDF still contains selectable text under boxes or hidden XMP metadata. 100% local browser inspection—no file upload.',
-      'https://printsign.org/verify-redaction',
-      [
-        'Local PDF Redaction Verification',
-        'Selectable Text Layer Detection',
-        'XMP Metadata Stream Inspector'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PDF Redaction & Metadata Verifier',
+        'Check if a redacted PDF still contains selectable text under boxes or hidden XMP metadata. 100% local browser inspection—no file upload.',
+        'https://printsign.org/verify-redaction',
+        [
+          'Local PDF Redaction Verification',
+          'Selectable Text Layer Detection',
+          'XMP Metadata Stream Inspector'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Verify PDF Redaction & Metadata Integrity',
+        'Verify that a redacted PDF contains zero underlying text, hidden vector layers, or leaked metadata using client-side tools.',
+        'https://printsign.org/verify-redaction',
+        [
+          { name: 'Load Redacted PDF', text: 'Select or drag your redacted PDF file into the local verifier in your browser.' },
+          { name: 'Execute Multi-Layer Forensics', text: 'Run the client-side canary scanner to inspect text layers, XMP streams, and dictionary objects.' },
+          { name: 'Review Cryptographic Audit', text: 'Confirm zero OCR canary matches, zero selectable text, and download your verification report.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Redaction Verifier', url: 'https://printsign.org/verify-redaction' }
+      ])
+    })
   },
   '/f12-network-audit': {
     title: 'F12 Zero-Network Audit & Client-Side PDF Benchmark | PrintSign',
@@ -130,6 +219,8 @@ export const seoMetadata = {
     h1: '10-Second Reproducible Zero-Network & RAM Security Audit',
     toolMode: 'audit',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/f12-network-audit.png',
+    ogImageAlt: 'F12 Zero-Network Audit & Client-Side PDF Benchmark',
     featureList: [
       'Live PerformanceObserver Network Monitor',
       'One-Click In-Memory Redaction Benchmark',
@@ -138,16 +229,24 @@ export const seoMetadata = {
       'Volatile RAM Sandboxing & Auto-GC',
       'Content Security Policy (CSP) Level 3 Defensibility'
     ],
-    schema: buildWebApplicationSchema(
-      'F12 Zero-Network Audit & Benchmark',
-      "Verify PrintSign's zero-cloud PDF architecture in 10 seconds using browser DevTools (F12), PerformanceObserver telemetry, and live RAM inspection.",
-      'https://printsign.org/f12-network-audit',
-      [
-        'PerformanceObserver Resource Telemetry',
-        'In-Memory PDF Execution Benchmark',
-        'Zero-Network Exfiltration Verification'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'F12 Zero-Network Audit & Benchmark',
+        "Verify PrintSign's zero-cloud PDF architecture in 10 seconds using browser DevTools (F12), PerformanceObserver telemetry, and live RAM inspection.",
+        'https://printsign.org/f12-network-audit',
+        [
+          'PerformanceObserver Resource Telemetry',
+          'In-Memory PDF Execution Benchmark',
+          'Zero-Network Exfiltration Verification'
+        ]
+      ),
+      sourceCode: buildSoftwareSourceCodeSchema(),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Security & Compliance', url: 'https://printsign.org/security-architecture' },
+        { name: 'F12 Network Audit', url: 'https://printsign.org/f12-network-audit' }
+      ])
+    })
   },
   '/ilovepdf-smallpdf-offline-alternative': {
     title: 'Private Offline Alternative to iLovePDF & Smallpdf (No Upload)',
@@ -155,6 +254,8 @@ export const seoMetadata = {
     h1: 'The 100% Client-Side, Zero-Upload Alternative to Cloud PDF Tools',
     toolMode: 'comparison',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/ilovepdf-smallpdf-offline-alternative.png',
+    ogImageAlt: 'Private Offline Alternative to iLovePDF & Smallpdf',
     featureList: [
       '100% Client-Side WebAssembly Processing',
       'Zero Cloud File Retention',
@@ -162,17 +263,24 @@ export const seoMetadata = {
       'Permanent 300 DPI Redaction',
       'Offline Air-Gap Operation'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign Private Cloud PDF Alternative',
-      'Compare cloud PDF editors vs. PrintSign\'s 100% client-side WebAssembly architecture. Edit, merge, and redact PDFs locally without uploading files.',
-      'https://printsign.org/ilovepdf-smallpdf-offline-alternative',
-      [
-        'Zero-Upload PDF Manipulation',
-        'Client-Side WebAssembly Sandbox',
-        'Permanent 300 DPI Redaction',
-        'No Task Caps or Paywalls'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign Private Cloud PDF Alternative',
+        'Compare cloud PDF editors vs. PrintSign\'s 100% client-side WebAssembly architecture. Edit, merge, and redact PDFs locally without uploading files.',
+        'https://printsign.org/ilovepdf-smallpdf-offline-alternative',
+        [
+          'Zero-Upload PDF Manipulation',
+          'Client-Side WebAssembly Sandbox',
+          'Permanent 300 DPI Redaction',
+          'No Task Caps or Paywalls'
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Comparisons', url: 'https://printsign.org/features' },
+        { name: 'Offline Alternative', url: 'https://printsign.org/ilovepdf-smallpdf-offline-alternative' }
+      ])
+    })
   },
   '/hipaa-compliant-pdf-redaction': {
     title: 'HIPAA-Compliant Local PDF Redaction & Sanitization | PrintSign',
@@ -180,6 +288,8 @@ export const seoMetadata = {
     h1: 'HIPAA-Compliant Client-Side PDF Redaction for Healthcare & Legal Teams',
     toolMode: 'compliance',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/hipaa-compliant-pdf-redaction.png',
+    ogImageAlt: 'HIPAA-Compliant Local PDF Redaction & Sanitization',
     featureList: [
       'HIPAA Security Rule § 164.312 Compliant',
       'Exempt from Third-Party Cloud BAA',
@@ -187,17 +297,24 @@ export const seoMetadata = {
       'Patient Identifier & Diagnostic Sanitization',
       'Zero Telemetry or Cloud Logging'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign HIPAA PDF Redactor',
-      'Redact patient PHI and medical records 100% inside your browser RAM. Zero cloud uploads, no BAA required, and permanent 300 DPI pixel destruction.',
-      'https://printsign.org/hipaa-compliant-pdf-redaction',
-      [
-        'HIPAA § 164.312 Safe Harbor Redaction',
-        'No Cloud BAA Obligation',
-        'Permanent Pixel Burn-in at 300 DPI',
-        'In-Memory PHI Sanitization'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign HIPAA PDF Redactor',
+        'Redact patient PHI and medical records 100% inside your browser RAM. Zero cloud uploads, no BAA required, and permanent 300 DPI pixel destruction.',
+        'https://printsign.org/hipaa-compliant-pdf-redaction',
+        [
+          'HIPAA § 164.312 Safe Harbor Redaction',
+          'No Cloud BAA Obligation',
+          'Permanent Pixel Burn-in at 300 DPI',
+          'In-Memory PHI Sanitization'
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Compliance', url: 'https://printsign.org/security-architecture' },
+        { name: 'HIPAA Redaction', url: 'https://printsign.org/hipaa-compliant-pdf-redaction' }
+      ])
+    })
   },
   '/nist-800-88-pdf-sanitization': {
     title: 'NIST SP 800-88 PDF Sanitization & Metadata Scrubbing | PrintSign',
@@ -205,6 +322,8 @@ export const seoMetadata = {
     h1: 'NIST SP 800-88 Aligned PDF Sanitization & Metadata Destruction',
     toolMode: 'compliance',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/nist-800-88-pdf-sanitization.png',
+    ogImageAlt: 'NIST SP 800-88 PDF Sanitization & Metadata Scrubbing',
     featureList: [
       'NIST SP 800-88 Rev. 1 Logical Sanitization Aligned',
       'Orphan Indirect Object Garbage Collection',
@@ -212,17 +331,24 @@ export const seoMetadata = {
       'Cross-Reference Table Reconstruction',
       'Cryptographic Canary Verification Scans'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign NIST SP 800-88 PDF Sanitizer',
-      'Meet NIST SP 800-88 media sanitization standards for PDF documents. Purge hidden XMP streams, Info dictionaries, and underlying vector text locally.',
-      'https://printsign.org/nist-800-88-pdf-sanitization',
-      [
-        'NIST SP 800-88 Rev. 1 Media Clearing',
-        'Orphan Indirect Object Purging',
-        'Trailer Info & XMP Eradication',
-        'In-Memory Verification Audits'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign NIST SP 800-88 PDF Sanitizer',
+        'Meet NIST SP 800-88 media sanitization standards for PDF documents. Purge hidden XMP streams, Info dictionaries, and underlying vector text locally.',
+        'https://printsign.org/nist-800-88-pdf-sanitization',
+        [
+          'NIST SP 800-88 Rev. 1 Media Clearing',
+          'Orphan Indirect Object Purging',
+          'Trailer Info & XMP Eradication',
+          'In-Memory Verification Audits'
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Compliance', url: 'https://printsign.org/security-architecture' },
+        { name: 'NIST SP 800-88 Sanitization', url: 'https://printsign.org/nist-800-88-pdf-sanitization' }
+      ])
+    })
   },
   '/redact-pdf': {
     title: 'Redact PDF Online — Permanent 300 DPI Redaction',
@@ -230,6 +356,8 @@ export const seoMetadata = {
     h1: 'Permanent Client-Side PDF Redactor',
     toolMode: 'redact',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/redact-pdf.png',
+    ogImageAlt: 'Redact PDF Online — Permanent 300 DPI Redaction',
     featureList: [
       'Permanent 300 DPI Redaction',
       'Underlying Text Layer Stripping',
@@ -237,17 +365,35 @@ export const seoMetadata = {
       'Client-Side In-Memory Execution',
       'Zero Server Uploads'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign Client-Side PDF Redactor',
-      'Permanently redact sensitive text and images from PDFs locally in your browser. Burns 300 DPI pixels with zero server uploads.',
-      'https://printsign.org/redact-pdf',
-      [
-        'Permanent 300 DPI Redaction',
-        'Underlying Text Layer Stripping',
-        'Orphan Object Garbage Collection',
-        'Canary Verification Audit'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign Client-Side PDF Redactor',
+        'Permanently redact sensitive text and images from PDFs locally in your browser. Burns 300 DPI pixels with zero server uploads.',
+        'https://printsign.org/redact-pdf',
+        [
+          'Permanent 300 DPI Redaction',
+          'Underlying Text Layer Stripping',
+          'Orphan Object Garbage Collection',
+          'Canary Verification Audit'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Permanently Redact a PDF Online Without Server Uploads',
+        'Step-by-step instructions to permanently burn redaction boxes into 300 DPI pixels in browser memory.',
+        'https://printsign.org/redact-pdf',
+        [
+          { name: 'Open Document in Browser RAM', text: 'Select or drag your PDF document into the client-side editor. No files are uploaded to any server.' },
+          { name: 'Mark Sensitive Information', text: 'Draw redaction boxes over confidential text, account numbers, or personal identifying information.' },
+          { name: 'Burn Pixels at 300 DPI', text: 'Click Apply Redactions to rasterize pages and purge underlying text layers in a Web Worker.' },
+          { name: 'Export Court-Compliant PDF', text: 'Save your sanitized PDF directly to your device with orphan object garbage collection applied.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Redact PDF', url: 'https://printsign.org/redact-pdf' }
+      ])
+    })
   },
   '/scrub-pdf-metadata': {
     title: 'Scrub PDF Metadata & Sanitize XMP Streams Offline',
@@ -255,6 +401,8 @@ export const seoMetadata = {
     h1: 'Local PDF Metadata & XMP Sanitizer',
     toolMode: 'metadata',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/scrub-pdf-metadata.png',
+    ogImageAlt: 'Scrub PDF Metadata & Sanitize XMP Streams Offline',
     featureList: [
       'Metadata Sanitization',
       'XMP XML Stream Removal',
@@ -262,17 +410,35 @@ export const seoMetadata = {
       'Creation & Modification Timestamp Removal',
       'Client-Side Offline Processing'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign PDF Metadata & XMP Scrubber',
-      'Remove author, creation dates, and hidden XMP metadata from PDFs directly in your browser. 100% private client-side sanitizer.',
-      'https://printsign.org/scrub-pdf-metadata',
-      [
-        'Remove PDF Document Info Dictionary',
-        'Sanitize XMP XML Streams',
-        'Strip GPS & Device Identifiers',
-        'Purge Creation & Modification Dates'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign PDF Metadata & XMP Scrubber',
+        'Remove author, creation dates, and hidden XMP metadata from PDFs directly in your browser. 100% private client-side sanitizer.',
+        'https://printsign.org/scrub-pdf-metadata',
+        [
+          'Remove PDF Document Info Dictionary',
+          'Sanitize XMP XML Streams',
+          'Strip GPS & Device Identifiers',
+          'Purge Creation & Modification Dates'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Scrub Metadata & XMP Streams from a PDF',
+        'Strip author names, creation timestamps, and hidden metadata from PDF files client-side.',
+        'https://printsign.org/scrub-pdf-metadata',
+        [
+          { name: 'Select PDF Document', text: 'Open your PDF document locally in browser memory.' },
+          { name: 'Inspect Metadata Streams', text: 'Review existing author, producer, title, and XMP metadata packets.' },
+          { name: 'Purge Metadata & Rebuild Trailer', text: 'Click Scrub Metadata to delete the Info dictionary and strip XMP streams.' },
+          { name: 'Save Anonymized PDF', text: 'Export the sanitized PDF file without leaving metadata residue.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Metadata Scrubber', url: 'https://printsign.org/scrub-pdf-metadata' }
+      ])
+    })
   },
   '/split-pdf': {
     title: 'Split PDF Pages Locally — Extract PDF Ranges Free',
@@ -280,6 +446,8 @@ export const seoMetadata = {
     h1: 'Split & Extract PDF Pages Locally',
     toolMode: 'split',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/split-pdf.png',
+    ogImageAlt: 'Split PDF Pages Locally — Extract PDF Ranges Free',
     featureList: [
       'Custom Page Range Extraction',
       'Dedicated WebWorker Processing',
@@ -287,17 +455,35 @@ export const seoMetadata = {
       'Zero Server Uploads',
       'Offline Operation'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign PDF Page Splitter & Extractor',
-      'Extract pages or split large PDFs into custom ranges offline. Fast Web Worker processing in browser memory with no file uploads.',
-      'https://printsign.org/split-pdf',
-      [
-        'Custom Page Range Splitting',
-        'Extract Selected Pages to New PDF',
-        'In-Browser Memory Processing',
-        'Zero File Size Limits'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign PDF Page Splitter & Extractor',
+        'Extract pages or split large PDFs into custom ranges offline. Fast Web Worker processing in browser memory with no file uploads.',
+        'https://printsign.org/split-pdf',
+        [
+          'Custom Page Range Splitting',
+          'Extract Selected Pages to New PDF',
+          'In-Browser Memory Processing',
+          'Zero File Size Limits'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Split PDF Pages Locally in Your Browser',
+        'Extract custom page ranges or split PDF documents into separate files offline without uploading.',
+        'https://printsign.org/split-pdf',
+        [
+          { name: 'Upload PDF to Local Sandbox', text: 'Open your multi-page PDF document in the client-side splitter.' },
+          { name: 'Select Split Ranges', text: 'Enter specific page numbers or select pages visually from the thumbnail grid.' },
+          { name: 'Extract Selected Pages', text: 'Process the extraction in a local Web Worker without cloud data transmission.' },
+          { name: 'Download Split PDFs', text: 'Save your extracted PDF document immediately to local storage.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Split PDF', url: 'https://printsign.org/split-pdf' }
+      ])
+    })
   },
   '/merge-pdf': {
     title: 'Merge PDF Files Locally in Browser — No Uploads',
@@ -305,6 +491,8 @@ export const seoMetadata = {
     h1: 'Combine & Merge PDFs 100% in Browser Memory',
     toolMode: 'merge',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/merge-pdf.png',
+    ogImageAlt: 'Merge PDF Files Locally in Browser — No Uploads',
     featureList: [
       'Combine Multiple PDF Files',
       'In-Browser Memory Processing',
@@ -312,17 +500,35 @@ export const seoMetadata = {
       'No Cloud Uploads',
       'Zero File Size Limits'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign PDF Combiner & Merger',
-      'Combine multiple PDF files into one in your browser memory. Fast WebAssembly processing, zero file size limits, and 100% private.',
-      'https://printsign.org/merge-pdf',
-      [
-        'Merge Unlimited PDF Documents',
-        'Multi-Tab Document Isolation',
-        'Lossless Page Vector Preservation',
-        'Client-Side RAM Execution'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign PDF Combiner & Merger',
+        'Combine multiple PDF files into one in your browser memory. Fast WebAssembly processing, zero file size limits, and 100% private.',
+        'https://printsign.org/merge-pdf',
+        [
+          'Merge Unlimited PDF Documents',
+          'Multi-Tab Document Isolation',
+          'Lossless Page Vector Preservation',
+          'Client-Side RAM Execution'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Merge Multiple PDF Files Locally',
+        'Combine multiple PDF documents into a single organized file in browser memory with zero uploads.',
+        'https://printsign.org/merge-pdf',
+        [
+          { name: 'Add PDF Files', text: 'Drag and drop two or more PDF files into the local merger sandbox.' },
+          { name: 'Arrange Page Order', text: 'Drag document cards to organize the exact sequence of merged pages.' },
+          { name: 'Merge via WebAssembly', text: 'Combine document trees and cross-reference streams in local browser RAM.' },
+          { name: 'Download Merged Document', text: 'Export your combined PDF instantly with zero file size limits.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Merge PDF', url: 'https://printsign.org/merge-pdf' }
+      ])
+    })
   },
   '/flatten-rasterize-pdf': {
     title: 'Flatten & Rasterize PDF to 300 DPI Locally',
@@ -330,6 +536,8 @@ export const seoMetadata = {
     h1: 'High-DPI Client-Side PDF Rasterizer',
     toolMode: 'rasterize',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/flatten-rasterize-pdf.png',
+    ogImageAlt: 'Flatten & Rasterize PDF to 300 DPI Locally',
     featureList: [
       'High-DPI 300 DPI Rasterization',
       'Vector Layer & Font Flattening',
@@ -337,17 +545,35 @@ export const seoMetadata = {
       'Eliminate Hidden Layer Leakage',
       'Local Processing'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign High-DPI PDF Rasterizer & Layer Flattener',
-      'Convert PDF vector layers, form fields, and annotations into flat 300 DPI images locally. Prevent layer recovery and leakages.',
-      'https://printsign.org/flatten-rasterize-pdf',
-      [
-        '300 to 600 DPI High-Resolution Output',
-        'AcroForm Interactive Field Burning',
-        'Vector Coordinate Stripping',
-        'Clean Bitmap Page Recompilation'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign High-DPI PDF Rasterizer & Layer Flattener',
+        'Convert PDF vector layers, form fields, and annotations into flat 300 DPI images locally. Prevent layer recovery and leakages.',
+        'https://printsign.org/flatten-rasterize-pdf',
+        [
+          '300 to 600 DPI High-Resolution Output',
+          'AcroForm Interactive Field Burning',
+          'Vector Coordinate Stripping',
+          'Clean Bitmap Page Recompilation'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Flatten and Rasterize PDF Layers',
+        'Burn interactive forms, vector text, and annotations into flat 300 DPI bitmap images locally.',
+        'https://printsign.org/flatten-rasterize-pdf',
+        [
+          { name: 'Open PDF with Layers or Forms', text: 'Load your PDF containing annotations, signatures, or AcroForm fields.' },
+          { name: 'Select Target Resolution', text: 'Choose 300 DPI for high-clarity court and print readiness.' },
+          { name: 'Render and Flatten Canvas', text: 'Execute irreversible bitmap rasterization in a background worker.' },
+          { name: 'Export Flattened PDF', text: 'Download a clean, single-layer document devoid of hidden vectors.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Flatten PDF', url: 'https://printsign.org/flatten-rasterize-pdf' }
+      ])
+    })
   },
   '/reorder-rotate-pdf': {
     title: 'Reorder & Rotate PDF Pages Locally in Browser',
@@ -355,6 +581,8 @@ export const seoMetadata = {
     h1: 'Reorder, Rotate & Organize PDF Pages Locally',
     toolMode: 'organize',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/reorder-rotate-pdf.png',
+    ogImageAlt: 'Reorder & Rotate PDF Pages Locally in Browser',
     featureList: [
       'Drag-and-Drop Page Reordering',
       '90-Degree Page Rotation',
@@ -362,17 +590,35 @@ export const seoMetadata = {
       'Interactive Visual Thumbnails',
       'Client-Side Memory Sandbox'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign PDF Page Organizer & Rotator',
-      'Rearrange, rotate, crop, or delete PDF pages offline. Drag and drop organization in browser memory without cloud file uploads.',
-      'https://printsign.org/reorder-rotate-pdf',
-      [
-        'Drag-and-Drop Page Reordering',
-        '90-Degree Clockwise & Counter-Clockwise Rotation',
-        'Custom Page Cropping',
-        'Single & Bulk Page Deletion'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign PDF Page Organizer & Rotator',
+        'Rearrange, rotate, crop, or delete PDF pages offline. Drag and drop organization in browser memory without cloud file uploads.',
+        'https://printsign.org/reorder-rotate-pdf',
+        [
+          'Drag-and-Drop Page Reordering',
+          '90-Degree Clockwise & Counter-Clockwise Rotation',
+          'Custom Page Cropping',
+          'Single & Bulk Page Deletion'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Reorder and Rotate PDF Pages Offline',
+        'Rotate upside-down pages, reorder sequence, and delete unnecessary pages 100% in browser memory.',
+        'https://printsign.org/reorder-rotate-pdf',
+        [
+          { name: 'Load PDF into Visual Grid', text: 'Open your document to view interactive thumbnails of every page.' },
+          { name: 'Rotate or Reorder Pages', text: 'Rotate selected pages by 90 degrees or drag thumbnails to change page sequence.' },
+          { name: 'Delete Extraneous Pages', text: 'Click the trash icon on any unwanted pages to remove them from the tree.' },
+          { name: 'Export Organized PDF', text: 'Save your reorganized document immediately with rebuilt cross-reference tables.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Organize PDF', url: 'https://printsign.org/reorder-rotate-pdf' }
+      ])
+    })
   },
   '/compress-pdf': {
     title: 'Compress PDF Locally — Lossless PDF Optimizer',
@@ -380,6 +626,8 @@ export const seoMetadata = {
     h1: 'Lossless Local PDF Compressor',
     toolMode: 'compress',
     ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/compress-pdf.png',
+    ogImageAlt: 'Compress PDF Locally — Lossless PDF Optimizer',
     featureList: [
       'Lossless Flate Compression',
       'Unused Object & Cross-Reference Table Purging',
@@ -387,17 +635,35 @@ export const seoMetadata = {
       'Text Clarity Preservation',
       '100% In-Browser Execution'
     ],
-    schema: buildWebApplicationSchema(
-      'PrintSign Lossless Local PDF Compressor',
-      'Shrink PDF file size locally using lossless Flate compression and orphan object purging. Fast offline document optimization.',
-      'https://printsign.org/compress-pdf',
-      [
-        'FlateDecode Stream Compression',
-        'Orphan Object Purging',
-        'Cross-Reference Table Compaction',
-        'Zero Text Blurring'
-      ]
-    )
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign Lossless Local PDF Compressor',
+        'Shrink PDF file size locally using lossless Flate compression and orphan object purging. Fast offline document optimization.',
+        'https://printsign.org/compress-pdf',
+        [
+          'FlateDecode Stream Compression',
+          'Orphan Object Purging',
+          'Cross-Reference Table Compaction',
+          'Zero Text Blurring'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Compress PDF Files Without Quality Loss',
+        'Optimize PDF streams and purge orphan objects client-side to reduce file size without uploading.',
+        'https://printsign.org/compress-pdf',
+        [
+          { name: 'Open Large PDF Document', text: 'Drag your PDF into the local compressor interface.' },
+          { name: 'Select Compression Level', text: 'Choose balanced stream compression or maximum image downsampling.' },
+          { name: 'Optimize Stream Objects', text: 'Purge orphan indirect objects and compact the cross-reference table.' },
+          { name: 'Save Reduced PDF', text: 'Download your optimized PDF file with smaller byte size and intact text.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Compress PDF', url: 'https://printsign.org/compress-pdf' }
+      ])
+    })
   },
   '/editor': {
     title: 'PrintSign Web Editor — Client-Side PDF Tools',
@@ -551,10 +817,19 @@ export const seoMetadata = {
     ],
     schema: {
       '@context': 'https://schema.org',
-      '@type': 'WebPage',
-      name: 'PrintSign Security Architecture & Threat Model',
-      url: 'https://printsign.org/security-architecture',
-      description: 'In-depth technical breakdown of PrintSign zero-server architecture, Web Worker isolation, memory sandboxing, and canary checks.'
+      '@graph': [
+        {
+          '@type': 'WebPage',
+          name: 'PrintSign Security Architecture & Threat Model',
+          url: 'https://printsign.org/security-architecture',
+          description: 'In-depth technical breakdown of PrintSign zero-server architecture, Web Worker isolation, memory sandboxing, and canary checks.'
+        },
+        buildSoftwareSourceCodeSchema(),
+        buildBreadcrumbSchema([
+          { name: 'Home', url: 'https://printsign.org/' },
+          { name: 'Security & Compliance', url: 'https://printsign.org/security-architecture' }
+        ])
+      ]
     }
   },
   '/privacy-policy': {
@@ -709,6 +984,8 @@ export function useRouteSeo(routePath) {
     const data = seoData.value
     const path = currentPath.value.startsWith('/') ? currentPath.value : `/${currentPath.value}`
     const canonicalUrl = `https://printsign.org${path === '/' ? '/' : path}`
+    const ogImg = data.ogImage || (path.startsWith('/blog/') ? `https://printsign.org/images/blogs/${path.replace('/blog/', '')}.png` : 'https://printsign.org/images/og/home.png')
+    const ogAlt = data.ogImageAlt || data.title
 
     return {
       title: data.title,
@@ -718,11 +995,16 @@ export function useRouteSeo(routePath) {
         { property: 'og:description', content: data.description },
         { property: 'og:url', content: canonicalUrl },
         { property: 'og:type', content: data.ogType || 'website' },
-        { property: 'og:image', content: 'https://printsign.org/favicon.svg' },
+        { property: 'og:image', content: ogImg },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: ogAlt },
+        { property: 'og:image:type', content: 'image/png' },
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: data.title },
         { name: 'twitter:description', content: data.description },
-        { name: 'twitter:image', content: 'https://printsign.org/favicon.svg' }
+        { name: 'twitter:image', content: ogImg },
+        { name: 'twitter:image:alt', content: ogAlt }
       ],
       link: [
         { rel: 'canonical', href: canonicalUrl }

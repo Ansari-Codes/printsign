@@ -8,6 +8,11 @@
       v-if="!pdfStore.activeDocument"
       class="w-full flex flex-col items-center justify-start my-auto py-8"
     >
+      <!-- Breadcrumbs & Architectural Trust Bar -->
+      <div class="max-w-lg w-full">
+        <ToolTrustBar />
+      </div>
+
       <div
         class="max-w-lg w-full p-10 border border-slate-700/60 rounded-3xl flex flex-col items-center text-center bg-slate-900/70 backdrop-blur-xl shadow-2xl relative overflow-hidden"
         @dragover.prevent
@@ -120,6 +125,7 @@ import { usePdfStore } from '../../stores/pdfStore'
 import { useAutosave } from '../../composables/useAutosave'
 import PageCanvas from './PageCanvas.vue'
 import SeoContentSection from '../website/SeoContentSection.vue'
+import ToolTrustBar from '../common/ToolTrustBar.vue'
 
 const props = defineProps<{
   toolHeading?: string
