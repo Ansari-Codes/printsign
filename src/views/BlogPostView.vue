@@ -365,6 +365,7 @@ import SiteNavbar from '../components/website/SiteNavbar.vue'
 import SiteFooter from '../components/website/SiteFooter.vue'
 import ToolComparisonTable from '../components/website/ToolComparisonTable.vue'
 import { getBlogPostBySlug, getRelatedPosts, type BlogPost } from '../data/blogs'
+import { seoMetadata } from '../config/seoMetadata'
 import {
   Home,
   ChevronRight,
@@ -507,7 +508,8 @@ function copyShareUrl() {
 
 // Inject JSON-LD Schema
 function updateSeoAndSchema(currentPost: BlogPost) {
-  document.title = `${currentPost.metaTitle} | PrintSign`
+  const override = seoMetadata[`/blog/${currentPost.slug}`]
+  document.title = override?.title || `${currentPost.metaTitle} | PrintSign`
 
   // Update Meta Description
   let metaDesc = document.querySelector('meta[name="description"]')
@@ -516,7 +518,7 @@ function updateSeoAndSchema(currentPost: BlogPost) {
     metaDesc.setAttribute('name', 'description')
     document.head.appendChild(metaDesc)
   }
-  metaDesc.setAttribute('content', currentPost.metaDescription)
+  metaDesc.setAttribute('content', override?.description || currentPost.metaDescription)
 
   // Inject / Update JSON-LD Script
   const existingScript = document.getElementById('blog-post-schema')
@@ -802,5 +804,77 @@ onUnmounted(() => {
   line-height: 1.6;
   color: #a5f3fc;
   overflow-x: auto;
+}
+
+/* Above-the-Fold Interactive Tool CTA Box inside Article Body */
+.article-content .cta-box {
+  margin: 1.75rem 0;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(8, 51, 68, 0.55), rgba(30, 58, 138, 0.35), rgba(15, 23, 42, 0.92));
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  box-shadow: 0 12px 30px -8px rgba(6, 182, 212, 0.2);
+}
+
+.article-content .cta-box-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.article-content .cta-box-desc {
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #cbd5e1;
+}
+
+.article-content .cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.article-content a.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(to right, #06b6d4, #2563eb, #4f46e5);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-decoration: none !important;
+  box-shadow: 0 8px 20px -4px rgba(6, 182, 212, 0.35);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.article-content a.cta-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.article-content a.cta-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.1rem;
+  border-radius: 0.75rem;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(71, 85, 105, 0.8);
+  color: #e2e8f0 !important;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-decoration: none !important;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.article-content a.cta-btn-secondary:hover {
+  border-color: rgba(34, 211, 238, 0.6);
+  background: rgba(51, 65, 85, 0.9);
 }
 </style>

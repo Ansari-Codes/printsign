@@ -59,6 +59,9 @@ const filesToCheck = [
   'for-journalists/index.html',
   'contact-us/index.html',
   'blog/compress-pdf-file-size-without-losing-quality/index.html',
+  'blog/high-dpi-pdf-rasterization-guide-300-600-dpi/index.html',
+  'blog/best-free-adobe-acrobat-alternatives-2026/index.html',
+  'blog/financial-document-redaction-tax-banking-privacy/index.html',
   'blog/how-to-permanently-redact-pdf-court-compliant/index.html'
 ]
 

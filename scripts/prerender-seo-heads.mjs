@@ -279,8 +279,9 @@ async function main() {
   // 2. Dynamic blog routes
   for (const blog of blogs) {
     const blogPath = `/blog/${blog.slug}`
-    const blogTitle = `${blog.metaTitle.slice(0, 48)} | PrintSign`
-    const blogDescription = blog.metaDescription.slice(0, 155)
+    const existingSeo = seoMetadata[blogPath]
+    const blogTitle = existingSeo?.title || `${blog.metaTitle.slice(0, 48)} | PrintSign`
+    const blogDescription = existingSeo?.description || blog.metaDescription.slice(0, 155)
 
     const faqEntities = (blog.faq || []).map(item => ({
       '@type': 'Question',
@@ -333,6 +334,8 @@ async function main() {
       description: blogDescription,
       h1: blog.title,
       ogType: 'article',
+      ogImage: existingSeo?.ogImage,
+      ogImageAlt: existingSeo?.ogImageAlt,
       blogContent: blog.content,
       schema
     })

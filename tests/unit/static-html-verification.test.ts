@@ -107,4 +107,30 @@ describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
       expect(html).toContain('<math xmlns="http://www.w3.org/1998/Math/MathML"')
     }
   })
+
+  it('validates GSC top-impression blog titles, descriptions, headings, and tool CTAs in blogs.ts and seoMetadata.js', () => {
+    const blogsRaw = fs.readFileSync(path.resolve(process.cwd(), 'src/data/blogs.ts'), 'utf8')
+    const seoRaw = fs.readFileSync(path.resolve(process.cwd(), 'src/config/seoMetadata.js'), 'utf8')
+
+    // 1. Compress PDF
+    expect(seoRaw).toContain('Lossless PDF Compression (No Quality Loss, Preserves Signatures & SDK Guide) | PrintSign')
+    expect(blogsRaw).toContain('Lossless PDF Compression vs. Downsampling: Preserving Digital Signatures &amp; SDK/WebAssembly Workflows')
+    expect(blogsRaw).toContain('Launch Free Lossless PDF Compressor — No Upload Required →')
+
+    // 2. High-DPI PDF Rasterization
+    expect(seoRaw).toContain('150 vs 300 vs 600 DPI PDF Rasterization: Complete Comparison & Calculator (2026)')
+    expect(blogsRaw).toContain('600 DPI (Print &amp; Press)')
+    expect(blogsRaw).toContain('/flatten-rasterize-pdf')
+
+    // 3. Adobe Acrobat Alternatives
+    expect(seoRaw).toContain('7 Best Free Adobe Acrobat Alternatives in 2026 (No Watermarks, No Cloud Upload)')
+    expect(blogsRaw).toContain("Free PDF Combiner &amp; Editor Tools That Don't Add Watermarks")
+    expect(blogsRaw).toContain('/merge-pdf')
+    expect(blogsRaw).toContain('/ilovepdf-smallpdf-offline-alternative')
+
+    // 4. Financial Document Redaction
+    expect(seoRaw).toContain('How to Redact Bank Statements & Tax Returns Safely (Free, No Upload — 2026)')
+    expect(blogsRaw).toContain('/redact-pdf')
+    expect(blogsRaw).toContain('/verify-redaction')
+  })
 })
