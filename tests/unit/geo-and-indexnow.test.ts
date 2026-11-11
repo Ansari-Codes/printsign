@@ -78,7 +78,7 @@ describe('Generative Engine Optimization (GEO) & Machine-Readable Standards Suit
   it('validates IndexNow verification key file, sitemap URL extraction, and payload generation', async () => {
     const keyFilePath = path.resolve(publicDir, `${INDEXNOW_KEY}.txt`)
     expect(fs.existsSync(keyFilePath)).toBe(true)
-    expect(fs.readFileSync(keyFilePath, 'utf8').trim()).toBe(INDEXNOW_KEY)
+    expect(fs.readFileSync(keyFilePath, 'utf8')).toBe(INDEXNOW_KEY)
 
     const urls = getSitemapUrls()
     expect(urls.length).toBe(46)
@@ -94,6 +94,7 @@ describe('Generative Engine Optimization (GEO) & Machine-Readable Standards Suit
     const dryRunResult = await submitIndexNow({ dryRun: true })
     expect(dryRunResult.ok).toBe(true)
     expect(dryRunResult.count).toBe(46)
+    expect(dryRunResult.payload.keyLocation).toBe(`https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt`)
   })
 
   it('confirms robots.txt explicitly welcomes modern AI search engines and references llms.txt', () => {

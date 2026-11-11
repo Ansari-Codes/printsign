@@ -123,13 +123,14 @@ export function buildWebApplicationSchema(name, description, url, featureList) {
   }
 }
 
-export function buildCompositeSchema({ webApp, howTo, breadcrumbs, sourceCode }) {
+export function buildCompositeSchema({ webApp, howTo, breadcrumbs, sourceCode, extraNodes = [] }) {
   const base = webApp || {}
   const graph = [
     webApp,
     howTo,
     breadcrumbs,
-    sourceCode
+    sourceCode,
+    ...extraNodes
   ].filter(Boolean)
 
   return {
@@ -166,7 +167,24 @@ export const seoMetadata = {
           'Offline PWA Support'
         ]
       ),
-      sourceCode: buildSoftwareSourceCodeSchema()
+      sourceCode: buildSoftwareSourceCodeSchema(),
+      extraNodes: [
+        {
+          '@type': 'WebSite',
+          '@id': 'https://printsign.org/#website',
+          name: 'PrintSign',
+          alternateName: ['PrintSign.org', 'PrintSign PDF'],
+          url: 'https://printsign.org/'
+        },
+        {
+          '@type': 'Organization',
+          '@id': 'https://printsign.org/#organization',
+          name: 'PrintSign',
+          url: 'https://printsign.org/',
+          logo: 'https://printsign.org/favicon.svg',
+          sameAs: ['https://github.com/Ansari-Codes/printsign']
+        }
+      ]
     })
   },
   '/verify-redaction': {
@@ -906,6 +924,76 @@ export const seoMetadata = {
       'SSN & Routing Number Pixel Burn-In',
       'Offline Bank Statement Redaction',
       'GLBA & IRS Pub 4557 Privacy Alignment'
+    ]
+  },
+  '/blog/gdpr-article-32-pdf-data-protection': {
+    title: 'GDPR Article 32 (Security of Processing Text): PDF & Document Compliance Guide (2026)',
+    description: 'Read the official GDPR Article 32 Security of Processing text and learn how client-side PDF redaction, metadata scrubbing, and print security prevent data breaches.',
+    h1: 'GDPR Article 32 & Document Privacy: Mitigating Enterprise PDF Security Vulnerabilities',
+    toolMode: 'redact',
+    ogType: 'article',
+    ogImage: 'https://printsign.org/images/blogs/gdpr-article-32-pdf-data-protection.png',
+    ogImageAlt: 'GDPR Article 32 Security of Processing PDF & Print Security Guide',
+    featureList: [
+      'GDPR Article 32(1)(a)-(d) Compliance Mapping',
+      'Client-Side PDF Redaction & Metadata Scrubbing',
+      'Zero-Processor Browser Execution'
+    ]
+  },
+  '/blog/why-black-boxes-fail-pdf-redaction-disasters': {
+    title: 'Why a Black Redacted Box Fails in PDFs (Client-Side vs. Server-Side PDF Redaction)',
+    description: 'Drawing a black redaction box over PDF text leaves hidden data selectable. Learn why black boxes fail, server-side vs client-side PDF redaction, and how to test your PDF.',
+    h1: 'Why Black Rectangle Redactions Fail: Forensic Analysis of Famous PDF Data Leaks',
+    toolMode: 'verifier',
+    ogType: 'article',
+    ogImage: 'https://printsign.org/images/blogs/why-black-boxes-fail-pdf-redaction-disasters.png',
+    ogImageAlt: 'Why a Black Redacted Box Fails in PDFs — Forensic Redaction Guide',
+    featureList: [
+      'Selectable Text Layer Detection',
+      'Client-Side vs Server-Side Redaction Architecture',
+      'Permanent 300 DPI Pixel Burn-In'
+    ]
+  },
+  '/blog/legal-discovery-ediscovery-pdf-sanitization': {
+    title: 'eDiscovery PDF Sanitization & Metadata Removal Checklist (Free Local Tool — 2026)',
+    description: 'Sanitize eDiscovery productions locally in browser RAM without cloud uploads. Scrub XMP metadata, purge orphan objects, and comply with FRCP Rule 26 and Rule 37 for free.',
+    h1: 'E-Discovery PDF Sanitization: FRCP Rule 26 & 37 Compliance for Litigation Document Production',
+    toolMode: 'scrub',
+    ogType: 'article',
+    ogImage: 'https://printsign.org/images/blogs/legal-discovery-ediscovery-pdf-sanitization.png',
+    ogImageAlt: 'eDiscovery PDF Sanitization & Metadata Removal Checklist',
+    featureList: [
+      'FRCP Rule 26 & 37 Document Sanitization',
+      'XMP Metadata & Orphan Object Removal',
+      'Zero-Upload Attorney Confidentiality'
+    ]
+  },
+  '/blog/hipaa-compliant-pdf-editor-medical-records': {
+    title: 'HIPAA-Compliant PDF Redaction & Medical Record Editor (Free, Zero Cloud Upload)',
+    description: 'Redact patient records and Protected Health Information (PHI) 100% locally in browser RAM. Zero cloud uploads, Safe Harbor alignment, and permanent 300 DPI pixel burn-in.',
+    h1: 'HIPAA-Friendly PDF Editing: Safely Redacting and Merging Patient Records',
+    toolMode: 'redact',
+    ogType: 'article',
+    ogImage: 'https://printsign.org/images/blogs/hipaa-compliant-pdf-editor-medical-records.png',
+    ogImageAlt: 'HIPAA-Compliant PDF Redaction & Medical Record Editor',
+    featureList: [
+      '18 HIPAA Safe Harbor Identifiers Redaction',
+      'Zero BAA Required Browser Processing',
+      'Patient Record Merging & Sanitization'
+    ]
+  },
+  '/blog/printsign-vs-smallpdf-ilovepdf-cloud-security': {
+    title: 'iLovePDF & Smallpdf Offline Alternative: Zero-Upload PDF Security Comparison (2026)',
+    description: 'Compare PrintSign vs iLovePDF & Smallpdf in 2026. Keep contracts and sensitive PDFs 100% in browser RAM with F12-verifiable zero cloud uploads and no daily limits.',
+    h1: 'PrintSign vs Smallpdf & iLovePDF: Why Cloud PDF Editors Risk Your Confidential Data',
+    toolMode: null,
+    ogType: 'article',
+    ogImage: 'https://printsign.org/images/blogs/printsign-vs-smallpdf-ilovepdf-cloud-security.png',
+    ogImageAlt: 'iLovePDF & Smallpdf Offline Alternative Security Comparison 2026',
+    featureList: [
+      'F12 Network Tab Zero-Upload Verification',
+      'No File Size Caps or Daily Throttling',
+      'Client-Side WebAssembly Execution'
     ]
   },
   '/contact-us': {

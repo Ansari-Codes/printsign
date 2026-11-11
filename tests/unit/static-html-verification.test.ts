@@ -132,5 +132,28 @@ describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
     expect(seoRaw).toContain('How to Redact Bank Statements & Tax Returns Safely (Free, No Upload — 2026)')
     expect(blogsRaw).toContain('/redact-pdf')
     expect(blogsRaw).toContain('/verify-redaction')
+
+    // 5. GDPR Article 32
+    expect(seoRaw).toContain('GDPR Article 32 (Security of Processing Text): PDF & Document Compliance Guide (2026)')
+    expect(blogsRaw).toContain('GDPR Article 32 Official Text:')
+
+    // 6. Why Black Boxes Fail
+    expect(seoRaw).toContain('Why a Black Redacted Box Fails in PDFs (Client-Side vs. Server-Side PDF Redaction)')
+    expect(blogsRaw).toContain('Client-Side vs. Server-Side PDF Redaction: Why Redaction Boxes Leak Data')
+    expect(blogsRaw).toContain('Test Your PDF for Hidden Text Under Black Boxes →')
+
+    // 7. Page-1 CTR Upgrades
+    expect(seoRaw).toContain('eDiscovery PDF Sanitization & Metadata Removal Checklist (Free Local Tool — 2026)')
+    expect(seoRaw).toContain('HIPAA-Compliant PDF Redaction & Medical Record Editor (Free, Zero Cloud Upload)')
+    expect(seoRaw).toContain('iLovePDF & Smallpdf Offline Alternative: Zero-Upload PDF Security Comparison (2026)')
+  })
+
+  it('validates homepage / JSON-LD @graph includes WebSite and Organization schemas for brand query ranking', () => {
+    const seoRaw = fs.readFileSync(path.resolve(process.cwd(), 'src/config/seoMetadata.js'), 'utf8')
+    expect(seoRaw).toContain("'@type': 'WebSite'")
+    expect(seoRaw).toContain("alternateName: ['PrintSign.org', 'PrintSign PDF']")
+    expect(seoRaw).toContain("'@type': 'Organization'")
+    expect(seoRaw).toContain("logo: 'https://printsign.org/favicon.svg'")
+    expect(seoRaw).toContain("sameAs: ['https://github.com/Ansari-Codes/printsign']")
   })
 })

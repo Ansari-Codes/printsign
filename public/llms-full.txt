@@ -767,7 +767,7 @@ A: Yes. PrintSign permanently destroys redacted text layers at 300 DPI and purge
 **Author:** PrintSign Security & Compliance Engineering Team
 **Executive Summary:** Drawing black rectangles in Preview or basic PDF tools is not redaction. Forensic analysts explain why character vectors remain in the file and how journalists easily uncover them.
 
-**Core Keywords:** pdf black box redaction fail, why blacking out text in pdf fails, paul manafort pdf leak, forensic pdf inspection, true redaction vs annotation, how to redact without leaking, pdf vector text extraction, optical redaction vs pixel burn
+**Core Keywords:** redacted black box, black redacted box, redaction box, server side pdf redaction, pdf black box redaction fail, why blacking out text in pdf fails, paul manafort pdf leak, forensic pdf inspection, true redaction vs annotation, how to redact without leaking, pdf vector text extraction, optical redaction vs pixel burn
 
 **Key Forensic Q&A:**
 - **Q:** Can someone read text hidden under a black box in a PDF?
@@ -861,7 +861,7 @@ A: Yes. PrintSign permanently destroys redacted text layers at 300 DPI and purge
 **Author:** PrintSign Security & Compliance Engineering Team
 **Executive Summary:** Under GDPR Article 32, organizations must ensure security of processing. Discover how client-side PDF editing eliminates third-party data transfers and processor liabilities.
 
-**Core Keywords:** gdpr compliant pdf redaction, article 32 data minimization, enterprise document privacy, corporate pdf leak prevention, zero data retention pdf, gdpr pdf security, data protection officer pdf guidelines, schrems ii cross border compliance
+**Core Keywords:** article 32 gdpr, gdpr article 32, gdpr article 32 security of processing text, document gdpr, gdpr print security, gdpr compliant pdf redaction, article 32 data minimization, enterprise document privacy, corporate pdf leak prevention, zero data retention pdf, gdpr pdf security, data protection officer pdf guidelines, schrems ii cross border compliance
 
 **Key Forensic Q&A:**
 - **Q:** How does using online PDF converters create GDPR liabilities?

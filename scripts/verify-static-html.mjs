@@ -62,6 +62,11 @@ const filesToCheck = [
   'blog/high-dpi-pdf-rasterization-guide-300-600-dpi/index.html',
   'blog/best-free-adobe-acrobat-alternatives-2026/index.html',
   'blog/financial-document-redaction-tax-banking-privacy/index.html',
+  'blog/gdpr-article-32-pdf-data-protection/index.html',
+  'blog/why-black-boxes-fail-pdf-redaction-disasters/index.html',
+  'blog/legal-discovery-ediscovery-pdf-sanitization/index.html',
+  'blog/hipaa-compliant-pdf-editor-medical-records/index.html',
+  'blog/printsign-vs-smallpdf-ilovepdf-cloud-security/index.html',
   'blog/how-to-permanently-redact-pdf-court-compliant/index.html'
 ]
 

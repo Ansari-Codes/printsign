@@ -24,6 +24,18 @@ export function getSitemapUrls() {
   return matches.map(m => m[1])
 }
 
+async function postIndexNow(endpoint, payload) {
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify(payload)
+  })
+  const text = await res.text()
+  return { endpoint, ok: res.status === 200 || res.status === 202, status: res.status, body: text }
+}
+
 export async function submitIndexNow(options = { dryRun: false }) {
   const urls = getSitemapUrls()
   console.log(`\n--- IndexNow Instant Indexing Submission ---`)
@@ -36,6 +48,15 @@ export async function submitIndexNow(options = { dryRun: false }) {
     throw new Error('No URLs discovered to submit to IndexNow.')
   }
 
+  // Ensure local key file matches exact 32-char key without trailing whitespace
+  const keyFile = path.resolve(rootDir, 'public', `${INDEXNOW_KEY}.txt`)
+  if (fs.existsSync(keyFile)) {
+    const rawKey = fs.readFileSync(keyFile, 'utf8')
+    if (rawKey !== INDEXNOW_KEY) {
+      fs.writeFileSync(keyFile, INDEXNOW_KEY, 'utf8')
+    }
+  }
+
   const payload = {
     host: INDEXNOW_HOST,
     key: INDEXNOW_KEY,
@@ -45,33 +66,35 @@ export async function submitIndexNow(options = { dryRun: false }) {
 
   if (options.dryRun) {
     console.log(`[IndexNow] (dry-run) Prepared submission payload for ${urls.length} URLs.`)
-    return { ok: true, status: 200, count: urls.length, dryRun: true }
+    return { ok: true, status: 200, count: urls.length, payload, dryRun: true }
   }
 
-  console.log(`[IndexNow] Submitting ${urls.length} URLs to https://api.indexnow.org/indexnow ...`)
+  const endpoints = [
+    'https://api.indexnow.org/indexnow',
+    'https://yandex.com/indexnow'
+  ]
 
-  try {
-    const res = await fetch('https://api.indexnow.org/indexnow', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(payload)
-    })
+  let anyAccepted = false
+  const results = []
 
-    // IndexNow responds with 200 (OK) or 202 (Accepted) upon success
-    if (res.status === 200 || res.status === 202) {
-      console.log(`✓ [IndexNow] Success! HTTP ${res.status}: ${urls.length} URLs queued for instant indexing across Bing, DuckDuckGo, Yandex, Seznam, and Naver.\n`)
-      return { ok: true, status: res.status, count: urls.length }
-    } else {
-      const text = await res.text()
-      console.warn(`⚠️ [IndexNow] Warning: HTTP ${res.status}: ${text}`)
-      return { ok: false, status: res.status, error: text }
+  for (const endpoint of endpoints) {
+    console.log(`[IndexNow] Submitting ${urls.length} URLs to ${endpoint} ...`)
+    try {
+      const result = await postIndexNow(endpoint, payload)
+      results.push(result)
+      if (result.ok) {
+        anyAccepted = true
+        console.log(`✓ [IndexNow] ${endpoint} -> HTTP ${result.status}: ${urls.length} URLs queued.`)
+      } else {
+        console.warn(`⚠️ [IndexNow] ${endpoint} -> HTTP ${result.status}: ${result.body}`)
+      }
+    } catch (err) {
+      console.error(`❌ [IndexNow] Network Error (${endpoint}):`, err.message)
+      results.push({ endpoint, ok: false, error: err.message })
     }
-  } catch (err) {
-    console.error(`❌ [IndexNow] Network Error:`, err.message)
-    return { ok: false, error: err.message }
   }
+
+  return { ok: anyAccepted, count: urls.length, results }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
