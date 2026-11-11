@@ -35,12 +35,20 @@ describe('Generative Engine Optimization (GEO) & Machine-Readable Standards Suit
     expect(llmsText).toContain('https://printsign.org/flatten-rasterize-pdf')
     expect(llmsText).toContain('https://printsign.org/reorder-rotate-pdf')
     expect(llmsText).toContain('https://printsign.org/compress-pdf')
+    expect(llmsText).toContain('https://printsign.org/sign-pdf')
+    expect(llmsText).toContain('https://printsign.org/unlock-decrypt-pdf')
+    expect(llmsText).toContain('https://printsign.org/watermark-pdf')
+    expect(llmsText).toContain('https://printsign.org/extract-pdf-pages')
     expect(llmsText).toContain('https://printsign.org/f12-network-audit')
+    expect(llmsText).toContain('https://printsign.org/sitemap')
 
-    // 3. Check all 3 compliance / comparison pages are listed
+    // 3. Check all 5 compliance / comparison pages are listed
     expect(llmsText).toContain('https://printsign.org/ilovepdf-smallpdf-offline-alternative')
     expect(llmsText).toContain('https://printsign.org/hipaa-compliant-pdf-redaction')
     expect(llmsText).toContain('https://printsign.org/nist-800-88-pdf-sanitization')
+    expect(llmsText).toContain('https://printsign.org/gdpr-article-32-pdf-compliance')
+    expect(llmsText).toContain('https://printsign.org/foia-document-redaction-tool')
+    expect(llmsText).toContain('https://printsign.org/for-finance-accounting')
 
     // 4. Check 18 blog whitepapers are present in index
     expect(llmsText).toContain('https://printsign.org/blog/how-to-permanently-redact-pdf-court-compliant')
@@ -81,19 +89,27 @@ describe('Generative Engine Optimization (GEO) & Machine-Readable Standards Suit
     expect(fs.readFileSync(keyFilePath, 'utf8')).toBe(INDEXNOW_KEY)
 
     const urls = getSitemapUrls()
-    expect(urls.length).toBe(46)
+    expect(urls.length).toBe(54)
     expect(urls).toContain('https://printsign.org/')
     expect(urls).toContain('https://printsign.org/verify-redaction')
     expect(urls).toContain('https://printsign.org/f12-network-audit')
     expect(urls).toContain('https://printsign.org/hipaa-compliant-pdf-redaction')
+    expect(urls).toContain('https://printsign.org/gdpr-article-32-pdf-compliance')
+    expect(urls).toContain('https://printsign.org/foia-document-redaction-tool')
     expect(urls).toContain('https://printsign.org/for-lawyers')
     expect(urls).toContain('https://printsign.org/for-healthcare')
     expect(urls).toContain('https://printsign.org/for-journalists')
+    expect(urls).toContain('https://printsign.org/for-finance-accounting')
+    expect(urls).toContain('https://printsign.org/sign-pdf')
+    expect(urls).toContain('https://printsign.org/unlock-decrypt-pdf')
+    expect(urls).toContain('https://printsign.org/watermark-pdf')
+    expect(urls).toContain('https://printsign.org/extract-pdf-pages')
+    expect(urls).toContain('https://printsign.org/sitemap')
 
     // Test submission payload construction in dry-run mode
     const dryRunResult = await submitIndexNow({ dryRun: true })
     expect(dryRunResult.ok).toBe(true)
-    expect(dryRunResult.count).toBe(46)
+    expect(dryRunResult.count).toBe(54)
     expect(dryRunResult.payload.keyLocation).toBe(`https://${INDEXNOW_HOST}/${INDEXNOW_KEY}.txt`)
   })
 

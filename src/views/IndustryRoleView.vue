@@ -300,6 +300,7 @@ import {
   Scale,
   HeartPulse,
   Newspaper,
+  Landmark,
   FileCheck,
   Flame,
   EyeOff,
@@ -397,6 +398,44 @@ const roleData = computed(() => {
       step2Desc: 'Strip operating system usernames, printer metadata, and XMP schemas to shield whistleblower workstation identities.',
       step3Desc: 'Audit the sanitized document in memory to verify 0 selectable text persists and calculate the SHA-256 cryptographic digest before publishing.',
       matrixTitle: 'Source Protection & Investigative OpSec Matrix'
+    }
+  }
+
+  if (p === '/for-finance-accounting') {
+    return {
+      icon: Landmark,
+      badge: 'GLBA SAFEGUARDS RULE • PCI-DSS • SOC 2 & IRS 1040 PRIVACY',
+      h1: 'Local Bank Statement, Tax & Financial PDF Redactor for CPAs',
+      description: 'Redact TINs, SSNs, routing numbers, client ledger balances, and M&A term sheets 100% in browser RAM. Zero cloud uploads protect fiduciary confidentiality under GLBA Safeguards and IRS Publication 4557.',
+      threatSectionTitle: 'The 3 Critical Leaks Threatening Financial & CPA Firms',
+      threatSectionSubtitle: 'Uploading client tax returns or unflattened bank statements creates severe GLBA and SEC audit exposure.',
+      threats: [
+        {
+          emoji: '🏦',
+          tag: 'GLBA & IRS PUB 4557',
+          title: 'Cloud Tax Portal & Converter Exposures',
+          desc: 'Uploading 1040 tax transcripts, W-2s, or audited P&L statements to free online PDF editors transmits taxpayer PII across multi-tenant third-party servers.',
+          defense: '100% In-memory execution: Client tax files never leave the CPA workstation.'
+        },
+        {
+          emoji: '💳',
+          tag: 'ACCOUNT & ROUTING LEAKS',
+          title: 'Selectable Account Numbers Under Black Boxes',
+          desc: 'Cosmetic black rectangles placed over bank routing numbers or card PANs remain searchable in PDF text streams for borrowers and opposing parties.',
+          defense: '300 DPI pixel burn-in permanently destroys selectable numeric glyphs.'
+        },
+        {
+          emoji: '📊',
+          tag: 'XMP & EXCEL ORIGINS',
+          title: 'Hidden M&A Deal & Author Telemetry',
+          desc: 'Financial PDFs exported from Excel or Bloomberg often embed analyst usernames, firm workstation hostnames, and draft revision dates inside XMP XML.',
+          defense: 'Deep catalog scrubbing wipes /Info dictionaries and hidden XMP streams.'
+        }
+      ],
+      step1Desc: 'Redact TIN/EINs, SSNs, IBANs, and proprietary valuation multiples from bank statements and schedules using 300 DPI destructive pixel burn-in.',
+      step2Desc: 'Strip embedded CPA firm usernames, PDF producer software signatures, and internal file paths from the document catalog.',
+      step3Desc: 'Verify 0 selectable underlying digits survive redaction and generate an offline SHA-256 Sanitization Certificate for your audit workpapers.',
+      matrixTitle: 'Financial Confidentiality & Audit Readiness Matrix'
     }
   }
 

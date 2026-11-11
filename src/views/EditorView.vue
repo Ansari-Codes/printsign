@@ -145,15 +145,18 @@ function syncToolMode(toolMode?: string | null) {
     if (pdfStore.activeDocument) {
       isMergeModalOpen.value = true
     }
-  } else if (mode === 'split') {
+  } else if (mode === 'split' || mode === 'extract') {
     pdfStore.activeWorkspaceTab = 'view'
     if (pdfStore.activeDocument) {
       isSplitModalOpen.value = true
     }
-  } else if (mode === 'compress') {
+  } else if (mode === 'compress' || mode === 'decrypt') {
+    pdfStore.activeWorkspaceTab = 'view'
     if (pdfStore.activeDocument) {
       isExportModalOpen.value = true
     }
+  } else if (mode === 'sign' || mode === 'watermark') {
+    pdfStore.activeWorkspaceTab = 'edit'
   }
 }
 

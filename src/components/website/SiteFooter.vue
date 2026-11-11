@@ -75,6 +75,36 @@
                 Lossless Compressor
               </router-link>
             </li>
+            <li>
+              <router-link to="/sign-pdf" class="hover:text-cyan-400 transition">
+                Sign PDF Offline
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/unlock-decrypt-pdf" class="hover:text-cyan-400 transition">
+                Unlock &amp; Decrypt PDF
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/watermark-pdf" class="hover:text-cyan-400 transition">
+                Watermark &amp; Bates PDF
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/extract-pdf-pages" class="hover:text-cyan-400 transition">
+                Extract PDF Pages
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/editor" class="hover:text-cyan-400 transition">
+                Full PDF Workspace
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/general-editor" class="hover:text-cyan-400 transition">
+                General PDF Editor
+              </router-link>
+            </li>
           </ul>
         </div>
 
@@ -101,6 +131,16 @@
             <li>
               <router-link to="/nist-800-88-pdf-sanitization" class="hover:text-cyan-400 transition">
                 NIST SP 800-88 Sanitization
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/gdpr-article-32-pdf-compliance" class="hover:text-cyan-400 transition">
+                GDPR Article 32 Compliance
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/foia-document-redaction-tool" class="hover:text-cyan-400 transition">
+                FOIA Redaction Tool
               </router-link>
             </li>
             <li>
@@ -132,6 +172,12 @@
               <router-link to="/for-journalists" class="hover:text-cyan-400 transition flex items-center gap-1.5">
                 <span>📰</span>
                 <span>For Journalists (FOIA)</span>
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/for-finance-accounting" class="hover:text-cyan-400 transition flex items-center gap-1.5">
+                <span>🏦</span>
+                <span>For Finance &amp; CPAs</span>
               </router-link>
             </li>
           </ul>
@@ -204,6 +250,11 @@
               </router-link>
             </li>
             <li>
+              <router-link to="/sitemap" class="hover:text-cyan-400 transition text-cyan-300 font-semibold">
+                Full HTML Site Directory (54)
+              </router-link>
+            </li>
+            <li>
               <a
                 href="https://github.com/Ansari-Codes/printsign"
                 target="_blank"
@@ -239,6 +290,10 @@
           <span>•</span>
           <router-link to="/contact-us" class="hover:text-slate-300 transition">
             Contact
+          </router-link>
+          <span>•</span>
+          <router-link to="/sitemap" class="hover:text-slate-300 transition">
+            Site Directory
           </router-link>
           <span>•</span>
           <a

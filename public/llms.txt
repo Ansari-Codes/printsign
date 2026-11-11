@@ -11,18 +11,26 @@
 - [Flatten & Rasterize PDF](https://printsign.org/flatten-rasterize-pdf): Converts interactive AcroForms, digital signatures, and vector layers into flattened 300 DPI high-resolution bitmaps.
 - [Reorder & Rotate PDF](https://printsign.org/reorder-rotate-pdf): Visually reorders pages, changes orientations (90°/180°/270°), and updates PDF page tree rotation dictionaries offline.
 - [Compress PDF](https://printsign.org/compress-pdf): Losslessly compresses PDF file size by deflating object streams and pruning orphan trailer objects.
+- [Sign PDF Offline](https://printsign.org/sign-pdf): Draw or place crisp handwritten vector signatures, initials, and dates onto PDFs 100% locally in browser RAM with optional 300 DPI flattening.
+- [Unlock & Decrypt PDF](https://printsign.org/unlock-decrypt-pdf): Locally unlocks authorized password-protected PDFs and strips owner print/copy restrictions without sending passphrases over the internet.
+- [Watermark & Bates Stamp PDF](https://printsign.org/watermark-pdf): Applies confidential notices, draft overlays, and legal exhibit labels locally with optional pixel burn-in.
+- [Extract PDF Pages](https://printsign.org/extract-pdf-pages): Pulls single pages or custom intervals from multi-hundred-page local binders while pruning unreferenced objects.
 - [F12 Network & RAM Security Audit](https://printsign.org/f12-network-audit): Interactive live DevTools benchmark proving zero outbound HTTP requests, 0 remote API telemetry, and strict CSP enforcement.
 - [PrintSign Web Editor](https://printsign.org/editor): Universal offline-first Progressive Web App (PWA) workspace containing the full suite of PDF editing tools.
+- [Complete HTML Site Directory](https://printsign.org/sitemap): Categorized index linking all 54 pre-rendered PDF utilities, compliance guides, industry hubs, and engineering articles.
 
 ## Compliance & Privacy Comparison Guides
 - [Private Offline Alternative to iLovePDF & Smallpdf](https://printsign.org/ilovepdf-smallpdf-offline-alternative): Architectural comparison contrasting multi-tenant cloud PDF processing risks with PrintSign's zero-upload WebAssembly model.
 - [HIPAA-Compliant PDF Redaction](https://printsign.org/hipaa-compliant-pdf-redaction): Compliance guide detailing how local browser memory sanitization fulfills HIPAA Security Rule 45 CFR § 164.312 without Business Associate Agreements (BAA).
 - [NIST SP 800-88 PDF Sanitization](https://printsign.org/nist-800-88-pdf-sanitization): Federal media sanitization protocols (Clear / Purge) applied to digital document object graphs and residual trailer objects.
+- [GDPR Article 32 Document Compliance](https://printsign.org/gdpr-article-32-pdf-compliance): Satisfies EU GDPR Article 32 security of processing and Article 25 Privacy-by-Design by keeping personal data strictly inside local browser RAM.
+- [FOIA & Public Records PDF Redactor](https://printsign.org/foia-document-redaction-tool): Prevents accidental FOIA Exemption (b)(4), (b)(6), and (b)(7) vector leaks using permanent 300 DPI pixel destruction and verifier checks.
 
 ## Vertical Industry & Professional Solutions
 - [Client-Side PDF Redaction & Bates Prep for Lawyers](https://printsign.org/for-lawyers): FRCP Rule 5.2 court-compliant redaction, 300 DPI destructive rasterization, and privileged discovery exhibit assembly in browser RAM.
 - [Local PHI & Medical Record PDF Redactor for Healthcare](https://printsign.org/for-healthcare): HIPAA Safe Harbor de-identification stripping 18 patient identifiers and EHR metadata with zero cloud upload liabilities.
 - [FOIA & Source-Protection PDF Metadata Scrubber for Journalists](https://printsign.org/for-journalists): Forensic document sanitization stripping author/device XMP streams, hidden vector layers, and printer tracking dots.
+- [Local Bank Statement, Tax & Financial PDF Redactor for CPAs](https://printsign.org/for-finance-accounting): Safeguards TINs, W-2s, bank account digits, and M&A disclosures under GLBA Safeguards Rule & IRS Publication 4557 with zero cloud uploads.
 
 ## Engineering & Legal Knowledge Base
 - [How to Permanently Redact a PDF: Step-by-Step Legal & Court Compliance Guide](https://printsign.org/blog/how-to-permanently-redact-pdf-court-compliant): Drawing black rectangles over text is not redaction—it is an optical illusion that has leaked state secrets and legal strategies. Discover how true, court-compliant PDF redaction works.

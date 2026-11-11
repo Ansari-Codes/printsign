@@ -156,4 +156,47 @@ describe('Strict Static HTML & Privacy Cleanliness Verification', () => {
     expect(seoRaw).toContain("logo: 'https://printsign.org/favicon.svg'")
     expect(seoRaw).toContain("sameAs: ['https://github.com/Ansari-Codes/printsign']")
   })
+
+  it('verifies dist/sitemap.xml lists >=54 W3C ISO 8601 URLs and every route has a rich >450-word pre-rendered dist HTML with matching canonical', () => {
+    const sitemapPath = path.resolve(distDir, 'sitemap.xml')
+    expect(fs.existsSync(sitemapPath)).toBe(true)
+    const sitemapXml = fs.readFileSync(sitemapPath, 'utf8')
+
+    const locs = [...sitemapXml.matchAll(/<loc>(https:\/\/printsign\.org[^<]*)<\/loc>/g)].map(m => m[1])
+    expect(locs.length).toBeGreaterThanOrEqual(54)
+
+    // Verify W3C ISO 8601 lastmod format across all entries
+    const lastmods = [...sitemapXml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(m => m[1])
+    expect(lastmods.length).toBe(locs.length)
+    for (const lm of lastmods) {
+      expect(lm).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+00:00$/)
+    }
+
+    for (const url of locs) {
+      const routePath = url.replace('https://printsign.org', '') || '/'
+      const relHtmlPath = routePath === '/' ? 'index.html' : `${routePath.replace(/^\//, '')}/index.html`
+      const fullHtmlPath = path.resolve(distDir, relHtmlPath)
+      expect(fs.existsSync(fullHtmlPath), `Missing pre-rendered HTML for ${url}`).toBe(true)
+
+      const html = fs.readFileSync(fullHtmlPath, 'utf8')
+      expect(html).not.toMatch(prohibitedTrackers)
+      expect(html).not.toMatch(/ADVERTISEMENT|AdSense/i)
+
+      const canonicalMatch = html.match(/<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']\s*\/?>/i)
+      expect(canonicalMatch).toBeTruthy()
+      expect(canonicalMatch![1]).toBe(url)
+
+      const appStart = html.indexOf('<div id="app">')
+      const appEnd = html.indexOf('<script', appStart)
+      expect(appStart).toBeGreaterThan(-1)
+      const bodySlice = appEnd > -1 ? html.slice(appStart, appEnd) : html.slice(appStart)
+      const strippedText = bodySlice
+        .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, ' ')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+      const wordCount = strippedText.split(/\s+/).filter(Boolean).length
+      expect(wordCount, `${relHtmlPath} semantic word count (${wordCount}) must exceed 450`).toBeGreaterThan(450)
+    }
+  })
 })

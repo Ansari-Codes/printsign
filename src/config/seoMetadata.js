@@ -368,6 +368,108 @@ export const seoMetadata = {
       ])
     })
   },
+  '/gdpr-article-32-pdf-compliance': {
+    title: 'GDPR Article 32 PDF Sanitization & Document Security Compliance (2026)',
+    description: 'Eliminate third-party cross-border transfer risk under EU GDPR Article 32 & Schrems II. Redact personal data and strip XMP metadata 100% locally in browser RAM.',
+    h1: 'GDPR Article 32 PDF Sanitization & Security of Processing Compliance',
+    toolMode: 'compliance',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/gdpr-article-32-pdf-compliance.png',
+    ogImageAlt: 'GDPR Article 32 PDF Sanitization & Document Security Compliance',
+    featureList: [
+      'GDPR Article 32 Security of Processing Aligned',
+      'Privacy by Design (GDPR Article 25) Client-Side Execution',
+      'Zero Cross-Border Server Data Transfers',
+      '300 DPI DSAR & PII Destruction',
+      'XMP & Author Metadata Scrubbing'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign GDPR Article 32 PDF Sanitizer',
+        'Eliminate third-party cross-border transfer risk under EU GDPR Article 32 & Schrems II by redacting personal data locally in browser RAM.',
+        'https://printsign.org/gdpr-article-32-pdf-compliance',
+        [
+          'Zero Cloud Subprocessor Transfers',
+          'Permanent 300 DPI PII Redaction',
+          'XMP & Author Metadata Stripping',
+          'Offline DSAR Sanitization'
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Compliance', url: 'https://printsign.org/security-architecture' },
+        { name: 'GDPR Article 32 Compliance', url: 'https://printsign.org/gdpr-article-32-pdf-compliance' }
+      ])
+    })
+  },
+  '/foia-document-redaction-tool': {
+    title: 'FOIA & Public Records PDF Redaction Tool (Zero-Upload Sanitization)',
+    description: 'Prevent FOIA black-box leaks in government, municipal, and police record disclosures. Destroy underlying vector text streams at 300 DPI and verify zero text survives offline.',
+    h1: 'FOIA & Public Records PDF Redaction Tool — Zero-Upload Sanitization',
+    toolMode: 'compliance',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/foia-document-redaction-tool.png',
+    ogImageAlt: 'FOIA & Public Records PDF Redaction Tool',
+    featureList: [
+      'FOIA Exemption (b)(4), (b)(6) & (b)(7) Safe Redaction',
+      'Underlying Unicode/ASCII Layer Destruction',
+      '300 DPI Optical & Vector Burn-In',
+      'Workstation & Agency Metadata Scrubbing',
+      'Pre-Release Redaction Verifier Audit'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign FOIA Public Records PDF Redactor',
+        'Prevent FOIA black-box leaks in public record releases by permanently destroying underlying vector text layers in local browser memory.',
+        'https://printsign.org/foia-document-redaction-tool',
+        [
+          'Permanent Vector Text Destruction',
+          'Government Agency Metadata Scrubbing',
+          '300 DPI Rasterization',
+          'Cryptographic Verifier Audit'
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Compliance', url: 'https://printsign.org/security-architecture' },
+        { name: 'FOIA Redaction Tool', url: 'https://printsign.org/foia-document-redaction-tool' }
+      ])
+    })
+  },
+  '/for-finance-accounting': {
+    title: 'Local Bank Statement, Tax & Financial PDF Redactor for CPAs | PrintSign',
+    description: 'Redact bank routing numbers, TINs, W-2s, and M&A schedules 100% in browser RAM. Safeguard client PII under GLBA Safeguards Rule & IRS Pub 4557 with zero cloud uploads.',
+    h1: 'Local Bank Statement, Tax & Financial PDF Redactor for CPAs',
+    toolMode: 'role',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/for-finance-accounting.png',
+    ogImageAlt: 'Local Bank Statement, Tax & Financial PDF Redactor for CPAs',
+    featureList: [
+      'GLBA Safeguards & IRS Pub 4557 Zero-Upload Execution',
+      'SSN, EIN & Account Number 300 DPI Destruction',
+      'XMP & Excel Analyst Metadata Scrubbing',
+      'SHA-256 Audit Certificate Export',
+      'Offline Air-Gap PWA Ready'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign CPA & Financial PDF Redactor',
+        'Redact bank statements, tax transcripts, and M&A disclosures locally in browser RAM with zero third-party uploads.',
+        'https://printsign.org/for-finance-accounting',
+        [
+          'Zero-Cloud Bank Statement Redaction',
+          'GLBA & IRS 4557 Safe Processing',
+          'XMP & Author Tag Removal',
+          'SHA-256 Workpaper Certificates'
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Industry Solutions', url: 'https://printsign.org/features' },
+        { name: 'For Finance & Accounting', url: 'https://printsign.org/for-finance-accounting' }
+      ])
+    })
+  },
   '/for-lawyers': {
     title: 'Client-Side PDF Redaction & Bates Prep for Lawyers (FRCP 5.2)',
     description: 'Redact court filings, discovery exhibits, and privileged legal PDFs 100% in browser RAM. Prevent failed black-box redactions with 300 DPI pixel destruction.',
@@ -791,6 +893,186 @@ export const seoMetadata = {
       ])
     })
   },
+  '/sign-pdf': {
+    title: 'Sign PDF Offline in Browser RAM (Zero Cloud Upload) | PrintSign',
+    description: 'Sign legal contracts, NDAs, and tax forms 100% locally in browser memory. Draw or place crisp vector signatures onto PDFs with zero server uploads or tracking.',
+    h1: 'Sign PDF Offline Purely in Browser RAM',
+    toolMode: 'sign',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/sign-pdf.png',
+    ogImageAlt: 'Sign PDF Offline in Browser RAM — Zero Cloud Upload',
+    featureList: [
+      '100% Client-Side PDF Signing',
+      'Crisp Vector & Handwritten Signature Placement',
+      'Multi-Page Initials & Date Stamps',
+      'Zero Document Account Required',
+      'Full Offline PWA Capability'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign Offline PDF Signer',
+        'Sign legal contracts, NDAs, and tax forms locally in browser RAM without uploading sensitive agreements to cloud servers.',
+        'https://printsign.org/sign-pdf',
+        [
+          'Draw & Place Signatures Locally',
+          'Zero Cloud Upload Contracts',
+          'Flatten Signatures Permanently',
+          'Offline PWA Ready'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Sign a PDF Offline Without Cloud Uploads',
+        'Apply handwritten or typed electronic signatures to PDF contracts purely in browser memory.',
+        'https://printsign.org/sign-pdf',
+        [
+          { name: 'Open Contract in Browser RAM', text: 'Load your PDF agreement directly into local memory.' },
+          { name: 'Create or Draw Signature', text: 'Use mouse, touch, or stylus inside the Edit tab to draw your signature or initials.' },
+          { name: 'Position & Scale Signature', text: 'Drag the signature block precisely onto the execution line and add signing dates.' },
+          { name: 'Export Signed PDF Locally', text: 'Save the finalized contract directly to disk with optional raster flattening.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Sign PDF', url: 'https://printsign.org/sign-pdf' }
+      ])
+    })
+  },
+  '/unlock-decrypt-pdf': {
+    title: 'Remove PDF Password & Decrypt PDF Client-Side (No Upload) | PrintSign',
+    description: 'Decrypt password-protected PDFs you authorize locally in browser RAM. Remove PDF owner permission locks (printing/copying restrictions) safely with zero cloud transfer.',
+    h1: 'Remove PDF Password Restrictions & Decrypt Locally',
+    toolMode: 'decrypt',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/unlock-decrypt-pdf.png',
+    ogImageAlt: 'Remove PDF Password & Decrypt PDF Client-Side',
+    featureList: [
+      'Client-Side PDF Decryption in Browser RAM',
+      'Authorized Owner Restriction Removal',
+      'Zero Password Transmission Over Network',
+      'Re-Export Clean Unencrypted PDF Catalog',
+      'Safe Offline Operation'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign Client-Side PDF Unlocker',
+        'Unlock authorized password-protected PDFs and strip restrictive print/copy owner flags purely inside local browser memory.',
+        'https://printsign.org/unlock-decrypt-pdf',
+        [
+          'Local In-Memory Decryption',
+          'Zero Password Server Exposure',
+          'Strip Print & Copy Restrictions',
+          'Clean Catalog Reassembly'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Unlock & Decrypt a PDF Offline Safely',
+        'Open an encrypted or restricted PDF locally in RAM and export a clean unlocked copy without sending passwords to remote servers.',
+        'https://printsign.org/unlock-decrypt-pdf',
+        [
+          { name: 'Load Encrypted PDF Locally', text: 'Open the password-protected PDF inside the offline PrintSign workspace.' },
+          { name: 'Enter Authorized Passphrase', text: 'Supply the user password locally inside your browser; keys never leave RAM.' },
+          { name: 'Clear Restriction Dictionaries', text: 'Rebuild the PDF catalog without owner permission locks or encryption trailers.' },
+          { name: 'Download Unlocked PDF', text: 'Save the decrypted PDF file for unrestricted printing and archiving.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Unlock PDF', url: 'https://printsign.org/unlock-decrypt-pdf' }
+      ])
+    })
+  },
+  '/watermark-pdf': {
+    title: 'Add Confidential & Bates Watermarks to PDF Offline | PrintSign',
+    description: 'Stamp CONFIDENTIAL, DRAFT, DO NOT DISTRIBUTE, or Bates numbering overlays onto PDF pages offline in browser RAM without uploading proprietary documents.',
+    h1: 'Add Confidential & Bates Watermarks to PDF Offline',
+    toolMode: 'watermark',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/watermark-pdf.png',
+    ogImageAlt: 'Add Confidential & Bates Watermarks to PDF Offline',
+    featureList: [
+      'Custom Confidential & Draft Stamps',
+      'Configurable Opacity, Rotation & Placement',
+      'Optional Raster Flattening to Prevent Removal',
+      'Bates & Legal Exhibit Labeling Support',
+      'Zero Cloud Upload Execution'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign Offline PDF Watermark & Bates Tool',
+        'Stamp permanent Confidential watermarks, exhibition labels, and burned-in security overlays onto PDFs inside browser RAM.',
+        'https://printsign.org/watermark-pdf',
+        [
+          'Custom Diagonal & Header Watermarks',
+          'Immutable Raster Burn-In Option',
+          'Legal Exhibit & Draft Labeling',
+          'Zero Server Uploads'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Watermark a PDF Permanently Offline',
+        'Apply confidential stamps and optionally flatten them into 300 DPI page pixels so recipients cannot delete overlays.',
+        'https://printsign.org/watermark-pdf',
+        [
+          { name: 'Open Proprietary Document', text: 'Load your confidential report, pitch deck, or court exhibit locally.' },
+          { name: 'Place Watermark or Bates Label', text: 'Insert custom text overlays, recipient identifiers, or confidentiality notices.' },
+          { name: 'Flatten to Prevent Tampering', text: 'Rasterize stamped pages at 300 DPI so standard PDF editors cannot select or remove marks.' },
+          { name: 'Save Watermarked PDF', text: 'Export the stamped document straight from browser memory to your device.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Watermark PDF', url: 'https://printsign.org/watermark-pdf' }
+      ])
+    })
+  },
+  '/extract-pdf-pages': {
+    title: 'Extract Pages from PDF Locally Without Uploading | PrintSign',
+    description: 'Extract single pages or custom page ranges (e.g., 1, 3-7) from confidential PDFs locally in browser RAM. Zero file size caps and zero third-party uploads.',
+    h1: 'Extract Pages from PDF Purely in Browser RAM',
+    toolMode: 'extract',
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/extract-pdf-pages.png',
+    ogImageAlt: 'Extract Pages from PDF Locally Without Uploading',
+    featureList: [
+      'Custom Page Range Extraction',
+      'Lossless Vector Font & Form Preservation',
+      'Automatic Unreferenced Object Pruning',
+      'Zero File Size Upload Limits',
+      '100% Client-Side RAM Processing'
+    ],
+    schema: buildCompositeSchema({
+      webApp: buildWebApplicationSchema(
+        'PrintSign Local PDF Page Extractor',
+        'Pull specific pages or page intervals out of large confidential PDF packets locally with lossless vector preservation.',
+        'https://printsign.org/extract-pdf-pages',
+        [
+          'Selective Page Interval Extraction',
+          'Orphan Resource Pruning',
+          'Zero Upload Latency',
+          'Works Offline as PWA'
+        ]
+      ),
+      howTo: buildHowToSchema(
+        'How to Extract Specific Pages from a PDF Without Uploading',
+        'Isolate exact page ranges locally in browser RAM while discarding unreferenced document pages and bloat.',
+        'https://printsign.org/extract-pdf-pages',
+        [
+          { name: 'Load Source PDF Locally', text: 'Select your multi-page contract, medical record, or exhibit bundle in memory.' },
+          { name: 'Specify Target Page Ranges', text: 'Choose individual pages or exact numeric ranges inside the Split/Extract tool.' },
+          { name: 'Copy Clean Page Tree Locally', text: 'PrintSign clones only referenced fonts and resources via pdf-lib without remote servers.' },
+          { name: 'Download Extracted PDF', text: 'Save the isolated page subset directly to your workstation.' }
+        ]
+      ),
+      breadcrumbs: buildBreadcrumbSchema([
+        { name: 'Home', url: 'https://printsign.org/' },
+        { name: 'Document Tools', url: 'https://printsign.org/#tools' },
+        { name: 'Extract PDF Pages', url: 'https://printsign.org/extract-pdf-pages' }
+      ])
+    })
+  },
   '/editor': {
     title: 'PrintSign Web Editor — Client-Side PDF Tools',
     description: 'All-in-one local PDF editor: redact, split, merge, rotate, rasterize, and sanitize documents privately in your browser.',
@@ -1158,6 +1440,28 @@ export const seoMetadata = {
       'https://printsign.org/general-editor',
       ['PDF Viewing', 'Annotation', 'Client-Side Rendering']
     )
+  },
+  '/sitemap': {
+    title: 'Complete Site Directory & Offline PDF Tool Index | PrintSign.org',
+    description: 'Browse all 54 pre-rendered client-side PDF tools, compliance hubs, industry role pages, cryptographic verifiers, and engineering guides on PrintSign.org.',
+    h1: 'Complete Site Directory & Offline PDF Tool Index',
+    toolMode: null,
+    ogType: 'website',
+    ogImage: 'https://printsign.org/images/og/sitemap.png',
+    ogImageAlt: 'Complete Site Directory & Offline PDF Tool Index | PrintSign.org',
+    featureList: [
+      'All 13 Client-Side PDF Utilities',
+      'Compliance Benchmarks (HIPAA, GDPR, NIST, FOIA)',
+      'Industry Role Hubs (Legal, Healthcare, Journalism, Finance)',
+      '18 Technical Engineering Articles'
+    ],
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: 'Complete Site Directory & Offline PDF Tool Index | PrintSign.org',
+      url: 'https://printsign.org/sitemap',
+      description: 'Complete categorized directory of all client-side PDF utilities, compliance benchmarks, industry role workflows, and engineering guides on PrintSign.org.'
+    }
   }
 }
 

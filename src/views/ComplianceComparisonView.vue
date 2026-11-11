@@ -267,6 +267,22 @@ const heroData = computed(() => {
     }
   }
 
+  if (p === '/gdpr-article-32-pdf-compliance') {
+    return {
+      badge: 'EU GDPR ARTICLE 32 & PRIVACY-BY-DESIGN (ARTICLE 25) COMPLIANT',
+      h1: 'GDPR Article 32 PDF Sanitization & Security of Processing Compliance',
+      description: 'Eliminate third-party cross-border data transfers (Schrems II / SCC risk) by redacting personal data, pseudonymizing DSAR exhibits, and stripping hidden XMP metadata 100% locally in browser RAM without vendor Data Processing Agreements.'
+    }
+  }
+
+  if (p === '/foia-document-redaction-tool') {
+    return {
+      badge: 'US FOIA EXEMPTION (b)(4), (b)(6) & (b)(7) DEFENSIBLE',
+      h1: 'FOIA & Public Records PDF Redaction Tool — Zero-Upload Sanitization',
+      description: 'Prevent high-profile government and municipal FOIA redaction failures caused by superficial black boxes. Destroy underlying ASCII/Unicode character streams at 300 DPI, scrub author telemetry, and verify 0 leaked strings before public release.'
+    }
+  }
+
   // Default: /ilovepdf-smallpdf-offline-alternative
   return {
     badge: 'ZERO-CLOUD PRIVACY ARCHITECTURE BENCHMARK',

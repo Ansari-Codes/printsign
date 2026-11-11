@@ -153,6 +153,78 @@ export const ogRoutesData = [
     subtitle: 'Purge FOIA Vector Layers, XMP Streams & Hidden Printer/Camera Metadata',
     icon: '📰',
     tag: 'SOURCE DEFENSE'
+  },
+  {
+    fileName: 'sign-pdf.png',
+    route: '/sign-pdf',
+    category: 'OFFLINE ELECTRONIC SIGNATURES',
+    title: 'Sign PDF Contracts Purely in Browser RAM',
+    subtitle: 'Draw Vector Signatures & Initials Locally • Optional 300 DPI Flatten • Zero Uploads',
+    icon: '✍️',
+    tag: 'ZERO CLOUD SAAS'
+  },
+  {
+    fileName: 'unlock-decrypt-pdf.png',
+    route: '/unlock-decrypt-pdf',
+    category: 'ZERO-KNOWLEDGE DECRYPTION',
+    title: 'Remove PDF Password & Permission Locks',
+    subtitle: 'Client-Side Decryption in Browser RAM • Passphrases Never Touch External Servers',
+    icon: '🔓',
+    tag: 'LOCAL RAM ONLY'
+  },
+  {
+    fileName: 'watermark-pdf.png',
+    route: '/watermark-pdf',
+    category: 'DOCUMENT WATERMARK & BATES',
+    title: 'Stamp Confidential & Bates Watermarks',
+    subtitle: 'Apply Custom Diagonal Security Notices & Burn Permanently Into 300 DPI Pixels',
+    icon: '🏷️',
+    tag: 'IMMUTABLE STAMP'
+  },
+  {
+    fileName: 'extract-pdf-pages.png',
+    route: '/extract-pdf-pages',
+    category: 'SURGICAL PAGE ISOLATION',
+    title: 'Extract Specific PDF Pages Without Uploading',
+    subtitle: 'Pull Single Exhibits or Custom Ranges Locally • Prune Unreferenced Orphan Objects',
+    icon: '📄',
+    tag: 'NO SIZE LIMITS'
+  },
+  {
+    fileName: 'gdpr-article-32-pdf-compliance.png',
+    route: '/gdpr-article-32-pdf-compliance',
+    category: 'EU GDPR ARTICLES 25 & 32',
+    title: 'GDPR Article 32 PDF Sanitization Guide',
+    subtitle: 'Zero Schrems II Cross-Border Transfers • DSAR Third-Party PII Destruction in RAM',
+    icon: '🇪🇺',
+    tag: 'GDPR ART. 32'
+  },
+  {
+    fileName: 'foia-document-redaction-tool.png',
+    route: '/foia-document-redaction-tool',
+    category: 'PUBLIC RECORDS & FOIA SAFE',
+    title: 'FOIA Document Redaction Without Leaks',
+    subtitle: 'Destroy Underlying Vector Text Streams Under Exemptions (b)(4), (b)(6) & (b)(7)',
+    icon: '🏛️',
+    tag: 'FOIA DEFENSIBLE'
+  },
+  {
+    fileName: 'for-finance-accounting.png',
+    route: '/for-finance-accounting',
+    category: 'CPA • TAX • M&A CONFIDENTIALITY',
+    title: 'Financial & Bank Statement PDF Redactor',
+    subtitle: 'GLBA Safeguards & IRS Pub 4557 Local Sanitization • Strip Routing Digits & XMP',
+    icon: '🏦',
+    tag: 'GLBA & IRS 4557'
+  },
+  {
+    fileName: 'sitemap.png',
+    route: '/sitemap',
+    category: 'COMPLETE 54-PAGE DIRECTORY',
+    title: 'PrintSign.org Site Directory & Tool Index',
+    subtitle: 'Explore All 13 Local PDF Utilities, Compliance Benchmarks & 18 Engineering Guides',
+    icon: '🗺️',
+    tag: '54 STATIC PAGES'
   }
 ]
 

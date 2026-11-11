@@ -264,6 +264,35 @@
         </aside>
       </div>
 
+      <!-- Free Offline PDF Tools Link Grid (Eliminates Orphan Pages) -->
+      <section class="mt-14 pt-10 border-t border-slate-800/80">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-white tracking-tight">
+              Free Offline PDF Tools (Zero Cloud Upload)
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Every utility runs purely in local browser memory with zero telemetry or server uploads.
+            </p>
+          </div>
+          <router-link to="/sitemap" class="text-xs font-bold text-cyan-400 hover:text-cyan-300 shrink-0">
+            Browse All 54 Pages →
+          </router-link>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 text-xs">
+          <router-link to="/redact-pdf" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Redact PDF (300 DPI)</router-link>
+          <router-link to="/verify-redaction" class="p-3 rounded-xl bg-slate-900/60 border border-emerald-500/30 hover:border-emerald-400 text-emerald-300 hover:text-emerald-200 transition font-semibold">Verify Redaction</router-link>
+          <router-link to="/scrub-pdf-metadata" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Scrub Metadata</router-link>
+          <router-link to="/sign-pdf" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Sign PDF Offline</router-link>
+          <router-link to="/unlock-decrypt-pdf" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Unlock / Decrypt PDF</router-link>
+          <router-link to="/watermark-pdf" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Watermark &amp; Bates</router-link>
+          <router-link to="/extract-pdf-pages" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Extract PDF Pages</router-link>
+          <router-link to="/merge-pdf" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Merge PDFs</router-link>
+          <router-link to="/split-pdf" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Split PDF Ranges</router-link>
+          <router-link to="/compress-pdf" class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-cyan-500/40 text-slate-200 hover:text-cyan-400 transition font-semibold">Lossless Compressor</router-link>
+        </div>
+      </section>
+
       <!-- Related Articles Section -->
       <section v-if="relatedPosts.length > 0" class="mt-20 pt-12 border-t border-slate-800">
         <div class="flex items-center justify-between mb-8">

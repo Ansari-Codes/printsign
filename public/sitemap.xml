@@ -2,277 +2,325 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://printsign.org/</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://printsign.org/verify-redaction</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://printsign.org/f12-network-audit</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/redact-pdf</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://printsign.org/scrub-pdf-metadata</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://printsign.org/merge-pdf</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://printsign.org/split-pdf</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://printsign.org/flatten-rasterize-pdf</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://printsign.org/reorder-rotate-pdf</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://printsign.org/compress-pdf</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://printsign.org/sign-pdf</loc>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://printsign.org/unlock-decrypt-pdf</loc>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://printsign.org/watermark-pdf</loc>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://printsign.org/extract-pdf-pages</loc>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://printsign.org/editor</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/general-editor</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/ilovepdf-smallpdf-offline-alternative</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/hipaa-compliant-pdf-redaction</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/nist-800-88-pdf-sanitization</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://printsign.org/gdpr-article-32-pdf-compliance</loc>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://printsign.org/foia-document-redaction-tool</loc>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/for-lawyers</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/for-healthcare</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/for-journalists</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://printsign.org/for-finance-accounting</loc>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/guides</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/faq</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/features</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/security-architecture</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://printsign.org/sitemap</loc>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://printsign.org/blog</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://printsign.org/about-us</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://printsign.org/contact-us</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://printsign.org/privacy-policy</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://printsign.org/terms-of-service</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://printsign.org/cookie-policy</loc>
-    <lastmod>2026-11-11</lastmod>
+    <lastmod>2026-11-11T13:05:44+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/how-to-permanently-redact-pdf-court-compliant</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/printsign-vs-smallpdf-ilovepdf-cloud-security</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/merge-pdf-files-without-uploading-private</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/split-pdf-extract-pages-offline</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/hidden-pdf-metadata-scrub-xmp-streams</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/why-black-boxes-fail-pdf-redaction-disasters</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/hipaa-compliant-pdf-editor-medical-records</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/best-free-adobe-acrobat-alternatives-2026</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/high-dpi-pdf-rasterization-guide-300-600-dpi</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/offline-pwa-pdf-editor-how-it-works</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/gdpr-article-32-pdf-data-protection</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/how-to-rotate-reorder-delete-pdf-pages</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/flatten-pdf-form-fields-signatures-security</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/legal-discovery-ediscovery-pdf-sanitization</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/financial-document-redaction-tax-banking-privacy</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/zero-trust-architecture-browser-webassembly</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/compress-pdf-file-size-without-losing-quality</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://printsign.org/blog/remove-passwords-decrypt-pdf-client-side</loc>
-    <lastmod>2026-10-26</lastmod>
+    <lastmod>2026-10-26T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

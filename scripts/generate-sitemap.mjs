@@ -32,9 +32,9 @@ function loadBlogPosts() {
 }
 
 export function generateSitemap() {
-  const today = new Date().toISOString().split('T')[0]
+  const nowIso = new Date().toISOString().replace(/\.\d{3}Z$/, '+00:00')
 
-  // Defined static routes with changefreq & priority
+  // Defined static routes with changefreq & priority (36 static + 18 blogs = 54 URLs)
   const staticRoutes = [
     { loc: 'https://printsign.org/', changefreq: 'daily', priority: '1.0' },
     // Core Unbundled Tool Routes
@@ -47,21 +47,29 @@ export function generateSitemap() {
     { loc: 'https://printsign.org/flatten-rasterize-pdf', changefreq: 'weekly', priority: '1.0' },
     { loc: 'https://printsign.org/reorder-rotate-pdf', changefreq: 'weekly', priority: '1.0' },
     { loc: 'https://printsign.org/compress-pdf', changefreq: 'weekly', priority: '1.0' },
+    { loc: 'https://printsign.org/sign-pdf', changefreq: 'weekly', priority: '1.0' },
+    { loc: 'https://printsign.org/unlock-decrypt-pdf', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/watermark-pdf', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/extract-pdf-pages', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/editor', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/general-editor', changefreq: 'weekly', priority: '0.8' },
     // High-Intent Compliance & Comparison Routes
     { loc: 'https://printsign.org/ilovepdf-smallpdf-offline-alternative', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/hipaa-compliant-pdf-redaction', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/nist-800-88-pdf-sanitization', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/gdpr-article-32-pdf-compliance', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/foia-document-redaction-tool', changefreq: 'weekly', priority: '0.9' },
     // Vertical Industry Hub Routes
     { loc: 'https://printsign.org/for-lawyers', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/for-healthcare', changefreq: 'weekly', priority: '0.9' },
     { loc: 'https://printsign.org/for-journalists', changefreq: 'weekly', priority: '0.9' },
+    { loc: 'https://printsign.org/for-finance-accounting', changefreq: 'weekly', priority: '0.9' },
     // Knowledge Base, FAQ, Features, Security
     { loc: 'https://printsign.org/guides', changefreq: 'weekly', priority: '0.8' },
     { loc: 'https://printsign.org/faq', changefreq: 'monthly', priority: '0.8' },
     { loc: 'https://printsign.org/features', changefreq: 'monthly', priority: '0.8' },
     { loc: 'https://printsign.org/security-architecture', changefreq: 'monthly', priority: '0.8' },
+    { loc: 'https://printsign.org/sitemap', changefreq: 'weekly', priority: '0.8' },
     // Blog Hub
     { loc: 'https://printsign.org/blog', changefreq: 'weekly', priority: '0.9' },
     // Company & Legal
@@ -73,12 +81,12 @@ export function generateSitemap() {
   ]
 
   function formatIsoDate(d) {
-    if (!d) return today
+    if (!d) return nowIso
     const parsed = new Date(d)
     if (!isNaN(parsed.getTime())) {
-      return parsed.toISOString().split('T')[0]
+      return `${parsed.toISOString().split('T')[0]}T00:00:00+00:00`
     }
-    return today
+    return nowIso
   }
 
   const blogs = loadBlogPosts()
@@ -95,7 +103,7 @@ export function generateSitemap() {
     .map(
       item => `  <url>
     <loc>${item.loc}</loc>
-    <lastmod>${item.lastmod || today}</lastmod>
+    <lastmod>${item.lastmod || nowIso}</lastmod>
     <changefreq>${item.changefreq}</changefreq>
     <priority>${item.priority}</priority>
   </url>`

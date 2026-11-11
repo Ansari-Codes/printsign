@@ -53,10 +53,19 @@ console.log(`✓ Verified ${allDistHtmlFiles.length} dist HTML files: 100% free 
 
 // 3. Verify specific critical routes
 const filesToCheck = [
+  'index.html',
   'f12-network-audit/index.html',
   'for-lawyers/index.html',
   'for-healthcare/index.html',
   'for-journalists/index.html',
+  'for-finance-accounting/index.html',
+  'gdpr-article-32-pdf-compliance/index.html',
+  'foia-document-redaction-tool/index.html',
+  'sign-pdf/index.html',
+  'unlock-decrypt-pdf/index.html',
+  'watermark-pdf/index.html',
+  'extract-pdf-pages/index.html',
+  'sitemap/index.html',
   'contact-us/index.html',
   'blog/compress-pdf-file-size-without-losing-quality/index.html',
   'blog/high-dpi-pdf-rasterization-guide-300-600-dpi/index.html',

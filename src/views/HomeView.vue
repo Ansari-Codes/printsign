@@ -118,64 +118,56 @@
       </section>
 
       <section class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-slate-800/80">
-        <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider text-center mb-6">
-          Explore Our Verified Dedicated Pages
-        </h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center text-xs">
-          <router-link
-            to="/for-lawyers"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            ⚖️ For Lawyers
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+          <h2 class="text-sm font-extrabold text-white uppercase tracking-wider">
+            All Client-Side PDF Tools &amp; Compliance Hubs
+          </h2>
+          <router-link to="/sitemap" class="text-xs font-bold text-cyan-400 hover:text-cyan-300 transition">
+            View Complete 54-Page Directory →
           </router-link>
-          <router-link
-            to="/for-healthcare"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            🩺 For Healthcare
-          </router-link>
-          <router-link
-            to="/for-journalists"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            📰 For Journalists
-          </router-link>
-          <router-link
-            to="/features"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            Features & Specs
-          </router-link>
-          <router-link
-            to="/about-us"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            About Us & Mission
-          </router-link>
-          <router-link
-            to="/contact-us"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            Contact Support
-          </router-link>
-          <router-link
-            to="/privacy-policy"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            Privacy Policy
-          </router-link>
-          <router-link
-            to="/terms-of-service"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            Terms of Service
-          </router-link>
-          <router-link
-            to="/cookie-policy"
-            class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition"
-          >
-            Cookie Policy
-          </router-link>
+        </div>
+
+        <div class="space-y-6">
+          <!-- PDF Tools Matrix -->
+          <div>
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3">Zero-Upload Document Utilities</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 text-center text-xs">
+              <router-link to="/redact-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Redact PDF (300 DPI)</router-link>
+              <router-link to="/verify-redaction" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-emerald-500/30 rounded-xl text-emerald-300 hover:text-emerald-200 transition font-semibold">Redaction Verifier</router-link>
+              <router-link to="/scrub-pdf-metadata" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Scrub Metadata</router-link>
+              <router-link to="/sign-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Sign PDF Offline</router-link>
+              <router-link to="/unlock-decrypt-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Unlock / Decrypt PDF</router-link>
+              <router-link to="/watermark-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Watermark &amp; Bates</router-link>
+              <router-link to="/extract-pdf-pages" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Extract PDF Pages</router-link>
+              <router-link to="/merge-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Merge PDFs</router-link>
+              <router-link to="/split-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Split PDF Ranges</router-link>
+              <router-link to="/flatten-rasterize-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Flatten &amp; Rasterize</router-link>
+              <router-link to="/reorder-rotate-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Reorder &amp; Rotate</router-link>
+              <router-link to="/compress-pdf" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Lossless Compressor</router-link>
+              <router-link to="/editor" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">Full Web Editor</router-link>
+              <router-link to="/general-editor" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-200 hover:text-cyan-400 transition font-semibold">General PDF Editor</router-link>
+              <router-link to="/sitemap" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-cyan-500/30 rounded-xl text-cyan-300 hover:text-cyan-200 transition font-semibold">Full Site Index (54)</router-link>
+            </div>
+          </div>
+
+          <!-- Industry & Compliance Matrix -->
+          <div>
+            <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3">Regulatory Compliance &amp; Industry Hubs</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 text-center text-xs">
+              <router-link to="/for-lawyers" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">⚖️ For Lawyers</router-link>
+              <router-link to="/for-healthcare" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">🩺 For Healthcare</router-link>
+              <router-link to="/for-journalists" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">📰 For Journalists</router-link>
+              <router-link to="/for-finance-accounting" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">🏦 For Finance &amp; CPAs</router-link>
+              <router-link to="/hipaa-compliant-pdf-redaction" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">HIPAA Redaction</router-link>
+              <router-link to="/nist-800-88-pdf-sanitization" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">NIST SP 800-88</router-link>
+              <router-link to="/gdpr-article-32-pdf-compliance" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">GDPR Article 32</router-link>
+              <router-link to="/foia-document-redaction-tool" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">FOIA Redactor</router-link>
+              <router-link to="/f12-network-audit" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">F12 Network Audit</router-link>
+              <router-link to="/ilovepdf-smallpdf-offline-alternative" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">Cloud Alternative</router-link>
+              <router-link to="/features" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">Features &amp; Specs</router-link>
+              <router-link to="/about-us" class="p-3 bg-slate-900/60 hover:bg-slate-850 border border-slate-800 rounded-xl text-slate-300 hover:text-cyan-400 transition">About &amp; Security</router-link>
+            </div>
+          </div>
         </div>
       </section>
     </main>
